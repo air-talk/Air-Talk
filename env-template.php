@@ -8,7 +8,7 @@ return array(
 
 
 
-    'USER_USERNAME' => '',
+    'USER_DOB' => '',
     'USER_FIRSTNAME' => '',
     'USER_LASTNAME' => '',
     'USER_EMAIL' => '',
