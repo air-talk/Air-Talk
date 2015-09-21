@@ -6,7 +6,7 @@ class UsersTableSeeder extends Seeder {
     {
         User::create([
 
-            'username'   => $_ENV['USER_USERNAME'],
+            'dob'   => $_ENV['USER_DOB'],
             'first_name' => $_ENV['USER_FIRSTNAME'],
             'last_name'  => $_ENV['USER_LASTNAME'],
             'email'      => $_ENV['USER_EMAIL'],
