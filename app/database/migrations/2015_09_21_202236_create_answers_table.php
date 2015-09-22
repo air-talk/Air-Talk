@@ -27,7 +27,7 @@ class CreateAnswersTable extends Migration {
 	 */
 	public function down()
 	{
-		//
+		Schema::drop('questions');
 	}
 
 }
