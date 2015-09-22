@@ -9,7 +9,9 @@ class FlashcardsController extends \BaseController {
 	 */
 	public function index()
 	{
-		//shows a list of all the flashcards, only accessible by admin
+		//shows a list of all the flashcards
+		$flashcards = DB::table('flashcards')->get();
+			return View::make('flashcards.index')->with(['flashcards' => $flashcards]);
 	}
 
 
