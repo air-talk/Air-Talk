@@ -20,7 +20,7 @@ class CreateQuestionsTable extends Migration {
             $table->string('wrong_answer1');
             $table->string('wrong_answer2');
             $table->string('wrong_answer3');
-            $table->string('categories');
+            $table->string('category');
             $table->timestamps();
         });
 	}

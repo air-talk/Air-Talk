@@ -6,6 +6,7 @@
 	"type": "project",
 	"require": {
 		"laravel/framework": "4.2.*",
+		"fzaninotto/faker": "^1.5",
 		"esensi/model": "~0.3"
 	},
 	"autoload": {
