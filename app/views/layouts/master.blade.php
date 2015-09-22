@@ -8,11 +8,12 @@
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="/css/master.css">
+    @yield('head')
 </head>
 <body>
 <header>
     <!-- Second navbar for sign in -->
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-custom">
       <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
