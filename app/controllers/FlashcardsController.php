@@ -9,7 +9,7 @@ class FlashcardsController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		//shows a list of all the flashcards, only accessible by admin
 	}
 
 
@@ -20,7 +20,7 @@ class FlashcardsController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		//has a show page to add a new flashcard to the database through a nice GAI(graphical admin interface)
 	}
 
 
@@ -31,7 +31,7 @@ class FlashcardsController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		//stores the flashcard created in the GAI
 	}
 
 
@@ -43,7 +43,7 @@ class FlashcardsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		//has a show page with the flashcard to the user/admin through an interface
 	}
 
 
@@ -55,7 +55,7 @@ class FlashcardsController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		//has a show page with the flashcard to the admin through the GAI
 	}
 
 
@@ -67,7 +67,7 @@ class FlashcardsController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		//updates the flashcard that was editted in the edit GAI
 	}
 
 
@@ -79,7 +79,7 @@ class FlashcardsController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		//deletes the flashcard from the database through the GAI
 	}
 
 
