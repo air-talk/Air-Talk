@@ -32,22 +32,23 @@
             <li><a href="#">Works</a></li>
             <li><a href="#">News</a></li>
             <li><a href="#">Contact</a></li>
-            <li>
-              <a class="btn btn-default btn-outline btn-circle collapsed"  data-toggle="collapse" href="#nav-collapse2" aria-expanded="false" aria-controls="nav-collapse2">Sign in</a>
-            </li>
+            @if(Auth::check())
+                <li>
+                  <a class="btn btn-default btn-outline btn-circle collapsed" href="{{{action('UsersController@doSignout')}}}" aria-expanded="false" >Sign out</a>
+                </li>
+            @else
+                <li>
+                  <a class="btn btn-default btn-outline btn-circle collapsed"  data-toggle="collapse" href="#nav-collapse2" aria-expanded="false" aria-controls="nav-collapse2">Sign in</a>
+                </li>
+            @endif
           </ul>
           <div class="collapse nav navbar-nav nav-collapse slide-down" id="nav-collapse2">
-            <form class="navbar-form navbar-right form-inline" role="form">
-              <div class="form-group">
-                <label class="sr-only" for="Email">Email</label>
-                <input type="email" class="form-control" id="Email" placeholder="Email" autofocus required />
-              </div>
-              <div class="form-group">
-                <label class="sr-only" for="Password">Password</label>
-                <input type="password" class="form-control" id="Password" placeholder="Password" required />
-              </div>
-              <button type="submit" class="btn btn-success">Sign in</button>
-            </form>
+            <div class="navbar-form navbar-right form-inline">
+                {{ Form::open(array('action' => 'UsersController@doSignin')) }}
+                    @include('users.partials.login_form')
+                    <button class="btn btn-primary btn-sm"> Submit </button>
+                {{Form::close()}}
+            </div>
           </div>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container -->
@@ -55,6 +56,26 @@
 </header>
 <main>
     <div class="container">
+        <div class="container">
+            <div class="row">
+                <div>
+                    @if (Session::has('successMessage'))
+                        <div class="alert alert-success">{{{ Session::get('successMessage') }}}</div>
+                    @endif
+                    @if (Session::has('errorMessage'))
+                        <div class="alert alert-danger">{{{ Session::get('errorMessage') }}}</div>
+                    @endif
+                    @if($errors->has())
+                        <div class="alert alert-danger" role="alert">
+                            <ul>
+                                @foreach($errors->all() as $key=> $error)
+                                    <li>{{{$error}}}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                </div>
+            </div>
       @yield('content')
     </div>
     
