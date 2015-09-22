@@ -1,3 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+</head>
+<body>
 <header class="topbar   topbar-blue">
     <div class="container">
         <a href="/" class="topbar-brand navigate-home track-click white smaller-logo"></a>
@@ -48,3 +60,13 @@
         <div id="logged-out-message" class="logged-out-message"></div>
     </div>
 </header>
+<main>
+    
+</main>
+<footer>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+</footer>
+</body>
+</html>
