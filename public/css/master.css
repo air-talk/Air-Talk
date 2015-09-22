@@ -11,8 +11,8 @@ Follow me on Twitter @maridlcrmn
 .navbar .navbar-collapse .navbar-right > li:last-child { padding-left: 22px; }
 
 .navbar .nav-collapse { position: absolute; z-index: 1; top: 0; left: 0; right: 0; bottom: 0; margin: 0; padding-right: 120px; padding-left: 80px; width: 100%; }
-.navbar.navbar-default .nav-collapse { background-color: #f8f8f8; }
-.navbar.navbar-inverse .nav-collapse { background-color: #222; }
+.navbar.navbar-default .nav-collapse { background-color: rgba(32,166,231,0.8); }
+.navbar.navbar-inverse .nav-collapse { background-color: rgba(32,166,231,0.8); }
 .navbar .nav-collapse .navbar-form { border-width: 0; box-shadow: none; }
 .nav-collapse>li { float: right; }
 
@@ -20,8 +20,8 @@ Follow me on Twitter @maridlcrmn
 .btn.btn-outline { background-color: transparent; }
 
 .navbar-nav.navbar-right .btn:not(.collapsed) {
-    background-color: rgb(111, 84, 153);
-    border-color: rgb(111, 84, 153);
+    background-color: rgba(32,166,231,0.5);
+    border-color: rgba(32,166,231,0.5);
     color: rgb(255, 255, 255);
 }
 
@@ -69,4 +69,8 @@ Follow me on Twitter @maridlcrmn
 
 .blue{
     color:blue;
+}
+
+.navbar-custom{
+    background-color: rgba(32,166,231,0.8);
 }
