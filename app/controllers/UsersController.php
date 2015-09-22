@@ -2,7 +2,7 @@
 
 class UsersController extends \BaseController {
 
-	public function showLogin()
+	public function showSignin()
 	{
 		if(Auth::check()){
 			return Redirect::action('HomeController@index');
@@ -11,7 +11,7 @@ class UsersController extends \BaseController {
 		}
 	}
 
-	public function doLogin()
+	public function doSignin()
 	{
 		$email = Input::get('email');
 		$password = Input::get('password');
@@ -21,23 +21,23 @@ class UsersController extends \BaseController {
 		}else{
 			Session::flash('errorMessage', 'Email and password combination failed.');
 			Log::info('validator failed', Input::all());
-			return Redirect::action('UsersController@showLogin');
+			return Redirect::action('UsersController@showSignin');
 		}
 	}
 
-	public function doLogout()
+	public function doSignout()
 	{
 		Auth::logout();
 		Session::flash('successMessage', 'Goodbye!');
 		return View::make('users.signin');
 	}
 
-	public function showCreate()
+	public function create()
 	{
 		if(!Auth::check()){
 			return View::make('users.create');
 		}else{
-			return Redirect::action('UsersController@showUser', Auth::id());
+			return Redirect::action('UsersController@show', Auth::id());
 		}
 	}
 	// FOR ELOQUENT
@@ -59,11 +59,11 @@ class UsersController extends \BaseController {
 	// 		$email = Input::get('email');
 	// 		$password = Input::get('password');
 	// 		Auth::attempt(array('email' => $email, 'password' => $password));
-	// 		return Redirect::action('UsersController@showUser');
+	// 		return Redirect::action('UsersController@show');
 	// 	}
 
 	// FOR ESENSI
-	public function newUser()
+	public function store()
 	{
 		$user = new User();
 
@@ -75,7 +75,7 @@ class UsersController extends \BaseController {
 
 		if (!$user->save()) {
 		     $errors = $user->getErrors();
-		     return Redirect::action('UsersController@showCreate')
+		     return Redirect::action('UsersController@create')
 		       ->with('errors', $errors)
 		       ->withInput();
 		}
@@ -87,11 +87,11 @@ class UsersController extends \BaseController {
 			$email = Input::get('email');
 			$password = Input::get('password');
 			Auth::attempt(array('email' => $email, 'password' => $password));
-		    return Redirect::action('UsersController@showUser', Auth::id())->with('message', 'Account with email of ' . $user->email . ' has been created!');
+		    return Redirect::action('UsersController@show', Auth::id())->with('message', 'Account with email of ' . $user->email . ' has been created!');
 		
 	 }
 
-	public function showUser($id)
+	public function show($id)
 	{
 		if(User::find($id)){
 			$user = User::find($id);
@@ -101,38 +101,17 @@ class UsersController extends \BaseController {
 		}
 	}
 
-	public function showEventsJson()
-	{
-
-		$out = array();
-		//grab all the events the user is going to and put in correct format
-		 foreach(Auth::user()->calendar_events as $event){ 
-		    $out[] = array(
-		        'id' => $event->id,
-		        'title' => $event->title,
-		        'url' => "http://events.dev/events/" . $event->id,
-		        'class' => 'event-important',
-		        'start' => strtotime($event->start_dateTime).'000',
-		        'end' => strtotime($event->end_dateTime).'000'
-		    );
-		}
-		return json_encode(array('success' => 1, 'result' => $out));
-			// json_encode(array('success' => 1, 'result' => $out));
-		// Response::view(json_encode(array('success' => 1, 'result' => $out)));
-		exit;
-	}
-
 	public function edit($id)
 	{
 		if(Auth::id() == $id){
 			$user = Auth::user();
 			return View::make('users.edit')->with('user',$user);
 		}else{
-			return Redirect::action('CalendarEventsController@index');
+			return Redirect::action('UsersController@show');
 		}
 	}
 
-	public function editProfile()
+	public function update()
 	{
 		//check if they used correct current password before allowing edits
 		if (Hash::check(Input::get('current_password'), Auth::user()->password))
@@ -152,7 +131,7 @@ class UsersController extends \BaseController {
 			$email = Input::get('email');
 			$password = Input::get('password');
 			Auth::attempt(array('email' => $email, 'password' => $password));
-		    return Redirect::action('UsersController@showUser', Auth::id())->with('message', 'Account with email of ' . $user->email . ' has been succesfully edited!');
+		    return Redirect::action('UsersController@show', Auth::id())->with('message', 'Account with email of ' . $user->email . ' has been succesfully edited!');
 		}else{
 			// current password didn't match database
 			return Redirect::action('UsersController@edit', Auth::id())->with('errorMessage', 'Current password was incorrect.');
