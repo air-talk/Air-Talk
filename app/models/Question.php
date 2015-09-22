@@ -18,7 +18,7 @@ class User extends Model implements UserInterface, RemindableInterface {
 	protected $table = 'questions';
 
 
-	protected $fillable = ['first_name', 'last_name', 'email', 'password'];
+	protected $fillable = ['question', 'right_answer', 'wrong_answer1', 'wrong_answer2', 'wrong_answer3', 'categories'];
 
 
 	/**
@@ -26,15 +26,15 @@ class User extends Model implements UserInterface, RemindableInterface {
 	 *
 	 * @var array
 	 */
-	protected $hidden = array('password', 'remember_token');
+	
 
 	protected $rules = array(
-		'email' => 'required|email|max:255|unique:users',
-		'first_name' => 'required|max:255',
-		'last_name' => 'required|max:255',
-		'password' => 'required|confirmed'
+		'question' => 'required',
+		'right_answer' => 'required',
+		'wrong_answer1' => 'required',
+		'wrong_answer2' => 'required',
+		'wrong_answer3' => 'required',
+		'categories' => 'required'
 	);
-
-	protected $hashable = ['password'];
 
 }
