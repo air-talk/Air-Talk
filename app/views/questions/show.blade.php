@@ -2,4 +2,5 @@
 @section('head')
 @stop
 @section('content')
+	
 @stop
