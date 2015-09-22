@@ -10,7 +10,7 @@
 <body>
 <header>
     <!-- Second navbar for sign in -->
-    <nav class="navbar navbar-custom">
+    <nav class="nav navbar navbar-default">
       <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -60,7 +60,7 @@
     
 </main>
 <footer>
-  <script src="/js/jquery.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
