@@ -12,7 +12,12 @@ class CreateAnswersTable extends Migration {
 	 */
 	public function up()
 	{
-		//
+		Schema::create('answers', function($table)
+        {
+            $table->integer('user_id');
+            $table->integer('question_id');
+            $table->timestamps();
+        });
 	}
 
 	/**
