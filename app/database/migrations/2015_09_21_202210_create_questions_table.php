@@ -12,14 +12,15 @@ class CreateQuestionsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('users', function($table)
+		Schema::create('questions', function($table)
         {
             $table->increments('id');
-            $table->string('question', 100);
+            $table->string('question');
             $table->string('right_answer');
             $table->string('wrong_answer1');
             $table->string('wrong_answer2');
             $table->string('wrong_answer3');
+            $table->string('categories');
             $table->timestamps();
         });
 	}
@@ -31,7 +32,7 @@ class CreateQuestionsTable extends Migration {
 	 */
 	public function down()
 	{
-		//
+		Schema::drop('questions');
 	}
 
 }
