@@ -7,58 +7,55 @@
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-
+    <link rel="stylesheet" href="/css/master.css">
 </head>
 <body>
-<header class="topbar   topbar-blue">
-    <div class="container">
-        <a href="/" class="topbar-brand navigate-home track-click white smaller-logo"></a>
-        <div id="global-loading-indicator" class="loading-indicator  smaller-logo" style="display: none;">
-            <div class="loader"></div>
+<header>
+    <!-- Second navbar for sign in -->
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-2">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Brand</a>
         </div>
-        <nav class="topbar-nav">
-            <ul class="topbar-nav-main" style="font-size: 15px">
-                <li id="home-nav" class="active"><a href="/">Home</a></li>
-                <li id="vocab-nav"><a href="/words">Words</a></li>
-                <li id="stream-nav"><a href="/activity_stream">Activity</a></li>
-                <li id="questions-nav"><a href="/discussion">Discussion</a></li>
-                <li id="translations-nav"><a href="/translations">Immersion</a></li>
-            </ul>
-        </nav>
-        <div class="topbar-right" style="font-size: 15px;">
-            <div class="hamburger"></div>
-            <div class="dropdown topbar-language">
-                <div data-toggle="dropdown" class=""><span class="flag flag-svg-small flag-es"></span></div>
-                <ul class="dropdown-menu arrow-top languages" role="menu" aria-labelledby="dLabel">
-                    <li class="head">
-                        <h6>Learning</h6>
-                    </li>
-                    <li class="language-choice active" data-value="es"><a href="javascript:;"><span class="flag flag-svg-micro flag-es"></span><span data-value="es">Spanish</span> <span class="gray">level 2</span></a></li>
-                    <li class="divider"></li>
-                    <li data-value="more"><a href="/courses">Add a new course</a></li>
-                </ul>
-            </div>
-            <div class="dropdown topbar-username">
-                <div data-toggle="dropdown" class=""><a href="/nikiwilliams" class="avatar avatar-small " title="nikiwilliams"><img src="//duolingo-images.s3.amazonaws.com/avatars/11747121/uQ9_Aqxi0P/large"><span class="ring"></span></a> <span class="name">nikiwilliams</span><span class="icon icon-arrow-down-white"></span></div>
-                <ul class="dropdown-menu arrow-top" role="menu" aria-labelledby="dLabel" style="display: none;">
-                    <li><a href="/nikiwilliams">Your Profile</a></li>
-                    <li><a href="/settings/account" class="track-click" id="header_userdrop_settings">Settings</a></li>
-                    <li><a href="/help">Help</a></li>
-                    <li><a id="show-shortcuts">Keyboard shortcuts</a></li>
-                    <li><a class="track-click" id="header_userdrop_logout">Logout</a></li>
-                </ul>
-            </div>
-            <ul class="topbar-stats">
-                <li class="streak" data-toggle="tooltip" title="0 day streak" data-placement="bottom"><span class="icon icon-streak-small "></span> 0</li>
-                <li class="lingots" data-toggle="tooltip" title="Lingots" data-placement="bottom"><a href="/show_store"><span class="icon icon-lingot-small"></span><span id="num_lingots"> 6</span></a></li>
-                <li class="notifications">
-                    <button class="toggle-notifications btn btn-custom btn-notifications " data-placement="bottom" title=""><span class="icon icon-notification-small"></span></button>
-                    <div id="popover-notifications" class="popover notification-popover-content hidden" style="position:fixed;"></div>
-                </li>
-            </ul>
-        </div>
-        <div id="logged-out-message" class="logged-out-message"></div>
-    </div>
+    
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar-collapse-2">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Works</a></li>
+            <li><a href="#">News</a></li>
+            <li><a href="#">Contact</a></li>
+            <li>
+              <a class="btn btn-default btn-outline btn-circle collapsed"  data-toggle="collapse" href="#nav-collapse2" aria-expanded="false" aria-controls="nav-collapse2">Sign in</a>
+            </li>
+          </ul>
+          <div class="collapse nav navbar-nav nav-collapse slide-down" id="nav-collapse2">
+            <form class="navbar-form navbar-right form-inline" role="form">
+              <div class="form-group">
+                <label class="sr-only" for="Email">Email</label>
+                <input type="email" class="form-control" id="Email" placeholder="Email" autofocus required />
+              </div>
+              <div class="form-group">
+                <label class="sr-only" for="Password">Password</label>
+                <input type="password" class="form-control" id="Password" placeholder="Password" required />
+              </div>
+              <button type="submit" class="btn btn-success">Sign in</button>
+            </form>
+          </div>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container -->
+    </nav><!-- /.navbar -->
+    
+    
 </header>
 <main>
     
