@@ -11,10 +11,11 @@
 |
 */
 
-Route::post('login', 'HomeController@doLogin'); 
-Route::get('logout', 'HomeController@doLogout');
+Route::post('login', 'UsersController@doSignin'); 
+Route::get('logout', 'UsersController@doSignout');
 
 Route::get('/', 'HomeController@showWelcome');
+Route::get('login', 'UsersController@showSignin');
 
 Route::resource('questions', 'QuestionsController');
 Route::resource('flashcards', 'FlashcardsController');

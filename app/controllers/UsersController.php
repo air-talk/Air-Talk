@@ -5,7 +5,7 @@ class UsersController extends \BaseController {
 	public function showSignin()
 	{
 		if(Auth::check()){
-			return Redirect::action('HomeController@index');
+			return Redirect::action('HomeController@showWelcome');
 		}else{
 			return View::make('users.signin');
 		}
