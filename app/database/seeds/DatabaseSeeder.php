@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder {
 		DB::table('questions')->delete();
 
 		$this->call('UsersTableSeeder');
+		$this->call('FlashcardsTableSeeder');
 		$this->call('QuestionsTableSeeder');
 	}
 
