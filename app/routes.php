@@ -17,4 +17,5 @@ Route::get('logout', 'HomeController@doLogout');
 Route::get('/', 'HomeController@showWelcome');
 
 Route::resource('questions', 'QuestionsController');
+Route::resource('flashcards', 'FlashcardsController');
 Route::resource('profile', 'UsersController');
