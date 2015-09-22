@@ -9,7 +9,16 @@ class QuestionsController extends \BaseController {
 	 */
 	public function index()
 	{
-		//shows a list of all the questions, only accessible by admin
+		if(Input::has('cat')){
+			//PAGINATES QUERY
+			$category = Input::get('cat');
+			$questions = Question::where('category', $category)->paginate(20);
+
+			return View::make('questions.index')->with(['questions'=> $questions]);
+		}else{
+			$questions = Question::paginate(20);
+			return View::make('questions.index')->with(['questions'=> $questions]);
+		}
 	}
 
 
@@ -21,6 +30,7 @@ class QuestionsController extends \BaseController {
 	public function create()
 	{
 		//has a show page to add a new question to the database through a nice GAI(graphical admin interface)
+		return View::make('questions.create');
 	}
 
 
