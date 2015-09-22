@@ -11,7 +11,10 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+Route::post('login', 'HomeController@doLogin'); 
+Route::get('logout', 'HomeController@doLogout');
+
+Route::get('/', 'HomeController@showWelcome');
+
+Route::resource('questions', 'QuestionsController');
+Route::resource('profile', 'UsersController');
