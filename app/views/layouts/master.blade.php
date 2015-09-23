@@ -21,9 +21,9 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="{{{action('QuestionsController@index')}}}">Home</a></li>
-            <li><a href="{{{action('FlashcardsController@index')}}}">Vocab</a></li>
-            <li><a href="#">Planes</a></li>
+            <li {{ Request::is('questions')? 'class="active"': '' }}><a href="{{{action('QuestionsController@index')}}}">Home</a></li>
+            <li {{ Request::is('flashcards')? 'class="active"': '' }}><a href="{{{action('FlashcardsController@index')}}}">Vocab</a></li>
+            <li {{ Request::is('#')? 'class="active"': '' }}><a href="/#">Planes</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
