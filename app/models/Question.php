@@ -35,4 +35,9 @@ class Question extends Model {
 		'category' => 'required'
 	);
 
+	public function users()
+	{
+		return $this->belongsToMany('User')->withTimeStamps();
+	}
+
 }
