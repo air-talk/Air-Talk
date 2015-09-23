@@ -41,7 +41,19 @@ class QuestionsController extends \BaseController {
 	 */
 	public function store()
 	{
-		//stores the question created in the GAI
+		$question = new Question();
+		$question->question = Input::get('question');
+		$question->right_answer = Input::get('right_answer');
+		$question->wrong_answer1 = Input::get('wrong_answer1');
+		$question->wrong_answer2 = Input::get('wrong_answer2');
+		$question->wrong_answer3 = Input::get('wrong_answer3');
+		$question->category = Input::get('category');
+		if(!$question->save()){
+			$errors = $question->getErrors();
+		}else{
+
+			return Redirect::action('QuestionsController@show', $question->id)->with(array('question', $question));
+		}
 	}
 
 
@@ -53,7 +65,12 @@ class QuestionsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//has a show page with the question to the user/admin through an interface
+		if(Question::find($id)){		
+			$question = Question::find($id);
+			return View::make('questions.show')->with(['question' => $question]);
+		}else{
+			App::abort(404);
+		}
 	}
 
 
