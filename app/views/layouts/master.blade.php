@@ -56,12 +56,14 @@
           <ul class="collapse nav navbar-nav nav-collapse slide-down" role="search" id="nav-collapse4">
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img class="img-circle" src="https://pbs.twimg.com/profile_images/588909533428322304/Gxuyp46N.jpg" alt="maridlcrmn" width="20" /> @if (Auth::user()) {{{ Auth::user()->first_name }}} @endif<span class="caret"></span></a>
+              @if (Auth::user())
               <ul class="dropdown-menu">
                 <li><a href="{{{action('UsersController@index')}}}">My profile</a></li>
                 <li><a href="{{{action ('UsersController@edit', Auth::user()->id)}}}">Edit</a></li>
                 <li class="divider"></li>
                 <li><a href="#">Logout</a></li>
               </ul>
+              @endif
             </li>
           </ul>
         </div><!-- /.navbar-collapse -->
