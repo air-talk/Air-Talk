@@ -18,13 +18,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#"><img src="" alt="airtalk logo"></a>
+                <a class="navbar-brand" href="#"><img src="/images/airtalk_white_small.png" alt="airtalk logo"></a>
             </div>
             <div id="navbar" class="pull-left collapse navbar-collapse">
                 <ul class="nav nav-pills">
                     <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#about">Vocab</a></li>
+                    <li><a href="#contact">Planes</a></li>
                 </ul>
             </div><!-- /.nav-collapse -->
         </div><!-- /.container -->
