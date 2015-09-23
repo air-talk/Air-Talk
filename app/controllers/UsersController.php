@@ -91,10 +91,10 @@ class UsersController extends \BaseController {
 		
 	 }
 
-	public function show($id)
+	public function index()
 	{
-		if(User::find($id)){
-			$user = User::find($id);
+		if(User::find(Auth::user()->id)){
+			$user = User::find(Auth::user()->id);
 			return View::make('users.show')->with('user', $user);
 		}else{
 			App::abort(404);
@@ -131,7 +131,7 @@ class UsersController extends \BaseController {
 			$email = Input::get('email');
 			$password = Input::get('password');
 			Auth::attempt(array('email' => $email, 'password' => $password));
-		    return Redirect::action('UsersController@show', Auth::id())->with('message', 'Account with email of ' . $user->email . ' has been succesfully edited!');
+		    return Redirect::action('UsersController@show', Auth::id())->with('successMessage', 'Account with email of ' . $user->email . ' has been succesfully edited!');
 		}else{
 			// current password didn't match database
 			return Redirect::action('UsersController@edit', Auth::id())->with('errorMessage', 'Current password was incorrect.');

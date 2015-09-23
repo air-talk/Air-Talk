@@ -15,8 +15,8 @@ Route::post('login', 'UsersController@doSignin');
 Route::get('logout', 'UsersController@doSignout');
 
 Route::get('/', 'HomeController@showWelcome');
-Route::get('login', 'UsersController@showSignin');
+Route::get('signin', 'UsersController@showSignin');
 
 Route::resource('questions', 'QuestionsController');
 Route::resource('flashcards', 'FlashcardsController');
-Route::resource('profile', 'UsersController');
+Route::resource('user', 'UsersController');
