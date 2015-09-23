@@ -24,6 +24,13 @@
                                 </div> 
                                 <div class="back">
                                     {{{ $flashcards[0]->back }}}
+                                    <p></p>
+                                    <div class="col-md-6">
+                                        <button class="btn btn-danger btn-block">I was wrong</button>
+                                    </div>
+                                    <div class="col-md-6">   
+                                        <button class="btn btn-success btn-block">I was right</button>
+                                    </div>
                                 </div> 
                             </div>
                         </div>
@@ -78,9 +85,16 @@
     <script type="text/javascript">
         $("#card").flip({
           axis: 'x',
-          trigger: 'click',
           reverse: true,
           forceHeight: true
+        });
+
+
+        $(document).keypress(function(e) {
+          if(e.which == 32) {
+            $("#card").flip('toggle');
+            console.log('Enter was pressed');
+          }
         });
     </script>
 @stop
