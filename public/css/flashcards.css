@@ -1,0 +1,19 @@
+#card{
+    height: 300px;
+}
+
+.front{
+    color: white;
+    text-align: center;
+    padding-top: 25%;
+    height: 300px;
+    background-color: gray;
+}
+
+.back{
+    color: white;
+    text-align: center;
+    padding-top: 25%;
+    height: 300px;
+    background-color: gray;
+}
