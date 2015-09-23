@@ -10,8 +10,15 @@ class FlashcardsController extends \BaseController {
 	public function index()
 	{
 		//shows a list of all the flashcards
-		$flashcards = DB::table('flashcards')->get();
-			return View::make('flashcards.index')->with(['flashcards' => $flashcards]);
+		$query = Flashcard::with('users');
+
+		$query->whereDoesntHave('users', function($q) {
+			$q->where('id', Auth::id());
+		});
+
+		$flashcards = $query->get();
+
+		return View::make('flashcards.index')->with(['flashcards' => $flashcards]);
 	}
 
 
@@ -22,7 +29,7 @@ class FlashcardsController extends \BaseController {
 	 */
 	public function create()
 	{
-		//has a show page to add a new flashcard to the database through a nice GAI(graphical admin interface)
+		return View::make('flashcards.create');
 	}
 
 
@@ -33,7 +40,19 @@ class FlashcardsController extends \BaseController {
 	 */
 	public function store()
 	{
-		//stores the flashcard created in the GAI
+		$flashcard = new Flashcard();
+
+		// populate the model with the form data
+		$flashcard->front = Input::get('front');
+		$flashcard->back = Input::get('back');
+		$flashcard->category = Input::get('category');
+
+		if (!$flashcard->save()) {
+		     $errors = $flashcard->getErrors();
+		     return Redirect::action('FlashcardsController@create')
+		       ->with('errors', $errors)
+		       ->withInput();
+		}
 	}
 
 
@@ -45,7 +64,7 @@ class FlashcardsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//has a show page with the flashcard to the user/admin through an interface
+
 	}
 
 
@@ -57,7 +76,9 @@ class FlashcardsController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//has a show page with the flashcard to the admin through the GAI
+		$flashcard = $id;
+		return View::make('flashcards.edit')->with('flashcard',$flashcard);
+
 	}
 
 
@@ -69,7 +90,27 @@ class FlashcardsController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//updates the flashcard that was editted in the edit GAI
+		$flashcard = Flashcard::find($id);
+		if(!$id)
+		{
+			Session::flash('errorMessage', "Flashcard with id of $id is not found"); 
+
+			App::abort(404);
+		}elseif($id){
+			$flashcard->front = Input::get('front');
+			$flashcard->back = Input::get('back');
+			$flashcard->category = Input::get('category');
+
+			if (!$flashcard->save()) {
+			     $errors = $flashcard->getErrors();
+			     return Redirect::action('FlashcardsController@edit', $id)->with('errors', $errors)->withInput();
+			}
+
+		    return Redirect::action('FlashcardsController@show', $id)->with('successMessage', 'Flashcard with id of ' . $flashcard->id . ' has been succesfully edited!');
+		}else{
+			// current password didn't match database
+			return Redirect::action('FlashcardsController@edit', $id)->with('errorMessage', 'Something went wrong please try again.');
+		}	
 	}
 
 
