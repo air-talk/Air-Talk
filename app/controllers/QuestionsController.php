@@ -109,5 +109,21 @@ class QuestionsController extends \BaseController {
 		//deletes the question from the database through the GAI
 	}
 
+	public function storeAnswer($id)
+	{
+		if(Auth::user()->correctQuestions->contains($id)) {
+			Auth::user()->correctQuestions()->detach($id);
+			Auth::user()->correctQuestions()->attach($id);
+			$question = Question::find($id+1);
+			return Redirect::action('QuestionsController@show', $question->id)->with(array('question', $question));
+
+		}
+		Auth::user()->correctQuestions()->attach($id);
+		$question = Question::find($id+1);
+		return Redirect::action('QuestionsController@show', $question->id)->with(array('question', $question));
+
+	}
+
+
 
 }

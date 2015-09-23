@@ -37,4 +37,12 @@ class User extends Model implements UserInterface, RemindableInterface {
 
 	protected $hashable = ['password'];
 
+	public function correctQuestions()
+	{
+		return $this->belongsToMany('Question', 'question_user')->withTimestamps();
+	}
+	public function answeredFlashcards()
+	{
+		return $this->belongsToMany('Flashcard', 'flashcard_user')->withTimestamps();
+	}
 }
