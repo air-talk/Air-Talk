@@ -14,13 +14,18 @@
                 {{ Form::text('email', null, ['class' => 'form-control'])}}
             </div>
 
+            <div class="form-group @if($errors->has('current_password')) has-error @endif">
+                {{ Form::label('current_password', 'Current Password') }}
+                {{ Form::password('current_password', ['class' => 'form-control'])}}
+            </div>
+
             <div class="form-group @if($errors->has('password')) has-error @endif">
-                {{ Form::label('password', 'Password') }}
+                {{ Form::label('password', 'Enter New Password') }}
                 {{ Form::password('password', ['class' => 'form-control'])}}
             </div>
             
             <div class="form-group @if($errors->has('password_confirmation')) has-error @endif">
-                {{ Form::label('password_confirmation', 'Re-enter Password') }}
+                {{ Form::label('password_confirmation', 'Confirm New Password') }}
                 {{ Form::password('password_confirmation', ['class' => 'form-control'])}}
             </div>
 
