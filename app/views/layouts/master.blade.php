@@ -22,7 +22,7 @@
                 <ul class="nav navbar-nav">
                     <li {{ Request::is('questions')? 'class="active"': '' }}><a href="{{{action('QuestionsController@index')}}}">Home</a></li>
                     <li {{ Request::is('flashcards')? 'class="active"': '' }}><a href="{{{action('FlashcardsController@index')}}}">Vocab</a></li>
-                    <li {{ Request::is('#')? 'class="active"': '' }}><a href="planes">Planes</a></li>
+                    <li {{ Request::is('planes')? 'class="active"': '' }}><a href="planes">Planes</a></li>
                 </ul>
                 @if (Auth::check()) 
                     <ul class="nav navbar-nav navbar-right">
