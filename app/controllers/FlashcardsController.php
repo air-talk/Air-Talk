@@ -57,6 +57,23 @@ class FlashcardsController extends \BaseController {
 		}
 	}
 
+	public function storeAttemps()
+	{
+		$flashcard = new FlashcardAnswer	();
+
+		// populate the model with the form data
+		$flashcard->flashcard_id = Input::get('flashcard_id');
+		$flashcard->user_id = Auth::id();
+
+		$flashcard->correct;
+
+		if (!$flashcard->save()) {
+		     $errors = $flashcard->getErrors();
+		     return Redirect::action('FlashcardsController@create')
+		       ->with('errors', $errors)
+		       ->withInput();
+		}
+	}
 
 	/**
 	 * Display the specified resource.
@@ -66,7 +83,12 @@ class FlashcardsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-
+		if(Flashcard::find($id)){		
+			$flashcard = Flashcard::find($id);
+			return View::make('flashcards.show')->with(['flashcard' => $flashcard]);
+		}else{
+			App::abort(404);
+		}
 	}
 
 
