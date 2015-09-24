@@ -9,8 +9,6 @@ class UnfinishedQuestionsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$questions = UnfinishedQuestionsController::unfinishedQuestions()->get()->toArray();
-		dd($questions[0]['id']);
 		if(Input::has('cat')){
 			$category = Input::get('cat');	
 			$questions = UnfinishedQuestionsController::unfinishedQuestions()->where('category', $category)->paginate(20);
@@ -18,7 +16,6 @@ class UnfinishedQuestionsController extends \BaseController {
 			return View::make('unfinished_questions.index')->with(['questions'=> $questions]);
 		}else{
 			$questions = UnfinishedQuestionsController::unfinishedQuestions()->paginate(20);
-			dd($questions->toArray());
 			return View::make('unfinished_questions.index')->with(['questions' => $questions]);
 		}
 	}
@@ -67,9 +64,12 @@ class UnfinishedQuestionsController extends \BaseController {
 	 */
 	public function show($id)
 	{
+		Session::put('questionArrayId', $id+1);
+
+		$nextQuestionId = Request::segment(2) - 1;
 		$questions = UnfinishedQuestionsController::unfinishedQuestions()->get()->toArray();
-		$questionId = $questions[$id+1]['id'];
-		if(Question::find($questionId)){		
+		$questionId = $questions[$nextQuestionId]['id'];
+		if(Question::find(Session::get('questionArrayId'))){		
 			$question = Question::find($questionId);
 			return View::make('unfinished_questions.show')->with(['question' => $question]);
 		}else{
@@ -130,6 +130,16 @@ class UnfinishedQuestionsController extends \BaseController {
 		Auth::user()->correctQuestions()->attach($id);
 		$question = Question::find($id+1);
 		return Redirect::action('UnfinishedQuestionsController@show', $question->id)->with(array('question', $question));
+	}
+
+	public function storeInSession($questionId)
+	{
+		// if(!isset($_SESSION['questions'])){
+		// 	$_SESSION['questions'] = array();
+		// }
+		// $_SESSION['questions'][] = array(['user_id' => Auth::id(), 'question_id' => $questionId]);
+		$questionId = Session::get('questionArrayId');
+		return Redirect::action('UnfinishedQuestionsController@show', $questionId);
 	}
 
 	public function unfinishedQuestions()
