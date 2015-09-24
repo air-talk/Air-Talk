@@ -43,6 +43,7 @@ class User extends Model implements UserInterface, RemindableInterface {
 	}
 	public function answeredFlashcards()
 	{
-		return $this->belongsToMany('Flashcard', 'flashcard_user')->withTimestamps();
+		return $this->belongsToMany('Flashcard', 'flashcard_user')
+				->withPivot('attempts', 'correct')->withTimestamps();
 	}
 }

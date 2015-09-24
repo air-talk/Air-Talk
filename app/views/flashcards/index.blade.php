@@ -4,49 +4,6 @@
 
 @stop
 @section('content')
-    <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-lg">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
-                    </button>
-                    <h1>Do you know the Definition?</h1>
-                    <h3>Use your spacebar or click to reveal the Definition</h3>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-8 col-md-offset-2">
-                            @foreach($flashcards as $flashcard) 
-                            <div id="card">
-                                <div class="front"> 
-                                    {{{ $flashcard->front }}}
-                                </div> 
-                                <div class="back">
-                                    {{{ $flashcard->back }}}
-                                    <p></p>
-                                    <div class="col-md-6">
-                                        <button class="btn btn-danger btn-block">I was wrong</button>
-                                    </div>
-                                    <div class="col-md-6">   
-                                        <button class="btn btn-success btn-block">I was right</button>
-                                    </div>
-                                </div> 
-                            </div>
-                            @endforeach
-                        </div>
-                    </div>
-                    
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
 	<div class="container">
 		<div class="row">
 		    <div class="col-md-offset-1 col-md-6">
@@ -57,15 +14,27 @@
 		        			<tr>
 		        				<th>Word</th>
 		        				{{-- Look into created_at column in correctAnswers table for last practiced--}}
-		        				<th>Last practiced</th>
+		        				<th>Times practiced</th>
+                                <th>Times Correct</th>
+                                <th> % </th>
 		        			</tr>
 		        		</thead>
 		        		<tbody>
-		        			@foreach($flashcards as $flashcard)
-		        			<tr>
-		        				<td>{{$flashcard->front}}</td>
-		        				{{-- change later --}}
-		        				<td>{{$flashcard->created_at}}</td>
+                                @foreach($array as $test)
+                                <tr>
+                                    <td>{{$test['front']}}</td>
+                                    <td>{{$test['pivot']['attempts']}}</td>
+                                    <td>{{$test['pivot']['correct']}}</td>
+                                    <td></td>
+                                </tr>
+                                @endforeach
+                            @foreach($flashcards as $flashcard)
+                            <tr>
+                                <td>{{$flashcard->front}}</td>
+                                {{-- change later --}}
+                                <td>0</td>
+		        				<td>{{$flashcard->correct}}</td>
+                                <td></td>
 		        			</tr>
 		        			@endforeach
 		        		</tbody>
@@ -97,6 +66,9 @@
             console.log('Enter was pressed');
           }
         });
+
+
+        var result = " <?= $flashcard->attemps ?> " % " <?= $flashcard->correct ?> ";
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
 @stop
