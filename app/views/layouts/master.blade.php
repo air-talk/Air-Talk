@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="/css/bootstrap.css">
-    <link rel="stylesheet" href="/css/master.css">
     <link rel="stylesheet" href="/css/airtalk_custom.css">
     @yield('head')
 </head>
@@ -27,7 +26,7 @@
                 </ul>
                 @if (Auth::check()) 
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a class="btn" href="">{{{ Auth::user()->email }}}</a></li>
+                        <li><a class="btn" href="{{{ action('UsersController@index') }}}">{{{ Auth::user()->email }}}</a></li>
                         <li><a class="btn" href="{{{ action('UsersController@doSignout') }}}">Logout</a></li>
                     </ul>
                 @else

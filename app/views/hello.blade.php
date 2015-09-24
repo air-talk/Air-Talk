@@ -2,5 +2,10 @@
 @section('head')
 @stop
 @section('content')
-<h1>WELCOME</h1>
+	<div class="row">
+	    <div class="col-md-12">
+	        <div class="well">
+	        </div>
+	    </div>
+	</div>
 @stop

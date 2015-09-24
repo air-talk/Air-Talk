@@ -81,13 +81,13 @@ class UsersController extends \BaseController {
 		}
 
 		   // success!
-			Mail::send('emailTemplate', array('firstname'=>Input::get('first_name')), function($message){
-		        $message->to(Input::get('email'), Input::get('firstname').' '.Input::get('lastname'))->subject('Welcome to EventFinder!');
-		    });
+			// Mail::send('emailTemplate', array('firstname'=>Input::get('first_name')), function($message){
+		 //        $message->to(Input::get('email'), Input::get('firstname').' '.Input::get('lastname'))->subject('Welcome to Airtalk!');
+		 //    });
 			$email = Input::get('email');
 			$password = Input::get('password');
 			Auth::attempt(array('email' => $email, 'password' => $password));
-		    return Redirect::action('UsersController@show', Auth::id())->with('message', 'Account with email of ' . $user->email . ' has been created!');
+		    return Redirect::action('UsersController@index', Auth::id())->with('message', 'Account with email of ' . $user->email . ' has been created!');
 		
 	 }
 
@@ -96,16 +96,6 @@ class UsersController extends \BaseController {
 		if(User::find(Auth::user()->id)){
 			$user = User::find(Auth::user()->id);
 			return View::make('users.show')->with('user', $user);
-		}else{
-			App::abort(404);
-		}
-	}
-
-	public function showUser($id)
-	{
-		if(User::find($id)){
-			$user = User::find($id);
-			return View::make('users.show');
 		}else{
 			App::abort(404);
 		}
