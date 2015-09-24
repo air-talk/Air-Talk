@@ -18,6 +18,7 @@ Route::get('/', 'HomeController@showWelcome');
 Route::get('signin', 'UsersController@showSignin');
 
 Route::post('questions/{id}', 'QuestionsController@storeAnswer');
+Route::resource('unfinished_questions', 'UnfinishedQuestionsController');
 Route::resource('questions', 'QuestionsController');
 Route::resource('flashcards', 'FlashcardsController');
 Route::resource('user', 'UsersController');
