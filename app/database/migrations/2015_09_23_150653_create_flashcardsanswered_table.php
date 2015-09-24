@@ -16,6 +16,8 @@ class CreateFlashcardsansweredTable extends Migration {
         {
             $table->integer('flashcard_id')->unsigned();
             $table->integer('user_id')->unsigned();
+            $table->integer('attempts');
+            $table->integer('correct');
             $table->timestamps();
 
             $table->primary(['flashcard_id', 'user_id']);

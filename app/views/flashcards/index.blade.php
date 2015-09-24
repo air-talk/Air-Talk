@@ -18,12 +18,13 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2">
-                            <div id="card"> 
+                            @foreach($flashcards as $flashcard) 
+                            <div id="card">
                                 <div class="front"> 
-                                    {{{ $flashcards[0]->front }}}
+                                    {{{ $flashcard->front }}}
                                 </div> 
                                 <div class="back">
-                                    {{{ $flashcards[0]->back }}}
+                                    {{{ $flashcard->back }}}
                                     <p></p>
                                     <div class="col-md-6">
                                         <button class="btn btn-danger btn-block">I was wrong</button>
@@ -33,6 +34,7 @@
                                     </div>
                                 </div> 
                             </div>
+                            @endforeach
                         </div>
                     </div>
                     
@@ -49,7 +51,7 @@
 		<div class="row">
 		    <div class="col-md-offset-1 col-md-6">
 		        <div class="well">
-		        	<h2>Aviation Vocabulary Learned</h2>
+		        	<h2>Aviation Vocabulary</h2>
 		        	<table class="table table-striped">
 		        		<thead>
 		        			<tr>
@@ -77,7 +79,7 @@
 		        </div>
 		    </div>
 		</div>
-		    <!-- Modal -->
+	    <!-- Modal -->
 	</div>
 @stop
 @section('script')
@@ -89,7 +91,6 @@
           forceHeight: true
         });
 
-
         $(document).keypress(function(e) {
           if(e.which == 32) {
             $("#card").flip('toggle');
@@ -97,4 +98,5 @@
           }
         });
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
 @stop
