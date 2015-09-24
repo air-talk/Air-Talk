@@ -18,6 +18,8 @@ class FlashcardsController extends \BaseController {
 
 		$flashcards = $query->get();
 
+		
+
 		return View::make('flashcards.index')->with(['flashcards' => $flashcards]);
 	}
 
