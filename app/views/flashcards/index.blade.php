@@ -20,23 +20,23 @@
 		        			</tr>
 		        		</thead>
 		        		<tbody>
-                                @foreach($array as $test)
-                                    <tr>
-                                        <td>{{{ $test->front }}}</td>
-                                        <td>{{{ $test->pivot->attempts }}}</td>
-                                        <td>{{{ $test->pivot->correct }}}</td>
-                                        <td>{{{ $test->pivot->correct / $test->pivot->attempts * 100 }}}%</td>
-                                    </tr>
-                                @endforeach
                             @foreach($unansweredFlashcards as $flashcard)
                                 <tr>
                                     <td>{{$flashcard->front}}</td>
                                     {{-- change later --}}
                                     <td>0</td>
-    		        				<td>0</td>
+                                    <td>0</td>
                                     <td>0%</td>
-    		        			</tr>
-		        			@endforeach
+                                </tr>
+                            @endforeach
+                            @foreach($array as $test)
+                                <tr>
+                                    <td>{{{ $test->front }}}</td>
+                                    <td>{{{ $test->pivot->attempts }}}</td>
+                                    <td>{{{ $test->pivot->correct }}}</td>
+                                    <td>{{{ floor($test->pivot->correct / $test->pivot->attempts * 100) }}}%</td>
+                                </tr>
+                            @endforeach
 		        		</tbody>
 		        	</table>
 		        </div>

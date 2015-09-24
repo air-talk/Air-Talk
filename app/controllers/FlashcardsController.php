@@ -13,8 +13,8 @@ class FlashcardsController extends \BaseController {
 		// 	var_dump($flashcard->pivot->attempts);
 		// }
 		// die();
-		$flashcards = Flashcard::all();
-		$array = Auth::user()->answeredFlashcards()->get();
+		$flashcards = Flashcard::where('category', '=', 'vocab')->get();
+		$array = Auth::user()->answeredFlashcards()->orderBy(DB::raw('correct / attempts'))->get();
 		$unansweredFlashcards = FlashcardsController::unansweredFlashcards()->get();
 
 		return View::make('flashcards.index')->with(['flashcards' => $flashcards, 'array' => $array, 'unansweredFlashcards' => $unansweredFlashcards]);
