@@ -21,21 +21,21 @@
 		        		</thead>
 		        		<tbody>
                                 @foreach($array as $test)
-                                <tr>
-                                    <td>{{$test['front']}}</td>
-                                    <td>{{$test['pivot']['attempts']}}</td>
-                                    <td>{{$test['pivot']['correct']}}</td>
-                                    <td></td>
-                                </tr>
+                                    <tr>
+                                        <td>{{{ $test->front }}}</td>
+                                        <td>{{{ $test->pivot->attempts }}}</td>
+                                        <td>{{{ $test->pivot->correct }}}</td>
+                                        <td>{{{ $test->pivot->correct / $test->pivot->attempts * 100 }}}%</td>
+                                    </tr>
                                 @endforeach
-                            @foreach($flashcards as $flashcard)
-                            <tr>
-                                <td>{{$flashcard->front}}</td>
-                                {{-- change later --}}
-                                <td>0</td>
-		        				<td>{{$flashcard->correct}}</td>
-                                <td></td>
-		        			</tr>
+                            @foreach($unansweredFlashcards as $flashcard)
+                                <tr>
+                                    <td>{{$flashcard->front}}</td>
+                                    {{-- change later --}}
+                                    <td>0</td>
+    		        				<td>0</td>
+                                    <td>0%</td>
+    		        			</tr>
 		        			@endforeach
 		        		</tbody>
 		        	</table>
@@ -66,9 +66,6 @@
             console.log('Enter was pressed');
           }
         });
-
-
-        var result = " <?= $flashcard->attemps ?> " % " <?= $flashcard->correct ?> ";
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
 @stop

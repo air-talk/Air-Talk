@@ -14,9 +14,10 @@ class FlashcardsController extends \BaseController {
 		// }
 		// die();
 		$flashcards = Flashcard::all();
-		$array = Auth::user()->answeredFlashcards()->get()->toArray();
+		$array = Auth::user()->answeredFlashcards()->get();
+		$unansweredFlashcards = FlashcardsController::unansweredFlashcards()->get();
 
-		return View::make('flashcards.index')->with(['flashcards' => $flashcards, 'array' => $array]);
+		return View::make('flashcards.index')->with(['flashcards' => $flashcards, 'array' => $array, 'unansweredFlashcards' => $unansweredFlashcards]);
 	}
 
 
@@ -143,6 +144,15 @@ class FlashcardsController extends \BaseController {
 	public function destroy($id)
 	{
 		//deletes the flashcard from the database through the GAI
+	}
+
+	public function unansweredFlashcards()
+	{
+		$flashcards = Flashcard::whereDoesntHave('users', function($q){
+			$q->where('id', Auth::id());
+		});
+
+		return $flashcards;
 	}
 
 
