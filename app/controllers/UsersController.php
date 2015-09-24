@@ -101,6 +101,16 @@ class UsersController extends \BaseController {
 		}
 	}
 
+	public function showUser($id)
+	{
+		if(User::find($id)){
+			$user = User::find($id);
+			return View::make('users.show');
+		}else{
+			App::abort(404);
+		}
+	}
+
 	public function edit($id)
 	{
 		if(Auth::id() == $id){

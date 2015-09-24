@@ -20,4 +20,4 @@ Route::get('signin', 'UsersController@showSignin');
 Route::post('questions/{id}', 'QuestionsController@storeAnswer');
 Route::resource('questions', 'QuestionsController');
 Route::resource('flashcards', 'FlashcardsController');
-Route::resource('user', 'UsersController');
+Route::resource('users', 'UsersController');
