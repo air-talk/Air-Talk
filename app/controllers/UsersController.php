@@ -101,6 +101,12 @@ class UsersController extends \BaseController {
 		}
 	}
 
+	public function show()
+	{
+			App::abort(404);
+		
+	}
+
 	public function edit($id)
 	{
 		if(Auth::id() == $id){

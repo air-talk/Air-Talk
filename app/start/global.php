@@ -45,7 +45,10 @@ Log::useFiles(storage_path().'/logs/laravel.log');
 | shown, which includes a detailed stack trace during debug.
 |
 */
-
+App::missing(function($exception)
+{
+    return Response::view('errors.404', array(), 404);
+});
 App::error(function(Exception $exception, $code)
 {
 	Log::error($exception);
