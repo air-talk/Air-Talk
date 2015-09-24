@@ -9,13 +9,13 @@
 		    <div class="col-md-8">
 		        <div class="well">
 		        	@if(Input::has('cat'))
-		        		<h1>{{Input::get('cat')}}</h1>
+		        		<h1>Unfinished {{Input::get('cat')}} Questions</h1>
 	        		@else
-	        			<h1> All Questions</h1>
+		        		<h1>Unfinished Questions</h1>
 	        		@endif
 
 		        	@forelse ($questions as $question)
-			        	<p><a href="/questions/{{$question->id}}">{{$question->question}}</a></p>
+			        	<p><a href="/unfinished_questions/{{$question->id}}">{{$question->question}}</a></p>
 			        @empty
 				        <h2>There seems to be no questions!</h2>
 			        @endforelse

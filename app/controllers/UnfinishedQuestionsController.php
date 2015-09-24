@@ -1,6 +1,6 @@
 <?php
 
-class QuestionsController extends \BaseController {
+class UnfinishedQuestionsController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -9,15 +9,17 @@ class QuestionsController extends \BaseController {
 	 */
 	public function index()
 	{
+		$questions = UnfinishedQuestionsController::unfinishedQuestions()->get()->toArray();
+		dd($questions[0]['id']);
 		if(Input::has('cat')){
-			$category = Input::get('cat');
-			$questions = Question::where('category', $category)->paginate(20);
+			$category = Input::get('cat');	
+			$questions = UnfinishedQuestionsController::unfinishedQuestions()->where('category', $category)->paginate(20);
 
-			return View::make('questions.index')->with(['questions'=> $questions]);
+			return View::make('unfinished_questions.index')->with(['questions'=> $questions]);
 		}else{
-			$questions = Question::paginate(20);
-
-			return View::make('questions.index')->with(['questions'=> $questions]);
+			$questions = UnfinishedQuestionsController::unfinishedQuestions()->paginate(20);
+			dd($questions->toArray());
+			return View::make('unfinished_questions.index')->with(['questions' => $questions]);
 		}
 	}
 
@@ -52,7 +54,7 @@ class QuestionsController extends \BaseController {
 			$errors = $question->getErrors();
 		}else{
 
-			return Redirect::action('QuestionsController@show', $question->id)->with(array('question', $question));
+			return Redirect::action('UnfinishedQuestionsController@show', $question->id)->with(array('question', $question));
 		}
 	}
 
@@ -65,9 +67,11 @@ class QuestionsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		if(Question::find($id)){		
-			$question = Question::find($id);
-			return View::make('questions.show')->with(['question' => $question]);
+		$questions = UnfinishedQuestionsController::unfinishedQuestions()->get()->toArray();
+		$questionId = $questions[$id+1]['id'];
+		if(Question::find($questionId)){		
+			$question = Question::find($questionId);
+			return View::make('unfinished_questions.show')->with(['question' => $question]);
 		}else{
 			App::abort(404);
 		}
@@ -117,7 +121,7 @@ class QuestionsController extends \BaseController {
 			if($question = Question::find($id+1))
 			{
 				$question = Question::find($id+1);
-				return Redirect::action('QuestionsController@show', $question->id)->with(array('question', $question));
+				return Redirect::action('UnfinishedQuestionsController@show', $question->id)->with(array('question', $question));
 			}else{
 				//show next incorrect question
 			}
@@ -125,7 +129,7 @@ class QuestionsController extends \BaseController {
 		}
 		Auth::user()->correctQuestions()->attach($id);
 		$question = Question::find($id+1);
-		return Redirect::action('QuestionsController@show', $question->id)->with(array('question', $question));
+		return Redirect::action('UnfinishedQuestionsController@show', $question->id)->with(array('question', $question));
 	}
 
 	public function unfinishedQuestions()
