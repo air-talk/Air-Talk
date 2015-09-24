@@ -5,19 +5,22 @@
 @stop
 @section('content')
 <div class="row">
-    <div class="col-md-8 col-md-offset-2"> 
+    <div class="col-md-8 col-md-offset-2 well"> 
         <div id="card">
             <div class="front"> 
                 {{{ $flashcard->front }}}
             </div> 
             <div class="back">
                 {{{ $flashcard->back }}}
-                <p></p>
-                <div class="col-md-6">
-                    <button class="btn btn-danger btn-block">I was wrong</button>
+                <div class="response1">
+                    <div class="col-md-12">
+                        <a href=""><button id="wasWrong" class="btn btn-danger btn-block">I was wrong</button></a>
+                    </div>
                 </div>
-                <div class="col-md-6">   
-                    <button class="btn btn-success btn-block">I was right</button>
+                <div class="response2">
+                    <div class="col-md-12">   
+                        <a href=""><button id="wasRight" class="btn btn-success btn-block">I was right</button></a>
+                    </div>
                 </div>
             </div> 
         </div>

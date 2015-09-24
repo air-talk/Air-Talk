@@ -1,11 +1,10 @@
 #card{
-    height: 300px;
+    height:255px;
 }
-
 .front{
     color: white;
     text-align: center;
-    padding-top: 25%;
+    padding-top: 15%;
     height: 300px;
     background-color: gray;
 }
@@ -13,11 +12,27 @@
 .back{
     color: white;
     text-align: center;
-    padding-top: 25%;
-    height: 300px;
+    padding-top: 15%;
+    height: 250px;
     background-color: gray;
 }
 
-body{
-    margin-bottom: 400px;
+.response1{
+    height: 50px;
+    margin-top: -30px;
+    font-weight: 700;
+    bottom: 0;
+    position: absolute;
+    right:10;
+    width: 50%;
+}
+
+.response2{
+    height: 50px;
+    margin-top: -30px;
+    font-weight: 700;
+    bottom: 0;
+    position: absolute;
+    right:0;
+    width: 50%;
 }
