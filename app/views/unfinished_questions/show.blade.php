@@ -17,6 +17,7 @@
 @stop
 
 @section('content')
+<?php session_start();  ?>
 	<main>
 	    <div class="container">
 	      	<div class="row">
@@ -33,7 +34,7 @@
 
 		        	<a href="/questions/{{ $question->id + 1}}"><button class="btn btn-primary hidden" id="next" style="width: 100%"> Next question </button></a>
 
-					{{ Form::open(array('action' => array('QuestionsController@update', $question->id )))  }}
+					{{ Form::open(array('action' => array('UnfinishedQuestionsController@storeInSession', $question->id )))  }}
 		        		<button class="btn btn-primary hidden" id="correctNext" style="width: 100%"> Next question </button>
 					{{ Form::close() }}
 
