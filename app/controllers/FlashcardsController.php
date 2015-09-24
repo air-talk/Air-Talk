@@ -20,6 +20,16 @@ class FlashcardsController extends \BaseController {
 		return View::make('flashcards.index')->with(['flashcards' => $flashcards, 'array' => $array, 'unansweredFlashcards' => $unansweredFlashcards]);
 	}
 
+	public function planesindex()
+	{
+		//shows a list of all the flashcards
+		$flashcards = DB::table('flashcards')->where('category', '=', 'plane')->get();;
+
+		
+
+		return View::make('flashcards.planes')->with(['flashcards' => $flashcards]);
+	}
+
 
 	/**
 	 * Show the form for creating a new resource.

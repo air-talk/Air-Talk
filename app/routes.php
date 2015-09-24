@@ -17,6 +17,8 @@ Route::get('logout', 'UsersController@doSignout');
 Route::get('/', 'HomeController@showWelcome');
 Route::get('signin', 'UsersController@showSignin');
 
+Route::get('planes', 'FlashcardsController@planesindex');
+
 Route::post('questions/{id}', 'QuestionsController@storeAnswer');
 Route::resource('unfinished_questions', 'UnfinishedQuestionsController');
 Route::resource('questions', 'QuestionsController');
