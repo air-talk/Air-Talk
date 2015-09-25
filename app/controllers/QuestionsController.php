@@ -118,10 +118,7 @@ class QuestionsController extends \BaseController {
 			{
 				$question = Question::find($id+1);
 				return Redirect::action('QuestionsController@show', $question->id)->with(array('question', $question));
-			}else{
-				//show next incorrect question
 			}
-
 		}
 		Auth::user()->correctQuestions()->attach($id);
 		$question = Question::find($id+1);
