@@ -109,7 +109,7 @@
                 console.log('tesy');
                 $.ajax({
                 type: "GET",
-                    url: "../flashcards/test/" + i,
+                    url: "../planes/info/" + i,
                     data: "",
                     dataType: "json",
 
