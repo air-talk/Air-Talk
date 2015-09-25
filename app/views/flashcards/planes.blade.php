@@ -4,7 +4,6 @@
 
 @stop
 @section('content')
-    {{var_dump($flashcards)}}
     <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog modal-lg">
             <!-- Modal content-->
@@ -91,7 +90,7 @@
 @section('script')
     <script src="/js/jquery.flip.js"></script>
     <script type="text/javascript">
-        var i = 1;
+        var i = 2;
         $("#card").flip({
           axis: 'x',
           reverse: true,
@@ -104,32 +103,29 @@
             console.log('space was pressed');
           }
         });
-        $(document).keyup( function(e) {
-            console.log(e.keyCode);
-        });
-        $(document).keypress(function(e) {
-          if(e.which == 13) {
-            $.ajax({
-            type: "GET",
-                url: "../flashcards/test/" + i,
-                data: "",
-                dataType: "json",
+        
+        $(document).keyup(function(e) {
+            if(e.which == 37 || e.which == 39) {
+                console.log('tesy');
+                $.ajax({
+                type: "GET",
+                    url: "../flashcards/test/" + i,
+                    data: "",
+                    dataType: "json",
 
-                success: function(data) {
-                    $('.front').html("'<img src=" + data.front + ">'")
-                    console.log(data.front);
-                },
-                error: function(data){
-                alert("fail");
+                    success: function(data) {
+                        $('.front').html("<img src=" + data.front + ">")
+                        console.log(data.front);
+                    },
+                    error: function(data){
+                    alert("fail");
 
-                }
-
-            });
-            console.log(i);
-            console.log('Enter was pressed');
-            i++;
-            console.log(i);
-          }
+                    }
+                });
+                $("#card").flip('toggle');
+                i++;
+                console.log(i);
+            }
         });
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
