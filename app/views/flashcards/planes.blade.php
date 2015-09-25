@@ -4,6 +4,7 @@
 
 @stop
 @section('content')
+    {{var_dump($flashcards)}}
     <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog modal-lg">
             <!-- Modal content-->
@@ -18,14 +19,12 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2">
-                            @foreach($flashcards as $flashcard) 
                             <div id="card">
-                                <div class="front"> 
-                                    {{{ $flashcard->front }}}
+                                <div class="front img"> 
+                                    <img src="{{$flashcards[0]->front}}">
                                 </div> 
                                 <div class="back">
-                                    {{{ $flashcard->back }}}
-                                    <p></p>
+                                    {{$flashcards[0]->back}}
                                     <div class="col-md-6">
                                         <button class="btn btn-danger btn-block">I was wrong</button>
                                     </div>
@@ -34,7 +33,6 @@
                                     </div>
                                 </div> 
                             </div>
-                            @endforeach
                         </div>
                     </div>
                     
@@ -93,6 +91,7 @@
 @section('script')
     <script src="/js/jquery.flip.js"></script>
     <script type="text/javascript">
+        var i = 1;
         $("#card").flip({
           axis: 'x',
           reverse: true,
@@ -102,7 +101,34 @@
         $(document).keypress(function(e) {
           if(e.which == 32) {
             $("#card").flip('toggle');
+            console.log('space was pressed');
+          }
+        });
+        $(document).keyup( function(e) {
+            console.log(e.keyCode);
+        });
+        $(document).keypress(function(e) {
+          if(e.which == 13) {
+            $.ajax({
+            type: "GET",
+                url: "../flashcards/test/" + i,
+                data: "",
+                dataType: "json",
+
+                success: function(data) {
+                    $('.front').html("'<img src=" + data.front + ">'")
+                    console.log(data.front);
+                },
+                error: function(data){
+                alert("fail");
+
+                }
+
+            });
+            console.log(i);
             console.log('Enter was pressed');
+            i++;
+            console.log(i);
           }
         });
     </script>

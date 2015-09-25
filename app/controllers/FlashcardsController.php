@@ -23,7 +23,7 @@ class FlashcardsController extends \BaseController {
 	public function planesindex()
 	{
 		//shows a list of all the flashcards
-		$flashcards = DB::table('flashcards')->where('category', '=', 'plane')->get();;
+		$flashcards = DB::table('flashcards')->where('category', '=', 'plane')->get();
 
 		
 
@@ -165,5 +165,10 @@ class FlashcardsController extends \BaseController {
 		return $flashcards;
 	}
 
+	public function getNextCard($index)
+	{	
+		$card = Flashcard::findOrFail($index);
+		return Response::json($card);
+	}
 
 }
