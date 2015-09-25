@@ -8,11 +8,13 @@
 	      	<div class="row">
 			    <div class="col-md-8">
 			        <div class="well">
-			        	@if(Input::has('cat'))
-			        		<h1>{{Input::get('cat')}}</h1>
-		        		@else
-		        			<h1> All Questions</h1>
-		        		@endif
+    		        	@if(Input::has('cat'))
+    		        		<h1>{{Input::get('cat')}} Questions
+    		        		<a href="/questions/1" class="pull-right quiz">Start Complete Quiz</a></h1>
+    	        		@else
+    		        		<h1>Questions
+    		        		<a href="/questions/1" class="pull-right quiz">Start Complete Quiz</a></h1>
+    	        		@endif
 
 			        	@forelse ($questions as $question)
 				        	<p><a href="/questions/{{$question->id}}">{{$question->question}}</a></p>
