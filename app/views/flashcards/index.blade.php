@@ -44,7 +44,7 @@
 		    <div class="col-md-4">
 		        <div class="well">
 		        	<!-- Trigger the login modal with a button -->
-                    <a type="button" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#myModal">Practice Flashcards</a>
+                    <a type="button" class="btn btn-primary btn-circle" href="{{{ action('FlashcardsController@show', $flashcard[0]['id']) }}}">Practice Flashcards</a>
 		        </div>
 		    </div>
 		</div>
