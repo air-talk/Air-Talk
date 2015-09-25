@@ -4,6 +4,7 @@
 
 @stop
 @section('content')
+    {{print_r($planeArray)}}
     <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog modal-lg">
             <!-- Modal content-->
@@ -90,7 +91,7 @@
 @section('script')
     <script src="/js/jquery.flip.js"></script>
     <script type="text/javascript">
-        var i = 2;
+        var i = 1;
         $("#card").flip({
           axis: 'x',
           reverse: true,

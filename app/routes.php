@@ -20,7 +20,7 @@ Route::get('signin', 'UsersController@showSignin');
 Route::get('planes', 'FlashcardsController@planesindex');
 
 Route::get('flashcards/info/{index}', 'FlashcardsController@getNextCard');
-Route::get('planes/info/{index}', 'FlashcardsController@getNextCard');
+Route::get('planes/info/{index}', 'FlashcardsController@getNextPlane');
 
 Route::post('questions/{id}', 'QuestionsController@storeAnswer');
 Route::post('unfinished_questions/{id}', 'UnfinishedQuestionsController@storeInSession');
