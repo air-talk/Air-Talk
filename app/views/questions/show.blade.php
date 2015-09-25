@@ -12,6 +12,9 @@
 		.correct{
 			background-color: lightgreen;
 		}
+		ul{
+		    list-style-type: none;
+		}
 	</style>
 
 @stop
@@ -26,10 +29,10 @@
 		        	<h1 id="incorrect" class="hidden red">Incorrect</h1>
 		        	<h2>{{$question->question}}</h2><br>
 		        	<ul>
-			        	<li><p class="random" id="answer1">{{ Form::radio('value', 1 ) }}{{$question->right_answer}}</p></li>
-			        	<li><p class="random" id="answer2">{{ Form::radio('value', 2 ) }}{{$question->wrong_answer1}}</p></li>
-			        	<li><p class="random" id="answer3">{{ Form::radio('value', 3 ) }}{{$question->wrong_answer2}}</p></li>
-			        	<li><p class="random" id="answer4">{{ Form::radio('value', 4 ) }}{{$question->wrong_answer3}}</p></li>
+			        	<li><p class="random hide" id="answer1">{{ Form::radio('value', 1 ) }}{{$question->right_answer}}</p></li>
+			        	<li><p class="random hide" id="answer2">{{ Form::radio('value', 2 ) }}{{$question->wrong_answer1}}</p></li>
+			        	<li><p class="random hide" id="answer3">{{ Form::radio('value', 3 ) }}{{$question->wrong_answer2}}</p></li>
+			        	<li><p class="random hide" id="answer4">{{ Form::radio('value', 4 ) }}{{$question->wrong_answer3}}</p></li>
 	        		</ul>
 	        		<button class="btn btn-success" id="check" style="width: 100%"> Check answer </button>
 
@@ -77,18 +80,12 @@
 		            console.log($liArr);
 		            // sort array of list items in current ul randomly
 		            $liArr.sort(function(a,b){
-		                  // Get a random number between 0 and 10
-		                  var temp = parseInt( Math.random()*10 );
-		                  // Get 1 or 0, whether temp is odd or even
-		                  var isOddOrEven = temp%2;
-		                  // Get +1 or -1, whether temp greater or smaller than 5
-		                  var isPosOrNeg = temp>5 ? 1 : -1;
-		                  // Return -1, 0, or +1
-		                  return( isOddOrEven*isPosOrNeg );
+						return Math.round(Math.random()) - 0.5;
 		            })
 		            // append list items to ul
 		            .appendTo($ul);            
 		      });
+		      $( ".hide" ).removeClass( "hide" );
 		});
 	</script>
 
