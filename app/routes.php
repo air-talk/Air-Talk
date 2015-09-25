@@ -19,6 +19,8 @@ Route::get('signin', 'UsersController@showSignin');
 
 Route::get('planes', 'FlashcardsController@planesindex');
 
+Route::get('flashcards/test/{index}', 'FlashcardsController@getNextCard');
+
 Route::post('questions/{id}', 'QuestionsController@storeAnswer');
 Route::post('unfinished_questions/{id}', 'UnfinishedQuestionsController@storeInSession');
 Route::resource('unfinished_questions', 'UnfinishedQuestionsController');

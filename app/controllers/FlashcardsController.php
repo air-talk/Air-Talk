@@ -32,7 +32,7 @@ class FlashcardsController extends \BaseController {
 	public function planesindex()
 	{
 		//shows a list of all the flashcards
-		$flashcards = DB::table('flashcards')->where('category', '=', 'plane')->get();;
+		$flashcards = DB::table('flashcards')->where('category', '=', 'plane')->get();
 
 		
 
@@ -165,5 +165,21 @@ class FlashcardsController extends \BaseController {
 		//deletes the flashcard from the database through the GAI
 	}
 
-	
+
+	public function unansweredFlashcards()
+	{
+		$flashcards = Flashcard::whereDoesntHave('users', function($q){
+			$q->where('id', Auth::id());
+		});
+
+		return $flashcards;
+	}
+
+	public function getNextCard($index)
+	{	
+		$card = Flashcard::findOrFail($index);
+		return Response::json($card);
+	}
+
+
 }

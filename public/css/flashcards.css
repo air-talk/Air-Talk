@@ -2,21 +2,23 @@
     height:255px;
 }
 .front{
-    color: white;
-    text-align: center;
+    color: #000;
     padding-top: 15%;
+    text-align: center;
     height: 300px;
-    background-color: gray;
+    background-color: #FFF;
 }
 
 .back{
-    color: white;
+    color: #000;
     text-align: center;
     padding-top: 15%;
     height: 250px;
-    background-color: gray;
+    background-color: #FFF;
 }
-
+.img{
+    padding-top: 0px;
+}
 .response1{
     height: 50px;
     margin-top: -30px;

@@ -18,6 +18,7 @@
 
 @section('content')
 <?php session_start();  ?>
+{{var_dump(Session::all())}}
 	<main>
 	    <div class="container">
 	      	<div class="row">
@@ -32,7 +33,7 @@
 		        	<p id="answer4">{{ Form::radio('value', 4 ) }}{{$question->wrong_answer3}}</p>
 	        		<button class="btn btn-success" id="check" style="width: 100%"> Check answer </button>
 
-		        	<a href="/questions/{{ $question->id + 1}}"><button class="btn btn-primary hidden" id="next" style="width: 100%"> Next question </button></a>
+		        	<a href="/unfinished_questions/{{ Request::segment(2) + 1}}"><button class="btn btn-primary hidden" id="next" style="width: 100%"> Next question </button></a>
 
 					{{ Form::open(array('action' => array('UnfinishedQuestionsController@storeInSession', $question->id )))  }}
 		        		<button class="btn btn-primary hidden" id="correctNext" style="width: 100%"> Next question </button>

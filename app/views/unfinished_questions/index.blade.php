@@ -14,8 +14,10 @@
 		        		<h1>Unfinished Questions</h1>
 	        		@endif
 
+		        		<?php $i=1; ?>
 		        	@forelse ($questions as $question)
-			        	<p><a href="/unfinished_questions/{{$question->id}}">{{$question->question}}</a></p>
+			        	<p><a href="/unfinished_questions/{{$i}}">{{$question->question}}</a></p>
+			        	<?php $i++;?>
 			        @empty
 				        <h2>There seems to be no questions!</h2>
 			        @endforelse
