@@ -25,10 +25,12 @@
 		        	<h1 id="correct" class="hidden green">Correct</h1>
 		        	<h1 id="incorrect" class="hidden red">Incorrect</h1>
 		        	<h2>{{$question->question}}</h2><br>
-		        	<p id="answer1">{{ Form::radio('value', 1 ) }}{{$question->right_answer}}</p>
-		        	<p id="answer2">{{ Form::radio('value', 2 ) }}{{$question->wrong_answer1}}</p>
-		        	<p id="answer3">{{ Form::radio('value', 3 ) }}{{$question->wrong_answer2}}</p>
-		        	<p id="answer4">{{ Form::radio('value', 4 ) }}{{$question->wrong_answer3}}</p>
+		        	<ul>
+			        	<li><p class="random" id="answer1">{{ Form::radio('value', 1 ) }}{{$question->right_answer}}</p></li>
+			        	<li><p class="random" id="answer2">{{ Form::radio('value', 2 ) }}{{$question->wrong_answer1}}</p></li>
+			        	<li><p class="random" id="answer3">{{ Form::radio('value', 3 ) }}{{$question->wrong_answer2}}</p></li>
+			        	<li><p class="random" id="answer4">{{ Form::radio('value', 4 ) }}{{$question->wrong_answer3}}</p></li>
+	        		</ul>
 	        		<button class="btn btn-success" id="check" style="width: 100%"> Check answer </button>
 
 		        	<a href="/questions/{{ $question->id + 1}}"><button class="btn btn-primary hidden" id="next" style="width: 100%"> Next question </button></a>
@@ -64,6 +66,29 @@
 		    		$( "#answer1" ).addClass( "correct" );
 		    	}
 		    });
+		});
+
+		$(document).ready(function(){
+		      $('ul').each(function(){
+		            // get current ul
+		            var $ul = $(this);
+		            // get array of list items in current ul
+		            var $liArr = $ul.children('li');
+		            console.log($liArr);
+		            // sort array of list items in current ul randomly
+		            $liArr.sort(function(a,b){
+		                  // Get a random number between 0 and 10
+		                  var temp = parseInt( Math.random()*10 );
+		                  // Get 1 or 0, whether temp is odd or even
+		                  var isOddOrEven = temp%2;
+		                  // Get +1 or -1, whether temp greater or smaller than 5
+		                  var isPosOrNeg = temp>5 ? 1 : -1;
+		                  // Return -1, 0, or +1
+		                  return( isOddOrEven*isPosOrNeg );
+		            })
+		            // append list items to ul
+		            .appendTo($ul);            
+		      });
 		});
 	</script>
 

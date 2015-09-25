@@ -2,17 +2,22 @@
 
 
 @section('content')
-
 	<main>
 	    <div class="container">
 	      	<div class="row">
 		    <div class="col-md-8">
 		        <div class="well">
-		        	@if(Input::has('cat'))
-		        		<h1>Unfinished {{Input::get('cat')}} Questions</h1>
-	        		@else
-		        		<h1>Unfinished Questions</h1>
-	        		@endif
+    		        	@if(Input::has('cat'))
+    		        		<h1>Unfinished {{Input::get('cat')}} Questions
+		        			@if(!empty($questions->toArray()['data']))
+		        			 	<a href="/unfinished_questions/1" class="pull-right quiz">Unfinished Quiz</h1></a>
+		        			@endif
+    	        		@else
+    		        		<h1>Unfinished Questions
+		        			@if(!empty($questions->toArray()['data']))
+			        			<a href="/unfinished_questions/1" class="pull-right quiz">Unfinished Quiz</h1></a>'
+		        			@endif
+    	        		@endif
 
 		        		<?php $i=1; ?>
 		        	@forelse ($questions as $question)
