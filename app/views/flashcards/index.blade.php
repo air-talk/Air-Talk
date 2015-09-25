@@ -22,16 +22,16 @@
 		        		<tbody>
                             @foreach($unansweredFlashcards as $flashcard)
                                 <tr>
-                                    <td>{{$flashcard->front}}</td>
+                                    <td><a href="{{{ action('FlashcardsController@show', $flashcard->id) }}}">{{$flashcard->front}}</a></td>
                                     {{-- change later --}}
                                     <td>0</td>
                                     <td>0</td>
                                     <td>0%</td>
                                 </tr>
                             @endforeach
-                            @foreach($array as $test)
+                            @foreach($answeredFlashcards as $test)
                                 <tr>
-                                    <td>{{{ $test->front }}}</td>
+                                    <td><a href="{{{ action('FlashcardsController@show', $flashcard->id) }}}">{{{ $test->front }}}</a></td>
                                     <td>{{{ $test->pivot->attempts }}}</td>
                                     <td>{{{ $test->pivot->correct }}}</td>
                                     <td>{{{ floor($test->pivot->correct / $test->pivot->attempts * 100) }}}%</td>
@@ -44,7 +44,7 @@
 		    <div class="col-md-4">
 		        <div class="well">
 		        	<!-- Trigger the login modal with a button -->
-                    <a type="button" class="btn btn-primary btn-circle" href="{{{ action('FlashcardsController@show', $flashcard[0]['id']) }}}">Practice Flashcards</a>
+                    <a type="button" class="btn btn-primary btn-circle" href="{{{ action('FlashcardsController@show') }}}">Practice Flashcards</a>
 		        </div>
 		    </div>
 		</div>

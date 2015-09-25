@@ -9,15 +9,24 @@ class FlashcardsController extends \BaseController {
 	 */
 	public function index()
 	{
-		// foreach (Auth::user()->answeredFlashcards as $flashcard) {
-		// 	var_dump($flashcard->pivot->attempts);
-		// }
-		// die();
-		$flashcards = Flashcard::where('category', '=', 'vocab')->get();
-		$array = Auth::user()->answeredFlashcards()->orderBy(DB::raw('correct / attempts'))->get();
-		$unansweredFlashcards = FlashcardsController::unansweredFlashcards()->get();
+		
+		$flashcards = Flashcard::where('category', 'vocab')->get();
+		$answeredFlashcards = Auth::user()->answeredFlashcards()->orderBy(DB::raw('correct / attempts'))->get();
+		
+		$query = Flashcard::where('category', 'vocab');
+		$query->whereDoesntHave('users', function($q) {
+			$q->where('id', Auth::id());
+		});
 
-		return View::make('flashcards.index')->with(['flashcards' => $flashcards, 'array' => $array, 'unansweredFlashcards' => $unansweredFlashcards]);
+		$unansweredFlashcards = $query->get();
+
+		$data = [
+			'flashcards' => $flashcards,
+			'answeredFlashcards' => $answeredFlashcards,
+			'unansweredFlashcards' => $unansweredFlashcards
+		];
+
+		return View::make('flashcards.index')->with($data);
 	}
 
 	public function planesindex()
@@ -156,6 +165,7 @@ class FlashcardsController extends \BaseController {
 		//deletes the flashcard from the database through the GAI
 	}
 
+
 	public function unansweredFlashcards()
 	{
 		$flashcards = Flashcard::whereDoesntHave('users', function($q){
@@ -170,5 +180,6 @@ class FlashcardsController extends \BaseController {
 		$card = Flashcard::findOrFail($index);
 		return Response::json($card);
 	}
+
 
 }
