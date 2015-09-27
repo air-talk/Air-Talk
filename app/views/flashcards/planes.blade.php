@@ -90,6 +90,15 @@
           forceHeight: true
         });
 
+        function sleep(milliseconds) {
+          var start = new Date().getTime();
+          for (var i = 0; i < 1e7; i++) {
+            if ((new Date().getTime() - start) > milliseconds){
+              break;
+            }
+          }
+        }
+
         $(document).keypress(function(e) {
           if(e.which == 32) {
             $("#card").flip('toggle');
@@ -107,6 +116,7 @@
 
                     success: function(data) {
                         $('.front').html("<img class='helper' src=" + data.front + ">");
+                        sleep(100);
                         $('#plane_name').html(data.back);
                         console.log(data.front);
                         console.log(data.back);
