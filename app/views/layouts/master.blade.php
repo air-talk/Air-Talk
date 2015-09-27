@@ -5,6 +5,9 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/airtalk_custom.css">
+    <link rel="shortcut icon" href="/images/vintage-airplane.ico">
+    <title>Airtalk | Practice perfecting your radio technique. Free! </title>
+    <link href='https://fonts.googleapis.com/css?family=Nunito:300' rel='stylesheet' type='text/css'>
     @yield('head')
 </head>
 <body>
@@ -46,7 +49,7 @@
                                     </div>
                                     <a href="">Forgot password?</a>
                                     <br>
-                                    <button class="btn btn-primary" type="submit">Sign in</button>
+                                    <button class="btn btn-success" type="submit">Sign in</button>
                                     {{ Form::close() }}
                                 </li>
                             </ul>

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('head')
-    <link href="/css/freelancer.css" rel="stylesheet">
+    <link href="/css/hello.css" rel="stylesheet">
 @stop
 @section('content')
 	</div>
@@ -8,12 +8,10 @@
     <header>
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <img class="img-responsive" src="img/profile.png" alt="">
+                <div class="col-xs-offset-6 col-xs-6">
                     <div class="intro-text">
-                        <span class="name">Start Bootstrap</span>
-                        <hr class="star-light">
-                        <span class="skills">Web Developer - Graphic Artist - User Experience Designer</span>
+                        <span class="name">Communicate with confidence.</span>
+                        <a class="btn btn-success" href="{{{ action('UsersController@create') }}}">Get Started</a>
                     </div>
                 </div>
             </div>

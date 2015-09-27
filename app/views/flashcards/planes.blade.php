@@ -4,7 +4,6 @@
 
 @stop
 @section('content')
-    {{print_r($planeArray)}}
     <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog modal-lg">
             <!-- Modal content-->
@@ -24,7 +23,7 @@
                                     <img src="{{$flashcards[0]->front}}">
                                 </div> 
                                 <div class="back">
-                                    {{$flashcards[0]->back}}
+                                    <h3 id="plane_name">{{$flashcards[0]->back}}</h3>
                                     <div class="col-md-6">
                                         <button class="btn btn-danger btn-block">I was wrong</button>
                                     </div>
@@ -101,13 +100,12 @@
         $(document).keypress(function(e) {
           if(e.which == 32) {
             $("#card").flip('toggle');
-            console.log('space was pressed');
           }
         });
         
         $(document).keyup(function(e) {
             if(e.which == 37 || e.which == 39) {
-                console.log('tesy');
+                $("#card").flip('toggle');
                 $.ajax({
                 type: "GET",
                     url: "../planes/info/" + i,
@@ -115,15 +113,16 @@
                     dataType: "json",
 
                     success: function(data) {
-                        $('.front').html("<img src=" + data.front + ">")
+                        $('.front').html("<img src=" + data.front + ">");
+                        $('#plane_name').html(data.back);
                         console.log(data.front);
+                        console.log(data.back);
                     },
                     error: function(data){
                     alert("fail");
 
                     }
                 });
-                $("#card").flip('toggle');
                 i++;
                 console.log(i);
             }

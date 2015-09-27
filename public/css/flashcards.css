@@ -1,6 +1,9 @@
 #card{
     height:255px;
 }
+#plane_name{
+    padding: 10px;
+}
 .front{
     color: #000;
     padding-top: 15%;

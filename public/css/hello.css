@@ -19,15 +19,6 @@ p.small {
     font-size: 16px;
 }
 
-a,
-a:hover,
-a:focus,
-a:active,
-a.active {
-    outline: 0;
-    color: #27A8E7;
-}
-
 h1,
 h2,
 h3,
@@ -35,7 +26,7 @@ h4,
 h5,
 h6 {
     text-transform: uppercase;
-    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-weight: 700;
 }
 
@@ -56,7 +47,7 @@ hr.star-primary:after {
     position: relative;
     top: -.8em;
     padding: 0 .25em;
-    font-family: FontAwesome;
+    font-family: 'Nunito', sans-serif;
     font-size: 2em;
 }
 
@@ -66,7 +57,7 @@ hr.star-light {
 
 hr.star-light:after {
     color: #fff;
-    background-color: #27A8E7;
+    background-color: #0A83BB;
 }
 
 hr.star-primary {
@@ -84,12 +75,15 @@ hr.star-primary:after {
 
 header {
     text-align: center;
+    height: 35rem;
     color: #fff;
-    background: #27A8E7;
+    background: #0A83BB;
+    background-image: url(/images/airtalk_hello.png);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 header .container {
-    padding-top: 100px;
     padding-bottom: 50px;
 }
 
@@ -100,9 +94,9 @@ header img {
 
 header .intro-text .name {
     display: block;
-    text-transform: uppercase;
-    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 2em;
+    padding: 10px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.5em;
     font-weight: 700;
 }
 
@@ -112,13 +106,16 @@ header .intro-text .skills {
 }
 
 @media(min-width:768px) {
+    header{
+        height: 62rem;
+    }
     header .container {
-        padding-top: 200px;
-        padding-bottom: 100px;
+        padding-top: 7%;
+        position: relative;
     }
 
     header .intro-text .name {
-        font-size: 4.75em;
+        font-size: 2em;
     }
 
     header .intro-text .skills {
@@ -150,28 +147,6 @@ header .intro-text .skills {
     }
 }
 
-.navbar {
-    text-transform: uppercase;
-    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-weight: 700;
-}
-
-.navbar a:focus {
-    outline: 0;
-}
-
-.navbar .navbar-nav {
-    letter-spacing: 1px;
-}
-
-.navbar .navbar-nav li a:focus {
-    outline: 0;
-}
-
-.navbar-default,
-.navbar-inverse {
-    border: 0;
-}
 
 section {
     padding: 100px 0;
@@ -184,7 +159,7 @@ section h2 {
 
 section.success {
     color: #fff;
-    background: #27A8E7;
+    background: #0A83BB;
 }
 
 section.success a,
@@ -277,7 +252,7 @@ section.success a.active {
 .btn-outline:active,
 .btn-outline.active {
     border: solid 2px #fff;
-    color: #27A8E7;
+    color: #0A83BB;
     background: #fff;
 }
 
@@ -330,7 +305,7 @@ section.success a.active {
 }
 
 .floating-label-form-group-with-focus label {
-    color: #27A8E7;
+    color: #0A83BB;
 }
 
 form .row:first-child .floating-label-form-group {
