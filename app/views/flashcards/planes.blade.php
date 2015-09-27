@@ -7,38 +7,31 @@
     <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog modal-lg">
             <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
+            <div class="modal-content text-center">
+                <div class="modal-body">
                     <button type="button" class="close" data-dismiss="modal">
                         <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
                     </button>
-                    <h1>Do you know the name of the plane?</h1>
-                    <h3>Use your spacebar or click to reveal the Definition</h3>
-                </div>
-                <div class="modal-body">
+                    <h3>Do you know the name of the plane?</h3>
+                    <p>Use your spacebar or click to reveal the Definition</p>
                     <div class="row">
-                        <div class="col-md-8 col-md-offset-2">
+                        <div class="col-md-6 col-md-offset-3">
                             <div id="card">
                                 <div class="front img"> 
-                                    <img src="{{$flashcards[0]->front}}">
+                                    <img class="helper" src="{{$flashcards[0]->front}}">
                                 </div> 
                                 <div class="back">
                                     <h3 id="plane_name">{{$flashcards[0]->back}}</h3>
-                                    <div class="col-md-6">
-                                        <button class="btn btn-danger btn-block">I was wrong</button>
+                                    <div class="col-xs-6">
+                                        <button class="btn btn-danger btn-block"><span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>I was wrong</button>
                                     </div>
-                                    <div class="col-md-6">   
-                                        <button class="btn btn-success btn-block">I was right</button>
+                                    <div class="col-xs-6">   
+                                        <button class="btn btn-success btn-block">I was right<span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></button>
                                     </div>
                                 </div> 
                             </div>
                         </div>
                     </div>
-                    
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
@@ -113,7 +106,7 @@
                     dataType: "json",
 
                     success: function(data) {
-                        $('.front').html("<img src=" + data.front + ">");
+                        $('.front').html("<img class='helper' src=" + data.front + ">");
                         $('#plane_name').html(data.back);
                         console.log(data.front);
                         console.log(data.back);

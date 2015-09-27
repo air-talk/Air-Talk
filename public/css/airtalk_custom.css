@@ -3,6 +3,9 @@ body{
 	background-color: #E9E9E9;
   font-family: 'Nunito', sans-serif;
 }
+p{
+  font-size: 1.5rem;
+}
 
 main .container{
 	padding-top: 20px;
@@ -340,4 +343,46 @@ fieldset[disabled] .btn-primary.active {
 }
 .btn{
     border-radius: 24px;
+}
+
+/*MODAL CONTENT*/
+
+.modal-body {
+    position: relative;
+    padding: 20px 15px 50px 15px;
+}
+.modal-content {
+  position: relative;
+  color: #FFF;
+  background-color: #27A8E7;
+  -webkit-background-clip: padding-box;
+          background-clip: padding-box;
+  border: 1px solid #999;
+  border: 1px solid rgba(0, 0, 0, .2);
+  border-radius: 6px;
+  outline: 0;
+  -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+          box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+}
+.close {
+    float: right;
+    font-size: 21px;
+    font-weight: bold;
+    line-height: 1;
+    color: #000;
+    text-shadow: none; 
+    filter: alpha(opacity=20);
+    opacity: .75;
+}
+
+.glyphicon {
+    position: relative;
+    top: 2px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
