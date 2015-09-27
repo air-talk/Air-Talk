@@ -1,6 +1,7 @@
 /*MAIN*/
 body{
 	background-color: #E9E9E9;
+  font-family: 'Nunito', sans-serif;
 }
 
 main .container{
@@ -70,6 +71,7 @@ a:focus {
 .navbar-inverse {
   background-color: #27A8E7;
   border-color: #27A8E7;
+  min-height: 60px;
 }
 .navbar-inverse .navbar-brand {
   color: #FFF;
@@ -77,7 +79,7 @@ a:focus {
 .navbar-inverse .navbar-brand:hover,
 .navbar-inverse .navbar-brand:focus {
   color: #fff;
-  background-color: #0094CC;
+  background-color: transparent;
 }
 .navbar-inverse .navbar-text {
   color: #FFF;
@@ -90,6 +92,7 @@ a:focus {
   color: #fff;
   background-color: #0094CC;
   border-radius: 20px;
+  font-weight: normal;
 }
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover,
@@ -106,7 +109,7 @@ a:focus {
   border-radius: 20px;
 }
 .navbar-inverse .navbar-toggle {
-  border-color: #333;
+  border-color: transparent;
 }
 .navbar-inverse .navbar-toggle:hover,
 .navbar-inverse .navbar-toggle:focus {
@@ -180,6 +183,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 /*NAV*/
 .navbar{
 	margin-bottom: 0px;
+  padding: 5px;
 }
 .nav {
   padding-left: 0;
@@ -190,6 +194,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .nav > li {
   position: relative;
   display: block;
+  padding-left: 5px;
 }
 .nav > li > a {
   color: #FFF;
@@ -264,6 +269,24 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   background-color: #0094CC;
 }
 
+/*SUCCESS BUTTON*/
+
+.btn-success {
+  color: #fff;
+  background-color: #94C500;
+  border-color: #94C500;
+}
+.btn-success:hover,
+.btn-success:focus,
+.btn-success.focus,
+.btn-success:active,
+.btn-success.active,
+.open > .dropdown-toggle.btn-success {
+  color: #fff;
+  background-color: #449d44;
+  border-color: #449d44;
+}
+
 /*PRIMARY BUTTON*/
 
 .btn-default .badge {
@@ -314,4 +337,7 @@ fieldset[disabled] .btn-primary.active {
 .btn-primary .badge {
   color: #27A8E7;
   background-color: #fff;
+}
+.btn{
+    border-radius: 24px;
 }
