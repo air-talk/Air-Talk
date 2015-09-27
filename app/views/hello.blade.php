@@ -108,8 +108,9 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2">
-                    Airtalk 
+                <div class="col-lg-8 col-lg-offset-2" style="text-indent: 2.0em">
+                    <p>Airtalk was created to help VFR and student pilots gain proficiency and confidence speaking on the radio in uncontrolled airspace and to airtraffic control. It is difficult to learn effective communication during flight when attention must be divided between a plethora of additional cockpit tasks. Airtalk allows for good practices to become engrained prior to takeoff, as opposed to on the fly!</p> 
+                    <p>While many of the provided answers are not hard and fast rules, incorporating the techniques into your radio work will aid in clear communication. Understanding broadcasts and being understood by others is essential to being a safer, more conscientious pilot.</p> 
                 </div>
             </div>
         </div>
@@ -151,7 +152,7 @@
                         <p>3481 Melrose Place<br>Beverly Hills, CA 90210</p>
                     </div>
                     <div class="footer-col col-md-4">
-                        <h3>Around the Web</h3>
+                        <h3>Additional Resources</h3>
                         <ul class="list-inline">
                             <li>
                                 <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
