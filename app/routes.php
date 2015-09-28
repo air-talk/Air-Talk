@@ -19,7 +19,7 @@ Route::get('signin', 'UsersController@showSignin');
 
 Route::get('planes', 'FlashcardsController@planesindex');
 
-Route::get('flashcards/info/{index}', 'FlashcardsController@getNextCard');
+Route::get('vocab/info/{index}', 'FlashcardsController@getNextVocab');
 Route::get('planes/info/{index}', 'FlashcardsController@getNextPlane');
 
 Route::post('questions/{id}', 'QuestionsController@storeAnswer');
