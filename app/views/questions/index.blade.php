@@ -2,7 +2,6 @@
 
 
 @section('content')
-
 	<main>
 	    <div class="container">
 	      	<div class="row">
@@ -10,10 +9,10 @@
 			        <div class="well">
     		        	@if(Input::has('cat'))
     		        		<h1>{{Input::get('cat')}} Questions
-    		        		<a href="/questions/1" class="pull-right quiz">Start Complete Quiz</a></h1>
+    		        		<a href="/questions/1" class="pull-right quiz">Start Quiz</a></h1>
     	        		@else
     		        		<h1>Questions
-    		        		<a href="/questions/1" class="pull-right quiz">Start Complete Quiz</a></h1>
+    		        		<a href="/questions/1" class="pull-right quiz">Start Quiz</a></h1>
     	        		@endif
 
 			        	@forelse ($questions as $question)
@@ -21,7 +20,7 @@
 				        @empty
 					        <h2>There seems to be no questions!</h2>
 				        @endforelse
-	                    {{ $questions->links() }}
+	                    {{-- {{ $questions->links() }} --}}
 			        </div>
 			    </div>
 			    <div class="col-md-4">
@@ -32,12 +31,12 @@
 			       		<p><a href="/questions?cat=Class B">Class B</a></p>
 			       		<p><a href="/questions?cat=Class C">Class C</a></p>
 			       		<p><a href="/questions?cat=Class D">Class D</a></p>
-			       		<p><a href="/unfinished_questions">Unfinished Questions</a></p>
+			       		<p><a href="/questions?unfin=1">Unfinished Questions</a></p>
 			       		<ul>
-			       			<li><a href="/unfinished_questions?cat=Untowered">Untowered</a></li>
-			       			<li><a href="/unfinished_questions?cat=Class B">Class B</a></li>
-			       			<li><a href="/unfinished_questions?cat=Class C">Class C</a></li>
-			       			<li><a href="/unfinished_questions?cat=Class D">Class D</a></li>
+			       			<li><a href="/questions?unfin=1&cat=Untowered">Untowered</a></li>
+			       			<li><a href="/questions?unfin=1&cat=Class B">Class B</a></li>
+			       			<li><a href="/questions?unfin=1&cat=Class C">Class C</a></li>
+			       			<li><a href="/questions?unfin=1&cat=Class D">Class D</a></li>
 			       		</ul>
 			        </div>
 			    </div>
