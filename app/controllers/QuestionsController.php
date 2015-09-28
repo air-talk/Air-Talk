@@ -9,10 +9,19 @@ class QuestionsController extends \BaseController {
 	 */
 	public function index()
 	{
-		if(Input::has('cat')){
+		if(Input::has('unfin') && Input::has('cat')){
+			$category = Input::get('cat');
+			$questions = QuestionsController::unfinishedQuestions()->where('category', $category)->paginate(20);
+
+			return View::make('questions.index')->with(['questions'=> $questions]);
+		}elseif(Input::has('cat')){
 			$category = Input::get('cat');
 			$questions = Question::where('category', $category)->paginate(20);
 
+			return View::make('questions.index')->with(['questions'=> $questions]);
+		}elseif(Input::has('unfin')){
+			$questions = QuestionsController::unfinishedQuestions()->paginate(20);
+			
 			return View::make('questions.index')->with(['questions'=> $questions]);
 		}else{
 			$questions = Question::paginate(20);

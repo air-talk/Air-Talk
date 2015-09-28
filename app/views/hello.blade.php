@@ -131,7 +131,7 @@
                     <h3>Alissa Stephens</h3>
                 </div>
                 <div class="col-sm-4">
-                    <img src="http://lorempixel.com/500/500/people" class="img-circle img-responsive" alt="Zach's headshot" style="margin: 0 auto" width="50%" height="440">
+                    <img src="/images/Zach.jpg" class="img-circle img-responsive" alt="Zach's headshot" style="margin: 0 auto" width="50%" height="440">
                     <h3>Zachary Hughes</h3>
                 </div>
                 <div class="col-sm-4">
