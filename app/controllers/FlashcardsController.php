@@ -61,9 +61,9 @@ class FlashcardsController extends \BaseController {
 		}
 	}
 
-	public function storeAttemps()
+	public function storeAttempts()
 	{
-		$flashcard = new FlashcardAnswer	();
+		$flashcard = new FlashcardAnswer();
 
 		// populate the model with the form data
 		$flashcard->flashcard_id = Input::get('flashcard_id');
@@ -73,9 +73,7 @@ class FlashcardsController extends \BaseController {
 
 		if (!$flashcard->save()) {
 		     $errors = $flashcard->getErrors();
-		     return Redirect::action('FlashcardsController@create')
-		       ->with('errors', $errors)
-		       ->withInput();
+		     return Redirect::back()->with('errors', $errors);
 		}
 	}
 

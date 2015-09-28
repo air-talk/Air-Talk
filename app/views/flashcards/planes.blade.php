@@ -111,9 +111,37 @@
           }
         });
         
-        
+        // got anser right, store in attempts table
         $(document).keyup(function(e) {
-            if((e.which == 37 || e.which == 39) && card_face == 'back') {
+            if(e.which == 39 && card_face == 'back') {
+                
+                $("#card").flip('toggle');
+                $.ajax({
+                type: "GET",
+                    url: "../planes/info/" + i,
+                    data: "",
+                    dataType: "json",
+
+                    success: function(data) {
+                        $('.front').html("<img class='helper' src=" + data.front + ">");
+                        sleep(100);
+                        $('#plane_name').html(data.back);
+                        console.log(data.front);
+                        console.log(data.back);
+                    },
+                    error: function(data){
+                    alert("fail");
+                    // add in redirect to results page here
+                    }
+                });
+                i++;
+                card_face = 'front';
+            }   
+        });
+
+         // got anser wrong don't store
+        $(document).keyup(function(e) {
+            if(e.which == 37 && card_face == 'back') {
                 $("#card").flip('toggle');
                 $.ajax({
                 type: "GET",
