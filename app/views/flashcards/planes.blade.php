@@ -83,6 +83,7 @@
 @section('script')
     <script src="/js/jquery.flip.js"></script>
     <script type="text/javascript">
+        var card_face = 'front';
         var i = 1;
         $("#card").flip({
           axis: 'x',
@@ -102,11 +103,17 @@
         $(document).keypress(function(e) {
           if(e.which == 32) {
             $("#card").flip('toggle');
+            if(card_face == 'front'){
+                card_face = 'back'
+            }else{
+                card_face = 'front';
+            }
           }
         });
         
+        
         $(document).keyup(function(e) {
-            if(e.which == 37 || e.which == 39) {
+            if((e.which == 37 || e.which == 39) && card_face == 'back') {
                 $("#card").flip('toggle');
                 $.ajax({
                 type: "GET",
@@ -123,13 +130,14 @@
                     },
                     error: function(data){
                     alert("fail");
-
+                    // add in redirect to results page here
                     }
                 });
                 i++;
-                console.log(i);
-            }
+                card_face = 'front';
+            }   
         });
+        
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
 @stop
