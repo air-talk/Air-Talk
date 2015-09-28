@@ -84,8 +84,10 @@ class FlashcardsController extends \BaseController {
 				->updateExistingPivot($id, array('attempts' => $attempts, 'correct' => $correct));
 		} else {
 			// attach new pivot
+			$attempts = 1;
+			$correct  = 1;
+			$user->answeredFlashcards()->attach(['flashcard_id' => $id, 'user_id' => $user,'attempts' => $attempts, 'correct' => $correct]);
 		}
-
 	}
 
 	/**
