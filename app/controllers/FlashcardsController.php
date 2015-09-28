@@ -70,20 +70,22 @@ class FlashcardsController extends \BaseController {
 		}
 	}
 
-	public function storeAttempts()
+	public function correctAttempt($id)
 	{
-		$flashcard = new FlashcardAnswer();
+		$user = Auth::user();
 
-		// populate the model with the form data
-		$flashcard->flashcard_id = Input::get('flashcard_id');
-		$flashcard->user_id = Auth::id();
+		if ($user->answeredFlashcards->contains($id)) {
+			$flashcard = $user->answeredFlashcards()->where('flashcard_id', $id)->firstOrFail();
 
-		$flashcard->correct;
+			$attempts = $flashcard->pivot->attempts + 1;
+			$correct  = $flashcard->pivot->correct + 1;
 
-		if (!$flashcard->save()) {
-		     $errors = $flashcard->getErrors();
-		     return Redirect::back()->with('errors', $errors);
+			$user->answeredFlashcards()
+				->updateExistingPivot($id, array('attempts' => $attempts, 'correct' => $correct));
+		} else {
+			// attach new pivot
 		}
+
 	}
 
 	/**
@@ -174,7 +176,7 @@ class FlashcardsController extends \BaseController {
 	{	
 		$flashcards = Flashcard::where('category', '=', 'plane')->get();
 		foreach($flashcards as $flashcard){
-		$planeArray[] = $flashcard->id;
+			$planeArray[] = $flashcard->id;
 		}
 		$card = Flashcard::findOrFail($planeArray[$index]);
 		return Response::json($card);
@@ -184,7 +186,7 @@ class FlashcardsController extends \BaseController {
 	{	
 		$flashcards = Flashcard::where('category', 'vocab')->get();
 		foreach($flashcards as $flashcard){
-		$vocabArray[] = $flashcard->id;
+			$vocabArray[] = $flashcard->id;
 		}
 		$card = Flashcard::findOrFail($vocabArray[$index]);
 		return Response::json($card);

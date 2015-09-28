@@ -22,6 +22,9 @@ Route::get('planes', 'FlashcardsController@planesindex');
 Route::get('vocab/info/{index}', 'FlashcardsController@getNextVocab');
 Route::get('planes/info/{index}', 'FlashcardsController@getNextPlane');
 
+Route::post('flashcards/correct/{index}', 'FlashcardsController@correctAttempt');
+Route::post('flashcards/incorrect/{index}', 'FlashcardsController@incorrectAttempt');
+
 Route::post('questions/{id}', 'QuestionsController@storeAnswer');
 Route::resource('questions', 'QuestionsController');
 Route::resource('flashcards', 'FlashcardsController');
