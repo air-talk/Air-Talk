@@ -180,5 +180,15 @@ class FlashcardsController extends \BaseController {
 		return Response::json($card);
 	}
 
+	public function getNextVocab($index)
+	{	
+		$flashcards = Flashcard::where('category', 'vocab')->get();
+		foreach($flashcards as $flashcard){
+		$vocabArray[] = $flashcard->id;
+		}
+		$card = Flashcard::findOrFail($vocabArray[$index]);
+		return Response::json($card);
+	}
+
 
 }
