@@ -118,12 +118,9 @@ class UnfinishedQuestionsController extends \BaseController {
 		if(Auth::user()->correctQuestions->contains($id)) {
 			Auth::user()->correctQuestions()->detach($id);
 			Auth::user()->correctQuestions()->attach($id);
-			if($question = Question::find($id+1))
-			{
+			if($question = Question::find($id+1)){
 				$question = Question::find($id+1);
 				return Redirect::action('UnfinishedQuestionsController@show', $question->id)->with(array('question', $question));
-			}else{
-				//show next incorrect question
 			}
 
 		}
@@ -132,14 +129,44 @@ class UnfinishedQuestionsController extends \BaseController {
 		return Redirect::action('UnfinishedQuestionsController@show', $question->id)->with(array('question', $question));
 	}
 
+	public function storeAnswers($answers)
+	{
+		if(is_array($answers)){
+			foreach ($answers as $answer_id) {
+				if(Auth::user()->correctQuestions->contains($answer_id)) {
+					Auth::user()->correctQuestions()->detach($answer_id);
+					Auth::user()->correctQuestions()->attach($answer_id);
+				}else{
+					Auth::user()->correctQuestions()->attach($answer_id);
+				}
+			}
+		}else{
+			dd($answers);
+			if(Auth::user()->correctQuestions->contains($answers)) {
+				Auth::user()->correctQuestions()->detach($answers);
+				Auth::user()->correctQuestions()->attach($answers);
+			}else{
+				Auth::user()->correctQuestions()->attach($answers);
+			}
+		}
+		Session::forget('answered');
+		Session::flash('successMessage', 'Quiz completed!');
+		return Redirect::action('QuestionsController@index');
+	}
+
 	public function storeInSession($questionId)
 	{
-		// if(!isset($_SESSION['questions'])){
-		// 	$_SESSION['questions'] = array();
-		// }
-		// $_SESSION['questions'][] = array(['user_id' => Auth::id(), 'question_id' => $questionId]);
-		$questionId = Session::get('questionArrayId');
-		return Redirect::action('UnfinishedQuestionsController@show', $questionId);
+		$lastQuestion = UnfinishedQuestionsController::unfinishedQuestions()->get()->last();
+
+		if($questionId == $lastQuestion->id){
+			Session::push('answered', $questionId);
+			$answersArray = Session::get('answered');
+			return UnfinishedQuestionsController::storeAnswers($answersArray);
+		}else{	
+			Session::push('answered', $questionId);
+			$question_id = Session::get('questionArrayId');
+		}
+		return Redirect::action('UnfinishedQuestionsController@show', $question_id);
 	}
 
 	public function unfinishedQuestions()

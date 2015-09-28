@@ -4,7 +4,40 @@
 
 @stop
 @section('content')
-	<div class="container">
+	<div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content text-center">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+                    </button>
+                    <h1>Do you know the Aviation term?</h1>
+                    <h3>Use your spacebar or click to reveal the Definition</h3>
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div id="card">
+                                <div class="front img"> 
+                                    {{$flashcards[0]->front}}
+                                </div> 
+                                <div class="back">
+                                    {{$flashcards[0]->back}}
+                                    <div class="col-md-6">
+                                        <button class="btn btn-danger btn-block">I was wrong</button>
+                                    </div>
+                                    <div class="col-md-6">   
+                                        <button class="btn btn-success btn-block">I was right</button>
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
 		<div class="row">
 		    <div class="col-md-offset-1 col-md-6">
 		        <div class="well">
@@ -20,23 +53,23 @@
 		        			</tr>
 		        		</thead>
 		        		<tbody>
-                                @foreach($array as $test)
-                                    <tr>
-                                        <td>{{{ $test->front }}}</td>
-                                        <td>{{{ $test->pivot->attempts }}}</td>
-                                        <td>{{{ $test->pivot->correct }}}</td>
-                                        <td>{{{ $test->pivot->correct / $test->pivot->attempts * 100 }}}%</td>
-                                    </tr>
-                                @endforeach
                             @foreach($unansweredFlashcards as $flashcard)
                                 <tr>
-                                    <td>{{$flashcard->front}}</td>
+                                    <td><a href="{{{ action('FlashcardsController@show', $flashcard->id) }}}">{{$flashcard->front}}</a></td>
                                     {{-- change later --}}
                                     <td>0</td>
-    		        				<td>0</td>
+                                    <td>0</td>
                                     <td>0%</td>
-    		        			</tr>
-		        			@endforeach
+                                </tr>
+                            @endforeach
+                            @foreach($answeredFlashcards as $test)
+                                <tr>
+                                    <td><a href="{{{ action('FlashcardsController@show', $flashcard->id) }}}">{{{ $test->front }}}</a></td>
+                                    <td>{{{ $test->pivot->attempts }}}</td>
+                                    <td>{{{ $test->pivot->correct }}}</td>
+                                    <td>{{{ floor($test->pivot->correct / $test->pivot->attempts * 100) }}}%</td>
+                                </tr>
+                            @endforeach
 		        		</tbody>
 		        	</table>
 		        </div>
@@ -54,6 +87,7 @@
 @section('script')
     <script src="/js/jquery.flip.js"></script>
     <script type="text/javascript">
+        var i = 1;
         $("#card").flip({
           axis: 'x',
           reverse: true,
@@ -63,7 +97,34 @@
         $(document).keypress(function(e) {
           if(e.which == 32) {
             $("#card").flip('toggle');
+            console.log('space was pressed');
+          }
+        });
+        $(document).keyup( function(e) {
+            console.log(e.keyCode);
+        });
+        $(document).keypress(function(e) {
+          if(e.which == 13) {
+            $.ajax({
+            type: "GET",
+                url: "../vocab/info/" + i,
+                data: "",
+                dataType: "json",
+
+                success: function(data) {
+                    $('.front').html("'<img src=" + data.front + ">'")
+                    console.log(data.front);
+                },
+                error: function(data){
+                alert("fail");
+
+                }
+
+            });
+            console.log(i);
             console.log('Enter was pressed');
+            i++;
+            console.log(i);
           }
         });
     </script>
