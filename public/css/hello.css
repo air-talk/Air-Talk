@@ -87,7 +87,7 @@ header .intro-text .skills {
 
 @media(min-width:768px) {
     header{
-        height: 62rem;
+        height: 100vh;
     }
     header .container {
         padding-top: 7%;
