@@ -23,8 +23,6 @@ Route::get('vocab/info/{index}', 'FlashcardsController@getNextVocab');
 Route::get('planes/info/{index}', 'FlashcardsController@getNextPlane');
 
 Route::post('questions/{id}', 'QuestionsController@storeAnswer');
-Route::post('unfinished_questions/{id}', 'UnfinishedQuestionsController@storeInSession');
-Route::resource('unfinished_questions', 'UnfinishedQuestionsController');
 Route::resource('questions', 'QuestionsController');
 Route::resource('flashcards', 'FlashcardsController');
 Route::resource('users', 'UsersController');
