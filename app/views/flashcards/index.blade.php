@@ -15,18 +15,18 @@
                     <h1>Do you know the Aviation term?</h1>
                     <h3>Use your spacebar or click to reveal the Definition</h3>
                     <div class="row">
-                        <div class="col-md-8 col-md-offset-2">
+                        <div class="col-md-6 col-md-offset-3">
                             <div id="card">
                                 <div class="front img"> 
                                     {{$flashcards[0]->front}}
                                 </div> 
                                 <div class="back">
-                                    {{$flashcards[0]->back}}
+                                    <div id="definition"> {{$flashcards[0]->back}} </div>
                                     <div class="col-md-6">
-                                        <button class="btn btn-danger btn-block">I was wrong</button>
+                                        <button class="btn btn-danger btn-block"><span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>I was wrong</button>
                                     </div>
                                     <div class="col-md-6">   
-                                        <button class="btn btn-success btn-block">I was right</button>
+                                        <button class="btn btn-success btn-block">I was right<span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></button>
                                     </div>
                                 </div> 
                             </div>
@@ -87,6 +87,7 @@
 @section('script')
     <script src="/js/jquery.flip.js"></script>
     <script type="text/javascript">
+        var card_face = 'front';
         var i = 1;
         $("#card").flip({
           axis: 'x',
@@ -94,39 +95,81 @@
           forceHeight: true
         });
 
+        function sleep(milliseconds) {
+          var start = new Date().getTime();
+          for (var i = 0; i < 1e7; i++) {
+            if ((new Date().getTime() - start) > milliseconds){
+              break;
+            }
+          }
+        }
+
         $(document).keypress(function(e) {
           if(e.which == 32) {
             $("#card").flip('toggle');
-            console.log('space was pressed');
+            if(card_face == 'front'){
+                card_face = 'back'
+            }else{
+                card_face = 'front';
+            }
           }
         });
-        $(document).keyup( function(e) {
-            console.log(e.keyCode);
+        
+        // got anser right, store in attempts table
+        $(document).keyup(function(e) {
+            if(e.which == 39 && card_face == 'back') {
+                
+                $("#card").flip('toggle');
+                $.ajax({
+                type: "GET",
+                    url: "../vocab/info/" + i,
+                    data: "",
+                    dataType: "json",
+
+                    success: function(data) {
+                        $('.front').html(data.front);
+                        sleep(100);
+                        $('#definition').html(data.back);
+                        console.log(data.front);
+                        console.log(data.back);
+                    },
+                    error: function(data){
+                    alert("fail");
+                    // add in redirect to results page here
+                    }
+                });
+                i++;
+                card_face = 'front';
+            }   
         });
-        $(document).keypress(function(e) {
-          if(e.which == 13) {
-            $.ajax({
-            type: "GET",
-                url: "../vocab/info/" + i,
-                data: "",
-                dataType: "json",
 
-                success: function(data) {
-                    $('.front').html("'<img src=" + data.front + ">'")
-                    console.log(data.front);
-                },
-                error: function(data){
-                alert("fail");
+         // got anser wrong don't store
+        $(document).keyup(function(e) {
+            if(e.which == 37 && card_face == 'back') {
+                $("#card").flip('toggle');
+                $.ajax({
+                type: "GET",
+                    url: "../vocab/info/" + i,
+                    data: "",
+                    dataType: "json",
 
-                }
-
-            });
-            console.log(i);
-            console.log('Enter was pressed');
-            i++;
-            console.log(i);
-          }
+                    success: function(data) {
+                        $('.front').html(data.front);
+                        sleep(100);
+                        $('#definition').html(data.back);
+                        console.log(data.front);
+                        console.log(data.back);
+                    },
+                    error: function(data){
+                    alert("fail");
+                    // add in redirect to results page here
+                    }
+                });
+                i++;
+                card_face = 'front';
+            }   
         });
+        
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
 @stop

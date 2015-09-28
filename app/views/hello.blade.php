@@ -135,7 +135,7 @@
                     <h3>Zachary Hughes</h3>
                 </div>
                 <div class="col-sm-4">
-                    <img src="/images/Remington.jpg" class="img-circle img-responsive" alt="Remington's headshot" style="margin: 0 auto" width="50%" height="440">
+                    <img src="/images/RemingtonW.jpg" class="img-circle img-responsive" alt="Remington's headshot" style="margin: 0 auto" width="50%" height="440">
                     <h3>Remington Williams</h3>
                 </div>
             </div>
