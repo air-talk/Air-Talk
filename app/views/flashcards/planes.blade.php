@@ -114,8 +114,11 @@
         // got anser right, store in attempts table
         $(document).keyup(function(e) {
             if(e.which == 39 && card_face == 'back') {
-                
+
                 $("#card").flip('toggle');
+                $.post("flashcards/correct/" + i, function(data, status){
+                    console.log("Data: " + data + "\nStatus: " + status);
+                });
                 $.ajax({
                 type: "GET",
                     url: "../planes/info/" + i,
