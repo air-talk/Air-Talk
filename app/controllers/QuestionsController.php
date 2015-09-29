@@ -139,12 +139,12 @@ class QuestionsController extends \BaseController {
 			if($question = Question::find($id+1))
 			{
 				$question = Question::find($id+1);
-				return Redirect::action('QuestionsController@show', $question->id)->with(array('question', $question));
+				return Response::json('success', 200);
 			}
 		}
 		Auth::user()->correctQuestions()->attach($id);
 		$question = Question::find($id+1);
-		return Redirect::action('QuestionsController@show', $question->id)->with(array('question', $question));
+		return Response::json('success', 200);
 	}
 
 	public function unfinishedQuestions()
@@ -175,9 +175,14 @@ class QuestionsController extends \BaseController {
 		}
 	}
 
-	public function attempt($id)
+	public function attempt($id, $correct)
 	{
-		return Response::json('success', 200);
+		if($correct == 1){
+			QuestionsController::storeAnswer($id);
+			return Response::json('success', 200);
+		}else{
+			return Response::json('success', 200);
+		}
 	}
 
 
