@@ -147,6 +147,7 @@
         $(document).keyup(function(e) {
             if(e.which == 39 && $('#card').data('face') == 'back' || e.which == 37 && $('#card').data('face') == 'back' ) {
                 var next = parseInt($("#index").val());
+                $("#card").flip('toggle');
                 next++;
                 $.ajax({
                 type: "POST",
@@ -157,11 +158,10 @@
                     success: function(data) {
 
                         $("#front").html('<img class="img helper" src="' + flashcardList[next].front + '" alt="plane image">');
-                        $("#back").html(flashcardList[next].back);
                         $("#id").val(flashcardList[next].id);
                         $("#index").val(next);
-                        $("#card").flip('toggle');
-                        card_face = 'front';
+                        // sleep(50);
+                        $("#back").html(flashcardList[next].back);
                     },
                     error: function(data){
                     alert("fail");
