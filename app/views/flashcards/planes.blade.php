@@ -57,7 +57,7 @@
                                 <td>
                                     <div class="checkbox">
                                       <label>
-                                        <input id="{{$flashcard->id}}" type="checkbox" value="">
+                                        <input id="{{$flashcard->id}}" type="checkbox" value="" >
                                       </label>
                                     </div>
                                 </td>
@@ -116,9 +116,9 @@
             if(e.which == 39 && card_face == 'back') {
 
                 $("#card").flip('toggle');
-                $.post("flashcards/correct/" + i, function(data, status){
-                    console.log("Data: " + data + "\nStatus: " + status);
-                });
+                $.post("/flashcards/correct/" + i, function(data, status){
+                        console.log("Data: " + data + "\nStatus: " + status);
+                    });
                 $.ajax({
                 type: "GET",
                     url: "../planes/info/" + i,
