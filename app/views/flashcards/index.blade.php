@@ -110,7 +110,6 @@
 
 
 
-        var card_face = 'front';
 
         $("#card").flip({
           axis: 'x',
@@ -161,10 +160,9 @@
                         $("#id").val(flashcardList[next].id);
                         $("#index").val(next);
                         $("#card").flip('toggle');
-                        card_face = 'front';
                     },
                     error: function(data){
-                    alert("fail");
+                    location.reload();
                     // add in redirect to results page here
                     }
                 });
