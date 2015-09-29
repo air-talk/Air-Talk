@@ -10,7 +10,6 @@ class FlashcardsController extends \BaseController {
 	public function index()
 	{
 		
-		$flashcards = Flashcard::where('category', 'vocab')->get();
 		$answeredFlashcards = Auth::user()->answeredFlashcards()->orderBy(DB::raw('correct / attempts'))->get();
 		
 		$query = Flashcard::where('category', 'vocab');
@@ -21,7 +20,6 @@ class FlashcardsController extends \BaseController {
 		$unansweredFlashcards = $query->get();
 
 		$data = [
-			'flashcards' => $flashcards,
 			'answeredFlashcards' => $answeredFlashcards,
 			'unansweredFlashcards' => $unansweredFlashcards
 		];
@@ -70,11 +68,11 @@ class FlashcardsController extends \BaseController {
 		}
 	}
 
-	public function correctAttempt($id)
+	public function attempt($id,$which)
 	{
 		$user = Auth::user();
-
-		if ($user->answeredFlashcards->contains($id)) {
+			//if which = 39 then do these
+		if($user->answeredFlashcards->contains($id)) {
 			$flashcard = $user->answeredFlashcards()->where('flashcard_id', $id)->firstOrFail();
 
 			$attempts = $flashcard->pivot->attempts + 1;
@@ -88,6 +86,10 @@ class FlashcardsController extends \BaseController {
 			$correct  = 1;
 			$user->answeredFlashcards()->attach(['flashcard_id' => $id, 'user_id' => $user,'attempts' => $attempts, 'correct' => $correct]);
 		}
+
+		//if which = 37 then answered incorrect
+
+
 	}
 
 	/**
@@ -181,16 +183,6 @@ class FlashcardsController extends \BaseController {
 			$planeArray[] = $flashcard->id;
 		}
 		$card = Flashcard::findOrFail($planeArray[$index]);
-		return Response::json($card);
-	}
-
-	public function getNextVocab($index)
-	{	
-		$flashcards = Flashcard::where('category', 'vocab')->get();
-		foreach($flashcards as $flashcard){
-			$vocabArray[] = $flashcard->id;
-		}
-		$card = Flashcard::findOrFail($vocabArray[$index]);
 		return Response::json($card);
 	}
 

@@ -17,17 +17,22 @@
                     <div class="row">
                         <div class="col-md-6 col-md-offset-3">
                             <div id="card">
-                                <div class="front img"> 
-                                    {{$flashcards[0]->front}}
+                                <div class="front" id="front"> 
                                 </div> 
                                 <div class="back">
-                                    <div id="definition"> {{$flashcards[0]->back}} </div>
-                                    <div class="col-md-6">
-                                        <button class="btn btn-danger btn-block"><span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>I was wrong</button>
+                                    <div id="back">
+                                        
                                     </div>
-                                    <div class="col-md-6">   
-                                        <button class="btn btn-success btn-block">I was right<span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></button>
-                                    </div>
+                                    <form action="#" method="post">
+                                        <input type="hidden" name="index" id="index" value="">
+                                        <input type="hidden" name="id" id="id" value="">
+                                        <div class="col-md-6">
+                                            <button class="btn btn-danger btn-block"><span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>I was wrong</button>
+                                        </div>
+                                        <div class="col-md-6">   
+                                            <button class="btn btn-success btn-block">I was right<span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></button>
+                                        </div>
+                                    </form>
                                 </div> 
                             </div>
                         </div>
@@ -55,7 +60,7 @@
 		        		<tbody>
                             @foreach($unansweredFlashcards as $flashcard)
                                 <tr>
-                                    <td><a href="{{{ action('FlashcardsController@show', $flashcard->id) }}}">{{$flashcard->front}}</a></td>
+                                    <td><strong>{{$flashcard->front}}</strong></td>
                                     {{-- change later --}}
                                     <td>0</td>
                                     <td>0</td>
@@ -64,7 +69,7 @@
                             @endforeach
                             @foreach($answeredFlashcards as $test)
                                 <tr>
-                                    <td><a href="{{{ action('FlashcardsController@show', $flashcard->id) }}}">{{{ $test->front }}}</a></td>
+                                    <td><strong>{{{ $test->front }}}</strong></td>
                                     <td>{{{ $test->pivot->attempts }}}</td>
                                     <td>{{{ $test->pivot->correct }}}</td>
                                     <td>{{{ floor($test->pivot->correct / $test->pivot->attempts * 100) }}}%</td>
@@ -87,6 +92,24 @@
 @section('script')
     <script src="/js/jquery.flip.js"></script>
     <script type="text/javascript">
+        
+        var flashcardList = [];
+        @foreach($unansweredFlashcards as $flashcard)
+            flashcardList.push({ id:"{{{ $flashcard->id }}}", front:"{{{ $flashcard->front }}}", back: "{{{ $flashcard->back }}}" })
+        @endforeach
+        @foreach($answeredFlashcards as $flashcard)
+            flashcardList.push({ id:"{{{ $flashcard->id }}}", front:"{{{ $flashcard->front }}}", back: "{{{ $flashcard->back }}}" })
+        @endforeach
+
+
+       console.log(flashcardList[0]);
+        $("#front").html(flashcardList[0].front);
+        $("#back").html(flashcardList[0].back);
+        $("#id").val(flashcardList[0].id);
+        $("#index").val('0');
+
+
+
         var card_face = 'front';
         var i = 1;
         $("#card").flip({
@@ -117,21 +140,21 @@
         
         // got anser right, store in attempts table
         $(document).keyup(function(e) {
-            if(e.which == 39 && card_face == 'back') {
-                
-                $("#card").flip('toggle');
+            if((e.which == 39 || e.which == 37) && card_face == 'back') {
+                var next = $("#index").val()++;
+
                 $.ajax({
-                type: "GET",
-                    url: "../vocab/info/" + i,
-                    data: "",
+                type: "POST",
+                    url: "../flashcards/attempt" ,
+                    data: [id:$("#id").val(),which:e.which],
                     dataType: "json",
 
                     success: function(data) {
-                        $('.front').html(data.front);
-                        sleep(100);
-                        $('#definition').html(data.back);
-                        console.log(data.front);
-                        console.log(data.back);
+                        $("#front").html(flashcardList[next].front);
+                        $("#back").html(flashcardList[next].back);
+                        $("#id").val(flashcardList[next].id);
+                        $("#index").val(next);
+                        $("#card").flip('toggle');
                     },
                     error: function(data){
                     alert("fail");
@@ -143,32 +166,7 @@
             }   
         });
 
-         // got anser wrong don't store
-        $(document).keyup(function(e) {
-            if(e.which == 37 && card_face == 'back') {
-                $("#card").flip('toggle');
-                $.ajax({
-                type: "GET",
-                    url: "../vocab/info/" + i,
-                    data: "",
-                    dataType: "json",
 
-                    success: function(data) {
-                        $('.front').html(data.front);
-                        sleep(100);
-                        $('#definition').html(data.back);
-                        console.log(data.front);
-                        console.log(data.back);
-                    },
-                    error: function(data){
-                    alert("fail");
-                    // add in redirect to results page here
-                    }
-                });
-                i++;
-                card_face = 'front';
-            }   
-        });
         
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
