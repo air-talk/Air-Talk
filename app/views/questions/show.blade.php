@@ -5,6 +5,15 @@
 		ul{
 			list-style-type: none;
 		}
+		.red{
+			color: red;
+		}
+		.green{
+			color: lightGreen;
+		}
+		.correct{
+			background-color: lightGreen;
+		}
 	</style>
 @stop
 
@@ -27,7 +36,7 @@
 		        		</ul>
 		        		<button class="btn btn-success" id="check" style="width: 100%"> Check answer </button>
 
-			        	<a href=""><button class="btn btn-primary hidden" id="next" style="width: 100%"> Next question </button></a>
+			        	<button class="btn btn-primary hidden" id="next" style="width: 100%"> Next question </button>
 
 			        	<button class="btn btn-primary hidden" id="correctNext" style="width: 100%"> Next question </button>
 			        </div>
@@ -57,7 +66,7 @@
         $("#answer3").html("<input type='radio' name='answer' value='3' class='random'> " + questionList[0].wrong_answer2);
         $("#answer4").html("<input type='radio' name='answer' value='4' class='random'> " + questionList[0].wrong_answer3);
         $("#index").val('0');
-        $("#id").val('0');
+        $("#id").val(questionList[0].id);
 
 
         $("#check").click(function() {
@@ -76,14 +85,15 @@
 	    	}
 	    });
 
-        // got anser right, store in attempts table
+        // got answer right, store in pivot table, display next question
         $('#correctNext').click(function(e){
             var next = parseInt($("#index").val());
+            var correct = 1;
             next++;
             $.ajax({
             type: "POST",
-                url: "/questions/attempt/" + $("#id").val(),
-                data: {id:$("#id").val(),which:e.which},
+                url: "/questions/attempt/" + $("#id").val() + "/" + correct,
+                data: {id:$("#id").val(),correct:correct},
                 dataType: "json",
 
                 success: function(data) {
@@ -105,7 +115,43 @@
                     alert("fail");
                 // add in redirect to results page here
                 }
-            });  
+            }); 
+
+
+        });
+
+        // got answer wrong, display next question
+        $('#next').click(function(e){
+            var next = parseInt($("#index").val());
+            var correct = 0;
+            next++;
+            $.ajax({
+            type: "POST",
+                url: "/questions/attempt/" + $("#id").val() + "/" + correct,
+                data: {id:$("#id").val(),correct:correct},
+                dataType: "json",
+
+                success: function(data) {
+
+                	$("#question").html(questionList[next].question);
+                	$("#answer1").html("<input type='radio' name='answer' value='1' class='random'> " + questionList[next].right_answer);
+                	$("#answer2").html("<input type='radio' name='answer' value='2' class='random'> " + questionList[next].wrong_answer1);
+                	$("#answer3").html("<input type='radio' name='answer' value='3' class='random'> " + questionList[next].wrong_answer2);
+                	$("#answer4").html("<input type='radio' name='answer' value='4' class='random'> " + questionList[next].wrong_answer3);
+                    $("#id").val(questionList[next].id);
+                    $("#index").val(next);
+		    		$( "#check" ).removeClass( "hidden" );
+		    		$( "#next" ).addClass( "hidden" );
+		    		$( "#incorrect" ).addClass( "hidden" );
+		    		$( "#answer1" ).removeClass( "correct" );
+                },
+                error: function(data){
+                    alert("fail");
+                // add in redirect to results page here
+                }
+            }); 
+
+
         });
         
     </script>
