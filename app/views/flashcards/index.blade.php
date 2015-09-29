@@ -102,7 +102,7 @@
         @endforeach
 
 
-       console.log(flashcardList[0]);
+       console.log(flashcardList);
         $("#front").html(flashcardList[0].front);
         $("#back").html(flashcardList[0].back);
         $("#id").val(flashcardList[0].id);
