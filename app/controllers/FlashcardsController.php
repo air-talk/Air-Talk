@@ -38,7 +38,7 @@ class FlashcardsController extends \BaseController {
 	{
 		$answeredFlashcards = Auth::user()->answeredFlashcards()->orderBy(DB::raw('correct / attempts'))->get();
 		
-		$query = Flashcard::where('category', 'planes');
+		$query = Flashcard::where('category', 'plane');
 		$query->whereDoesntHave('users', function($q) {
 			$q->where('id', Auth::id());
 		});
