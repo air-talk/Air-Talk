@@ -16,7 +16,7 @@
                     <h3>Use your spacebar or click to reveal the Definition</h3>
                     <div class="row">
                         <div class="col-md-6 col-md-offset-3">
-                            <div id="card">
+                            <div id="card" data-face="front">
                                 <div class="front" id="front"> 
                                 </div> 
                                 <div class="back">
@@ -111,10 +111,21 @@
 
 
         var card_face = 'front';
+
         $("#card").flip({
           axis: 'x',
           reverse: true,
           forceHeight: true
+        });
+
+        $("#card").on('flip:done', function() {
+            var face = $(this).data('face');
+
+            if (face == 'front') {
+                $(this).data('face', 'back');
+            } else {
+                $(this).data('face', 'front');
+            }
         });
 
         function sleep(milliseconds) {
@@ -129,23 +140,17 @@
         $(document).keypress(function(e) {
           if(e.which == 32) {
             $("#card").flip('toggle');
-            if(card_face == 'front'){
-                card_face = 'back'
-            }else{
-                card_face = 'front';
-            }
           }
         });
         
         // got anser right, store in attempts table
         $(document).keyup(function(e) {
-            if(e.which == 39 && card_face == 'back' || e.which == 37 && card_face == 'back' ) {
+            if(e.which == 39 && $('#card').data('face') == 'back' || e.which == 37 && $('#card').data('face') == 'back' ) {
                 var next = parseInt($("#index").val());
                 next++;
-                console.log(next);
                 $.ajax({
                 type: "POST",
-                    url: "../flashcards/attempt" ,
+                    url: "/flashcards/attempt/" + $("#id").val() + "/" + e.which ,
                     data: {id:$("#id").val(),which:e.which},
                     dataType: "json",
 
