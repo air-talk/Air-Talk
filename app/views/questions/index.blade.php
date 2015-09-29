@@ -7,16 +7,22 @@
 	      	<div class="row">
 			    <div class="col-md-8">
 			        <div class="well">
-    		        	@if(Input::has('cat'))
+    		        	@if(Input::has('cat') && Input::has('unfin'))
+    		        		<h1>Unfinished {{Input::get('cat')}} Questions
+    		        		<a href="/questions/1?unfin=1&cat={{Input::get('cat')}}" class="pull-right quiz">Start Quiz</a></h1>
+    		        	@elseif(Input::has('unfin'))
+    		        		<h1>Unfinished Questions
+    		        		<a href="/questions/1?unfin=1" class="pull-right quiz">Start Quiz</a></h1>
+    		        	@elseif(Input::has('cat'))
     		        		<h1>{{Input::get('cat')}} Questions
-    		        		<a href="/questions/1" class="pull-right quiz">Start Quiz</a></h1>
+    		        		<a href="/questions/1?cat={{Input::get('cat')}}" class="pull-right quiz">Start Quiz</a></h1>
     	        		@else
     		        		<h1>Questions
     		        		<a href="/questions/1" class="pull-right quiz">Start Quiz</a></h1>
     	        		@endif
 
 			        	@forelse ($questions as $question)
-				        	<p><a href="/questions/{{$question->id}}">{{$question->question}}</a></p>
+					        	<p>{{$question->question}}</p>
 				        @empty
 					        <h2>There seems to be no questions!</h2>
 				        @endforelse
