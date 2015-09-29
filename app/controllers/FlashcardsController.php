@@ -7,6 +7,13 @@ class FlashcardsController extends \BaseController {
 	 *
 	 * @return Response
 	 */
+	public function __construct()
+	{
+		parent::__construct();
+		$this->beforeFilter('auth', array('except' => 'signin'));
+		
+	}
+	
 	public function index()
 	{
 		
