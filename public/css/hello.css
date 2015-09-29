@@ -55,7 +55,9 @@ hr.star-primary {
 
 header {
     text-align: center;
-    height: 35rem;
+    position: relative;
+    right: -100px;
+    height: 100vh;
     color: #fff;
     background: #0A83BB;
     background-image: url(/images/airtalk_hello.png);
