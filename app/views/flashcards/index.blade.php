@@ -102,7 +102,7 @@
         @endforeach
 
 
-       console.log(flashcardList);
+       console.log(flashcardList.length);
         $("#front").html(flashcardList[0].front);
         $("#back").html(flashcardList[0].back);
         $("#id").val(flashcardList[0].id);
@@ -141,34 +141,48 @@
             $("#card").flip('toggle');
           }
         });
+
+        $('#myModal').on('hidden.bs.modal', function () {
+            location.reload();
+        })
         
         // got anser right, store in attempts table
         $(document).keyup(function(e) {
             if(e.which == 39 && $('#card').data('face') == 'back' || e.which == 37 && $('#card').data('face') == 'back' ) {
                 var next = parseInt($("#index").val());
                 next++;
-                $.ajax({
-                type: "POST",
-                    url: "/flashcards/attempt/" + $("#id").val() + "/" + e.which ,
-                    data: {id:$("#id").val(),which:e.which},
-                    dataType: "json",
+                console.log(next);
+                console.log(flashcardList.length);
+                if(next < flashcardList.length){
+                    $.ajax({
+                    type: "POST",
+                        url: "/flashcards/attempt/" + $("#id").val() + "/" + e.which ,
+                        data: {id:$("#id").val(),which:e.which},
+                        dataType: "json",
 
-                    success: function(data) {
+                        success: function(data) {
 
-                        $("#card").flip('toggle');
-                        $("#front").html(flashcardList[next].front);
-                        $("#back").html(flashcardList[next].back);
-                        $("#id").val(flashcardList[next].id);
-                        $("#index").val(next);
+                            $("#card").flip('toggle');
+                            $("#front").html(flashcardList[next].front);
+                            $("#back").html(flashcardList[next].back);
+                            $("#id").val(flashcardList[next].id);
+                            $("#index").val(next);
 
-                        card_face = 'front';
-
-                    },
-                    error: function(data){
-                    location.reload();
-                    // add in redirect to results page here
-                    }
-                });
+                        },
+                        error: function(data){
+                            location.reload();
+                            // add in redirect to results page here
+                        }
+                    });
+                }else{
+                    $("#card").flip('toggle');
+                    $("#front").html('You have completed all of the flashcards the Modal will close in 5 seconds!');
+                    $("#back").html('You have completed all of the flashcards the Modal will close in 5 seconds!');
+                   
+                    setTimeout(function(){
+                       location.reload();
+                    }, 4000);
+                }
             }   
         });
         
