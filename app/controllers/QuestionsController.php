@@ -7,6 +7,12 @@ class QuestionsController extends \BaseController {
 	 *
 	 * @return Response
 	 */
+	public function __construct()
+	{
+		parent::__construct();
+		$this->beforeFilter('auth');
+		
+	}
 	public function index()
 	{
 		if(Input::has('unfin') && Input::has('cat')){

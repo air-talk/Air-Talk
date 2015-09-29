@@ -2,6 +2,13 @@
 
 class UsersController extends \BaseController {
 
+	public function __construct()
+	{
+		parent::__construct();
+		$this->beforeFilter('auth', array('except' => array('create', 'store', 'showSignin')));
+		
+	}
+
 	public function showSignin()
 	{
 		if(Auth::check()){
