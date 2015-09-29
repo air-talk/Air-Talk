@@ -21,7 +21,7 @@ class QuestionsController extends \BaseController {
 			return View::make('questions.index')->with(['questions'=> $questions]);
 		}elseif(Input::has('unfin')){
 			$questions = QuestionsController::unfinishedQuestions()->paginate(20);
-			
+
 			return View::make('questions.index')->with(['questions'=> $questions]);
 		}else{
 			$questions = Question::paginate(20);
@@ -74,11 +74,24 @@ class QuestionsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		if(Question::find($id)){		
-			$question = Question::find($id);
-			return View::make('questions.show')->with(['question' => $question]);
+		if(Input::has('unfin') && Input::has('cat')){
+			$category = Input::get('cat');
+			$questions = QuestionsController::unfinishedQuestions()->where('category', $category)->get();
+
+			return View::make('questions.show')->with(['questions'=> $questions]);
+		}elseif(Input::has('cat')){
+			$category = Input::get('cat');
+			$questions = Question::where('category', $category)->get();
+
+			return View::make('questions.show')->with(['questions'=> $questions]);
+		}elseif(Input::has('unfin')){
+			$questions = QuestionsController::unfinishedQuestions()->get();
+
+			return View::make('questions.show')->with(['questions'=> $questions]);
 		}else{
-			App::abort(404);
+			$questions = Question::all();
+
+			return View::make('questions.show')->with(['questions'=> $questions]);
 		}
 	}
 
@@ -141,6 +154,30 @@ class QuestionsController extends \BaseController {
 		});
 
 		return $questions;
+	}
+
+	public function getNextQuestion($index)
+	{	
+		if(Input::has('cat')){
+			$questions = Question::where('category', '=', Input::get('cat'))->get();
+			foreach($questions as $question){
+				$questionArray[] = $question->id;
+			}
+			$nextQuestion = Question::findOrFail($questionArray[$index]);
+			return Response::json($nextQuestion);	
+		}else{	
+			$questions = Question::all();
+			foreach($questions as $question){
+				$questionArray[] = $question->id;
+			}
+			$nextQuestion = Question::findOrFail($questionArray[$index]);
+			return Response::json($nextQuestion);
+		}
+	}
+
+	public function attempt($id)
+	{
+		return Response::json('success', 200);
 	}
 
 
