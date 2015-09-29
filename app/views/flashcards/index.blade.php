@@ -111,7 +111,6 @@
 
 
         var card_face = 'front';
-        var i = 1;
         $("#card").flip({
           axis: 'x',
           reverse: true,
@@ -140,33 +139,32 @@
         
         // got anser right, store in attempts table
         $(document).keyup(function(e) {
-            if((e.which == 39 || e.which == 37) && card_face == 'back') {
-                var next = $("#index").val()++;
-
+            if(e.which == 39 && card_face == 'back' || e.which == 37 && card_face == 'back' ) {
+                var next = parseInt($("#index").val());
+                next++;
+                console.log(next);
                 $.ajax({
                 type: "POST",
                     url: "../flashcards/attempt" ,
-                    data: [id:$("#id").val(),which:e.which],
+                    data: {id:$("#id").val(),which:e.which},
                     dataType: "json",
 
                     success: function(data) {
+
                         $("#front").html(flashcardList[next].front);
                         $("#back").html(flashcardList[next].back);
                         $("#id").val(flashcardList[next].id);
                         $("#index").val(next);
                         $("#card").flip('toggle');
+                        card_face = 'front';
                     },
                     error: function(data){
                     alert("fail");
                     // add in redirect to results page here
                     }
                 });
-                i++;
-                card_face = 'front';
             }   
         });
-
-
         
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
