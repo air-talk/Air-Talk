@@ -36,9 +36,21 @@ class FlashcardsController extends \BaseController {
 
 	public function planesindex()
 	{
-		//shows a list of all the flashcards
-		$flashcards = Flashcard::where('category', '=', 'plane')->get();
-		return View::make('flashcards.planes')->with(['flashcards' => $flashcards]);
+		$answeredFlashcards = Auth::user()->answeredFlashcards()->orderBy(DB::raw('correct / attempts'))->get();
+		
+		$query = Flashcard::where('category', 'planes');
+		$query->whereDoesntHave('users', function($q) {
+			$q->where('id', Auth::id());
+		});
+
+		$unansweredFlashcards = $query->get();
+
+		$data = [
+			'answeredFlashcards' => $answeredFlashcards,
+			'unansweredFlashcards' => $unansweredFlashcards
+		];
+
+		return View::make('flashcards.planes')->with($data);
 	}
 
 
@@ -184,16 +196,6 @@ class FlashcardsController extends \BaseController {
 		});
 
 		return $flashcards;
-	}
-
-	public function getNextPlane($index)
-	{	
-		$flashcards = Flashcard::where('category', '=', 'plane')->get();
-		foreach($flashcards as $flashcard){
-			$planeArray[] = $flashcard->id;
-		}
-		$card = Flashcard::findOrFail($planeArray[$index]);
-		return Response::json($card);
 	}
 
 

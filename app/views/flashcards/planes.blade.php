@@ -83,12 +83,40 @@
 @section('script')
     <script src="/js/jquery.flip.js"></script>
     <script type="text/javascript">
+        
+        var flashcardList = [];
+        @foreach($unansweredFlashcards as $flashcard)
+            flashcardList.push({ id:"{{{ $flashcard->id }}}", front:"{{{ $flashcard->front }}}", back: "{{{ $flashcard->back }}}" })
+        @endforeach
+        @foreach($answeredFlashcards as $flashcard)
+            flashcardList.push({ id:"{{{ $flashcard->id }}}", front:"{{{ $flashcard->front }}}", back: "{{{ $flashcard->back }}}" })
+        @endforeach
+
+
+       console.log(flashcardList);
+        $("#front").html(flashcardList[0].front);
+        $("#back").html(flashcardList[0].back);
+        $("#id").val(flashcardList[0].id);
+        $("#index").val('0');
+
+
+
         var card_face = 'front';
-        var i = 1;
+
         $("#card").flip({
           axis: 'x',
           reverse: true,
           forceHeight: true
+        });
+
+        $("#card").on('flip:done', function() {
+            var face = $(this).data('face');
+
+            if (face == 'front') {
+                $(this).data('face', 'back');
+            } else {
+                $(this).data('face', 'front');
+            }
         });
 
         function sleep(milliseconds) {
@@ -103,23 +131,17 @@
         $(document).keypress(function(e) {
           if(e.which == 32) {
             $("#card").flip('toggle');
-            if(card_face == 'front'){
-                card_face = 'back'
-            }else{
-                card_face = 'front';
-            }
           }
         });
         
-        // got anser right, or wrong store in attempts table
+        // got anser right, store in attempts table
         $(document).keyup(function(e) {
-            if(e.which == 39 && card_face == 'back' || e.which == 37 && card_face == 'back' ) {
+            if(e.which == 39 && $('#card').data('face') == 'back' || e.which == 37 && $('#card').data('face') == 'back' ) {
                 var next = parseInt($("#index").val());
                 next++;
-                console.log(next);
                 $.ajax({
                 type: "POST",
-                    url: "../flashcards/attempt" ,
+                    url: "/flashcards/attempt/" + $("#id").val() + "/" + e.which ,
                     data: {id:$("#id").val(),which:e.which},
                     dataType: "json",
 
