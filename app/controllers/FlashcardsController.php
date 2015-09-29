@@ -74,11 +74,6 @@ class FlashcardsController extends \BaseController {
 		exit;
 		$user = Auth::user();
 
-		// $id = 1;
-		// $user = User::find(1);
-
-		// dd($user->answeredFlashcards->contains($id));
-
 			//if which = 39 then do these
 		if($user->answeredFlashcards->contains($id)) {
 			$flashcard = $user->answeredFlashcards()->where('flashcard_id', $id)->firstOrFail();
@@ -93,7 +88,6 @@ class FlashcardsController extends \BaseController {
 			$attempts = 1;
 			$correct  = 1;
 			$user->answeredFlashcards()->attach($id, ['attempts' => 1, 'correct' => $correct]);
-			// dd('test');
 		}
 
 		//if which = 37 then answered incorrect
