@@ -7,6 +7,13 @@ class FlashcardsController extends \BaseController {
 	 *
 	 * @return Response
 	 */
+	public function __construct()
+	{
+		parent::__construct();
+		$this->beforeFilter('auth');
+		
+	}
+	
 	public function index()
 	{
 		
@@ -68,46 +75,28 @@ class FlashcardsController extends \BaseController {
 		}
 	}
 
-	public function attempt($id, $which)
+	public function attempt($id,$which)
 	{
-		
+		return Response::json('success', 200);
+		exit;
 		$user = Auth::user();
-		//if which = 39 then do these
-		if($which == 39){
-			if($user->answeredFlashcards->contains($id)) {
-				$flashcard = $user->answeredFlashcards()->where('flashcard_id', $id)->firstOrFail();
 
-				$attempts = $flashcard->pivot->attempts + 1;
-				$correct  = $flashcard->pivot->correct + 1;
+			//if which = 39 then do these
+		if($user->answeredFlashcards->contains($id)) {
+			$flashcard = $user->answeredFlashcards()->where('flashcard_id', $id)->firstOrFail();
 
-				$user->answeredFlashcards()
-					->updateExistingPivot($id, array('attempts' => $attempts, 'correct' => $correct));
-					return Response::json('success', 200);
-			} else {
-				// attach new pivot
-				$attempts = 1;
-				$correct  = 1;
-				$user->answeredFlashcards()->attach($id, ['attempts' => $attempts, 'correct' => $correct]);
-				return Response::json('success', 200);
-			}
-		}elseif($which == 37){
-			if($user->answeredFlashcards->contains($id)) {
-				$flashcard = $user->answeredFlashcards()->where('flashcard_id', $id)->firstOrFail();
+			$attempts = $flashcard->pivot->attempts + 1;
+			$correct  = $flashcard->pivot->correct + 1;
 
-				$attempts = $flashcard->pivot->attempts + 1;
-				$correct  = $flashcard->pivot->correct;
-
-				$user->answeredFlashcards()
-					->updateExistingPivot($id, array('attempts' => $attempts, 'correct' => $correct));
-					return Response::json('success', 200);
-			} else {
-				// attach new pivot
-				$attempts = 1;
-				$correct = 0;
-				$user->answeredFlashcards()->attach($id, ['attempts' => $attempts, 'correct' => $correct]);
-				return Response::json('success', 200);
-			}
+			$user->answeredFlashcards()
+				->updateExistingPivot($id, array('attempts' => $attempts, 'correct' => $correct));
+		} else {
+			// attach new pivot
+			$attempts = 1;
+			$correct  = 1;
+			$user->answeredFlashcards()->attach($id, ['attempts' => 1, 'correct' => $correct]);
 		}
+
 		//if which = 37 then answered incorrect
 
 

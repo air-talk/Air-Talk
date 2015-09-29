@@ -111,61 +111,32 @@
           }
         });
         
-        // got anser right, store in attempts table
+        // got anser right, or wrong store in attempts table
         $(document).keyup(function(e) {
-            if(e.which == 39 && card_face == 'back') {
-
-                $("#card").flip('toggle');
-                $.post("/flashcards/correct/" + i, function(data, status){
-                        console.log("Data: " + data + "\nStatus: " + status);
-                    });
+            if(e.which == 39 && card_face == 'back' || e.which == 37 && card_face == 'back' ) {
+                var next = parseInt($("#index").val());
+                next++;
+                console.log(next);
                 $.ajax({
-                type: "GET",
-                    url: "../planes/info/" + i,
-                    data: "",
+                type: "POST",
+                    url: "../flashcards/attempt" ,
+                    data: {id:$("#id").val(),which:e.which},
                     dataType: "json",
 
                     success: function(data) {
-                        $('.front').html("<img class='helper' src=" + data.front + ">");
-                        sleep(100);
-                        $('#plane_name').html(data.back);
-                        console.log(data.front);
-                        console.log(data.back);
+
+                        $("#front").html(flashcardList[next].front);
+                        $("#back").html(flashcardList[next].back);
+                        $("#id").val(flashcardList[next].id);
+                        $("#index").val(next);
+                        $("#card").flip('toggle');
+                        card_face = 'front';
                     },
                     error: function(data){
                     alert("fail");
                     // add in redirect to results page here
                     }
                 });
-                i++;
-                card_face = 'front';
-            }   
-        });
-
-         // got anser wrong don't store
-        $(document).keyup(function(e) {
-            if(e.which == 37 && card_face == 'back') {
-                $("#card").flip('toggle');
-                $.ajax({
-                type: "GET",
-                    url: "../planes/info/" + i,
-                    data: "",
-                    dataType: "json",
-
-                    success: function(data) {
-                        $('.front').html("<img class='helper' src=" + data.front + ">");
-                        sleep(100);
-                        $('#plane_name').html(data.back);
-                        console.log(data.front);
-                        console.log(data.back);
-                    },
-                    error: function(data){
-                    alert("fail");
-                    // add in redirect to results page here
-                    }
-                });
-                i++;
-                card_face = 'front';
             }   
         });
         
