@@ -23,6 +23,7 @@ Route::get('planes/info/{index}', 'FlashcardsController@getNextPlane');
 
 
 Route::post('flashcards/attempt/{id}/{which}', 'FlashcardsController@attempt');
+Route::post('questions/attempt/{id}', 'QuestionsController@attempt');
 
 Route::post('questions/{id}', 'QuestionsController@storeAnswer');
 Route::resource('questions', 'QuestionsController');
