@@ -15,24 +15,27 @@
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>                        
-                </button>
+                @if (Auth::check())
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>                        
+                    </button>
+                @endif
                 <a class="navbar-brand" href="{{{action('HomeController@showWelcome')}}}"><img src="/images/airtalk_white_small.png" alt="airtalk logo"></a>
             </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav">
-                    <li {{ Request::is('questions')? 'class="active"': '' }}><a href="{{{action('QuestionsController@index')}}}">Questions</a></li>
-                    <li {{ Request::is('flashcards')? 'class="active"': '' }}><a href="{{{action('FlashcardsController@index')}}}">Vocab</a></li>
-                    <li {{ Request::is('planes')? 'class="active"': '' }}><a href="{{{action('FlashcardsController@planesindex')}}}">Planes</a></li>
-                </ul>
                 @if (Auth::check()) 
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li {{ Request::is('questions')? 'class="active"': '' }}><a href="{{{action('QuestionsController@index')}}}">Questions</a></li>
+                        <li {{ Request::is('flashcards')? 'class="active"': '' }}><a href="{{{action('FlashcardsController@index')}}}">Vocab</a></li>
+                        <li {{ Request::is('planes')? 'class="active"': '' }}><a href="{{{action('FlashcardsController@planesindex')}}}">Planes</a></li>
+                    </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a class="btn" href="{{{ action('UsersController@index') }}}">{{{ Auth::user()->email }}}</a></li>
                         <li><a class="btn" href="{{{ action('UsersController@doSignout') }}}">Logout</a></li>
                     </ul>
+                </div>
                 @else
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
@@ -50,14 +53,13 @@
                                     </div>
                                     <a href="">Forgot password?</a>
                                     <br>
-                                    <button class="btn btn-success" type="submit">Sign in</button>
+                                    <button class="btn btn-success" type="submit">Submit</button>
                                     {{ Form::close() }}
                                 </li>
                             </ul>
                         </li>
                     </ul>
                 @endif
-            </div>
         </div>
     </nav>
     <main>

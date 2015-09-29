@@ -16,18 +16,23 @@
                     <p>Use your spacebar or click to reveal the Definition</p>
                     <div class="row">
                         <div class="col-md-6 col-md-offset-3">
-                            <div id="card">
-                                <div class="front img"> 
-                                    <img class="helper" src="{{$flashcards[0]->front}}">
+                            <div id="card" data-face="front">
+                                <div class="front img" id="front"> 
                                 </div> 
                                 <div class="back">
-                                    <h3 id="plane_name">{{$flashcards[0]->back}}</h3>
-                                    <div class="col-xs-6">
-                                        <button class="btn btn-danger btn-block"><span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>I was wrong</button>
+                                    <div id="back">
+                                        
                                     </div>
-                                    <div class="col-xs-6">   
-                                        <button class="btn btn-success btn-block">I was right<span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></button>
-                                    </div>
+                                    <form action="#" method="post">
+                                        <input type="hidden" name="index" id="index" value="">
+                                        <input type="hidden" name="id" id="id" value="">
+                                        <div class="col-md-6">
+                                            <button class="btn btn-danger btn-block"><span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>I was wrong</button>
+                                        </div>
+                                        <div class="col-md-6">   
+                                            <button class="btn btn-success btn-block">I was right<span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></button>
+                                        </div>
+                                    </form>
                                 </div> 
                             </div>
                         </div>
@@ -45,26 +50,30 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Practice</th>
-                                <th>Name</th>
+                                <th>Plane</th>
                                 {{-- Look into created_at column in correctAnswers table for last practiced--}}
-                                <th>Last practiced</th>
+                                <th>Times practiced</th>
+                                <th>Times Correct</th>
+                                <th> % </th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($flashcards as $flashcard)
-                            <tr>
-                                <td>
-                                    <div class="checkbox">
-                                      <label>
-                                        <input id="{{$flashcard->id}}" type="checkbox" value="" >
-                                      </label>
-                                    </div>
-                                </td>
-                                <td>{{$flashcard->back}}</td>
-                                {{-- change later --}}
-                                <td>{{$flashcard->created_at}}</td>
-                            </tr>
+                            @foreach($unansweredFlashcards as $flashcard)
+                                <tr>
+                                    <td><strong>{{$flashcard->back}}</strong></td>
+                                    {{-- change later --}}
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>0%</td>
+                                </tr>
+                            @endforeach
+                            @foreach($answeredFlashcards as $test)
+                                <tr>
+                                    <td><strong>{{{ $test->back }}}</strong></td>
+                                    <td>{{{ $test->pivot->attempts }}}</td>
+                                    <td>{{{ $test->pivot->correct }}}</td>
+                                    <td>{{{ floor($test->pivot->correct / $test->pivot->attempts * 100) }}}%</td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
@@ -83,12 +92,40 @@
 @section('script')
     <script src="/js/jquery.flip.js"></script>
     <script type="text/javascript">
+        
+        var flashcardList = [];
+        @foreach($unansweredFlashcards as $flashcard)
+            flashcardList.push({ id:"{{{ $flashcard->id }}}", front:"{{{ $flashcard->front }}}", back: "{{{ $flashcard->back }}}" })
+        @endforeach
+        @foreach($answeredFlashcards as $flashcard)
+            flashcardList.push({ id:"{{{ $flashcard->id }}}", front:"{{{ $flashcard->front }}}", back: "{{{ $flashcard->back }}}" })
+        @endforeach
+
+
+       console.log(flashcardList);
+        $("#front").html('<img class="helper `img" src="' + flashcardList[0].front + '" alt="plane image">');
+        $("#back").html(flashcardList[0].back);
+        $("#id").val(flashcardList[0].id);
+        $("#index").val('0');
+
+
+
         var card_face = 'front';
-        var i = 1;
+
         $("#card").flip({
           axis: 'x',
           reverse: true,
           forceHeight: true
+        });
+
+        $("#card").on('flip:done', function() {
+            var face = $(this).data('face');
+
+            if (face == 'front') {
+                $(this).data('face', 'back');
+            } else {
+                $(this).data('face', 'front');
+            }
         });
 
         function sleep(milliseconds) {
@@ -103,69 +140,34 @@
         $(document).keypress(function(e) {
           if(e.which == 32) {
             $("#card").flip('toggle');
-            if(card_face == 'front'){
-                card_face = 'back'
-            }else{
-                card_face = 'front';
-            }
           }
         });
         
         // got anser right, store in attempts table
         $(document).keyup(function(e) {
-            if(e.which == 39 && card_face == 'back') {
-
+            if(e.which == 39 && $('#card').data('face') == 'back' || e.which == 37 && $('#card').data('face') == 'back' ) {
+                var next = parseInt($("#index").val());
                 $("#card").flip('toggle');
-                $.post("/flashcards/correct/" + i, function(data, status){
-                        console.log("Data: " + data + "\nStatus: " + status);
-                    });
+                next++;
                 $.ajax({
-                type: "GET",
-                    url: "../planes/info/" + i,
-                    data: "",
+                type: "POST",
+                    url: "/flashcards/attempt/" + $("#id").val() + "/" + e.which ,
+                    data: {id:$("#id").val(),which:e.which},
                     dataType: "json",
 
                     success: function(data) {
-                        $('.front').html("<img class='helper' src=" + data.front + ">");
-                        sleep(100);
-                        $('#plane_name').html(data.back);
-                        console.log(data.front);
-                        console.log(data.back);
+
+                        $("#front").html('<img class="img helper" src="' + flashcardList[next].front + '" alt="plane image">');
+                        $("#id").val(flashcardList[next].id);
+                        $("#index").val(next);
+                        // sleep(50);
+                        $("#back").html(flashcardList[next].back);
                     },
                     error: function(data){
                     alert("fail");
                     // add in redirect to results page here
                     }
                 });
-                i++;
-                card_face = 'front';
-            }   
-        });
-
-         // got anser wrong don't store
-        $(document).keyup(function(e) {
-            if(e.which == 37 && card_face == 'back') {
-                $("#card").flip('toggle');
-                $.ajax({
-                type: "GET",
-                    url: "../planes/info/" + i,
-                    data: "",
-                    dataType: "json",
-
-                    success: function(data) {
-                        $('.front').html("<img class='helper' src=" + data.front + ">");
-                        sleep(100);
-                        $('#plane_name').html(data.back);
-                        console.log(data.front);
-                        console.log(data.back);
-                    },
-                    error: function(data){
-                    alert("fail");
-                    // add in redirect to results page here
-                    }
-                });
-                i++;
-                card_face = 'front';
             }   
         });
         

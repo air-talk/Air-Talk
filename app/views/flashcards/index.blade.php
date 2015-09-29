@@ -13,7 +13,7 @@
                         <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
                     </button>
                     <h1>Do you know the Aviation term?</h1>
-                    <h3>Use your spacebar or click to reveal the Definition</h3>
+                    <h3>Use your spacebar or click to reveal the name of the plane.</h3>
                     <div class="row">
                         <div class="col-md-6 col-md-offset-3">
                             <div id="card" data-face="front">
@@ -110,7 +110,6 @@
 
 
 
-        var card_face = 'front';
 
         $("#card").flip({
           axis: 'x',
@@ -156,15 +155,17 @@
 
                     success: function(data) {
 
+                        $("#card").flip('toggle');
                         $("#front").html(flashcardList[next].front);
                         $("#back").html(flashcardList[next].back);
                         $("#id").val(flashcardList[next].id);
                         $("#index").val(next);
-                        $("#card").flip('toggle');
+
                         card_face = 'front';
+
                     },
                     error: function(data){
-                    alert("fail");
+                    location.reload();
                     // add in redirect to results page here
                     }
                 });

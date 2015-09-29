@@ -2,6 +2,13 @@
 
 class UsersController extends \BaseController {
 
+	public function __construct()
+	{
+		parent::__construct();
+		$this->beforeFilter('auth', array('except' => array('create', 'store', 'showSignin', 'doSignin')));
+		
+	}
+
 	public function showSignin()
 	{
 		if(Auth::check()){
@@ -17,7 +24,7 @@ class UsersController extends \BaseController {
 		$password = Input::get('password');
 
 		if(Auth::attempt(array('email' => $email, 'password' => $password))){
-			return Redirect::intended('/');
+			return Redirect::action('UsersController@show', Auth::id());
 		}else{
 			Session::flash('errorMessage', 'Email and password combination failed.');
 			Log::info('validator failed', Input::all());
@@ -103,8 +110,12 @@ class UsersController extends \BaseController {
 
 	public function show()
 	{
+		if(User::find(Auth::user()->id)){
+			$user = User::find(Auth::user()->id);
+			return View::make('users.show')->with('user', $user);
+		}else{
 			App::abort(404);
-		
+		}	
 	}
 
 	public function edit($id)

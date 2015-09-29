@@ -7,6 +7,13 @@ class FlashcardsController extends \BaseController {
 	 *
 	 * @return Response
 	 */
+	public function __construct()
+	{
+		parent::__construct();
+		$this->beforeFilter('auth');
+		
+	}
+	
 	public function index()
 	{
 		
@@ -29,9 +36,21 @@ class FlashcardsController extends \BaseController {
 
 	public function planesindex()
 	{
-		//shows a list of all the flashcards
-		$flashcards = Flashcard::where('category', '=', 'plane')->get();
-		return View::make('flashcards.planes')->with(['flashcards' => $flashcards]);
+		$answeredFlashcards = Auth::user()->answeredFlashcards()->orderBy(DB::raw('correct / attempts'))->get();
+		
+		$query = Flashcard::where('category', 'plane');
+		$query->whereDoesntHave('users', function($q) {
+			$q->where('id', Auth::id());
+		});
+
+		$unansweredFlashcards = $query->get();
+
+		$data = [
+			'answeredFlashcards' => $answeredFlashcards,
+			'unansweredFlashcards' => $unansweredFlashcards
+		];
+
+		return View::make('flashcards.planes')->with($data);
 	}
 
 
@@ -68,9 +87,8 @@ class FlashcardsController extends \BaseController {
 		}
 	}
 
-	public function attempt($id, $which)
+	public function attempt($id,$which)
 	{
-		
 		$user = Auth::user();
 		//if which = 39 then do these
 		if($which == 39){
@@ -82,13 +100,13 @@ class FlashcardsController extends \BaseController {
 
 				$user->answeredFlashcards()
 					->updateExistingPivot($id, array('attempts' => $attempts, 'correct' => $correct));
-					return Response::json('success', 200);
+					return Response::json();
 			} else {
 				// attach new pivot
 				$attempts = 1;
 				$correct  = 1;
 				$user->answeredFlashcards()->attach($id, ['attempts' => $attempts, 'correct' => $correct]);
-				return Response::json('success', 200);
+				return Response::json();
 			}
 		}elseif($which == 37){
 			if($user->answeredFlashcards->contains($id)) {
@@ -99,17 +117,16 @@ class FlashcardsController extends \BaseController {
 
 				$user->answeredFlashcards()
 					->updateExistingPivot($id, array('attempts' => $attempts, 'correct' => $correct));
-					return Response::json('success', 200);
+					return Response::json();
 			} else {
 				// attach new pivot
 				$attempts = 1;
 				$correct = 0;
 				$user->answeredFlashcards()->attach($id, ['attempts' => $attempts, 'correct' => $correct]);
-				return Response::json('success', 200);
+				return Response::json();
 			}
 		}
 		//if which = 37 then answered incorrect
-
 
 	}
 
@@ -195,16 +212,6 @@ class FlashcardsController extends \BaseController {
 		});
 
 		return $flashcards;
-	}
-
-	public function getNextPlane($index)
-	{	
-		$flashcards = Flashcard::where('category', '=', 'plane')->get();
-		foreach($flashcards as $flashcard){
-			$planeArray[] = $flashcard->id;
-		}
-		$card = Flashcard::findOrFail($planeArray[$index]);
-		return Response::json($card);
 	}
 
 
