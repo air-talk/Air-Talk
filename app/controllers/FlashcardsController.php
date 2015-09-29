@@ -100,13 +100,13 @@ class FlashcardsController extends \BaseController {
 
 				$user->answeredFlashcards()
 					->updateExistingPivot($id, array('attempts' => $attempts, 'correct' => $correct));
-					return Response::json('success', 200);
+					return Response::json();
 			} else {
 				// attach new pivot
 				$attempts = 1;
 				$correct  = 1;
 				$user->answeredFlashcards()->attach($id, ['attempts' => $attempts, 'correct' => $correct]);
-				return Response::json('success', 200);
+				return Response::json();
 			}
 		}elseif($which == 37){
 			if($user->answeredFlashcards->contains($id)) {
@@ -117,13 +117,13 @@ class FlashcardsController extends \BaseController {
 
 				$user->answeredFlashcards()
 					->updateExistingPivot($id, array('attempts' => $attempts, 'correct' => $correct));
-					return Response::json('success', 200);
+					return Response::json();
 			} else {
 				// attach new pivot
 				$attempts = 1;
 				$correct = 0;
 				$user->answeredFlashcards()->attach($id, ['attempts' => $attempts, 'correct' => $correct]);
-				return Response::json('success', 200);
+				return Response::json();
 			}
 		}
 		//if which = 37 then answered incorrect
