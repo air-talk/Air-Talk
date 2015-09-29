@@ -70,6 +70,8 @@ class FlashcardsController extends \BaseController {
 
 	public function attempt($id,$which)
 	{
+		return Response::json('success', 200);
+		exit;
 		$user = Auth::user();
 			//if which = 39 then do these
 		if($user->answeredFlashcards->contains($id)) {
