@@ -28,6 +28,18 @@ class FlashcardsTableSeeder extends Seeder {
         $flashcard->category = 'plane';
         $flashcard->save();
 
+        $flashcard = new Flashcard();
+        $flashcard->front = '/images/cirrusSR20.png';
+        $flashcard->back = 'Cirrus SR20';
+        $flashcard->category = 'plane';
+        $flashcard->save();
+
+        $flashcard = new Flashcard();
+        $flashcard->front = '/images/beechcraftbonanza.png';
+        $flashcard->back = 'Beechcraft Bonanza';
+        $flashcard->category = 'plane';
+        $flashcard->save();
+
         for($i = 0; $i < 15; $i++){
             $flashcard = new Flashcard();
             $flashcard->front = 'Front';
