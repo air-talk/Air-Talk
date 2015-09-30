@@ -17,7 +17,8 @@ class FlashcardsController extends \BaseController {
 	public function index()
 	{
 		
-		$answeredFlashcards = Auth::user()->answeredFlashcards()->orderBy(DB::raw('correct / attempts'))->get();
+		$answeredFlashcards = Auth::user()->answeredFlashcards()
+			->where('category', 'vocab')->orderBy(DB::raw('correct / attempts'))->get();
 		
 		$query = Flashcard::where('category', 'vocab');
 		$query->whereDoesntHave('users', function($q) {
@@ -36,7 +37,7 @@ class FlashcardsController extends \BaseController {
 
 	public function planesindex()
 	{
-		$answeredFlashcards = Auth::user()->answeredFlashcards()->orderBy(DB::raw('correct / attempts'))->get();
+		$answeredFlashcards = Auth::user()->answeredFlashcards()->where('category', 'plane')->orderBy(DB::raw('correct / attempts'))->get();
 		
 		$query = Flashcard::where('category', 'plane');
 		$query->whereDoesntHave('users', function($q) {
