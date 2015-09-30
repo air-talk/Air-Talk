@@ -142,6 +142,10 @@
             $("#card").flip('toggle');
           }
         });
+
+        $('#myModal').on('hidden.bs.modal', function () {
+            location.reload();
+        })
         
         // got anser right, store in attempts table
         $(document).keyup(function(e) {
@@ -149,25 +153,35 @@
                 var next = parseInt($("#index").val());
                 $("#card").flip('toggle');
                 next++;
-                $.ajax({
-                type: "POST",
-                    url: "/flashcards/attempt/" + $("#id").val() + "/" + e.which ,
-                    data: {id:$("#id").val(),which:e.which},
-                    dataType: "json",
+                if(next < flashcardList.length){
+                    $.ajax({
+                    type: "POST",
+                        url: "/flashcards/attempt/" + $("#id").val() + "/" + e.which ,
+                        data: {id:$("#id").val(),which:e.which},
+                        dataType: "json",
 
-                    success: function(data) {
+                        success: function(data) {
 
-                        $("#front").html('<img class="img helper" src="' + flashcardList[next].front + '" alt="plane image">');
-                        $("#id").val(flashcardList[next].id);
-                        $("#index").val(next);
-                        // sleep(50);
-                        $("#back").html(flashcardList[next].back);
-                    },
-                    error: function(data){
-                    alert("fail");
-                    // add in redirect to results page here
-                    }
-                });
+                            $("#front").html('<img class="img helper" src="' + flashcardList[next].front + '" alt="plane image">');
+                            $("#id").val(flashcardList[next].id);
+                            $("#index").val(next);
+                            // sleep(50);
+                            $("#back").html(flashcardList[next].back);
+                        },
+                        error: function(data){
+                        alert("fail");
+                        // add in redirect to results page here
+                        }
+                    });
+                }else{
+                    $("#card").flip('toggle');
+                    $("#front").html('You have completed all of the flashcards the Modal will close in 5 seconds!');
+                    $("#back").html('You have completed all of the flashcards the Modal will close in 5 seconds!');
+                   
+                    setTimeout(function(){
+                       location.reload();
+                    }, 4000);
+                }
             }   
         });
         
