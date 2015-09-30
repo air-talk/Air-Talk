@@ -21,7 +21,7 @@
 		    	@if(QuestionsController::percentageAll() == 0)
 					<div class="blue-back img-circle img-responsive"> 
 						<a href="/questions/1">
-							<p class="centerY">All Questions</p>
+							<p class="centerY allQuestionsText">All Questions</p>
 						</a>
 					</div><br>
 				@elseif(QuestionsController::percentageAll() == 100)
@@ -31,7 +31,7 @@
 				@else
 					<div class="blue-back img-circle img-responsive"> 
 						<a href="/questions/1?unfin=1">
-							<p class="centerY">All Questions</p>
+							<p class="centerY allQuestionsText">All Questions</p>
 						</a>
 					</div><br>
 				@endif
@@ -39,7 +39,7 @@
 				@if(QuestionsController::percentageNontowered() == 0)
 					<div class="blue-back img-circle img-responsive"> 
 						<a href="/questions/1?cat=Untowered">
-							<p class="centerY">Non-Towered</p>
+							<p id="non-toweredText" class="centerY">Non-Towered</p>
 						</a>
 					</div><br>
 				@elseif(QuestionsController::percentageNontowered() == 100)
@@ -49,7 +49,7 @@
 				@else
 					<div class="blue-back img-circle img-responsive"> 
 						<a href="/questions/1?unfin=1&cat=Untowered">
-							<p class="centerY">Non-Towered</p>
+							<p id="non-toweredText" class="centerY">Non-Towered</p>
 						</a>
 					</div><br>
 				@endif
@@ -57,7 +57,7 @@
 				@if(QuestionsController::percentageClassb() == 0)
 					<div class="blue-back img-circle img-responsive"> 
 						<a href="/questions/1?cat=Class B">
-							<p class="centerY">Class B</p>
+							<p id="classbText" class="centerY">Class B</p>
 						</a>
 					</div><br>
 				@elseif(QuestionsController::percentageClassb() == 100)
@@ -67,7 +67,7 @@
 				@else
 					<div class="blue-back img-circle img-responsive"> 
 						<a href="/questions/1?unfin=1&cat=Class B">
-							<p class="centerY">Class B</p>
+							<p id="classbText" class="centerY">Class B</p>
 						</a>
 					</div><br>
 				@endif
@@ -75,7 +75,7 @@
 				@if(QuestionsController::percentageClassc() == 0)
 					<div class="blue-back img-circle img-responsive"> 
 						<a href="/questions/1?cat=Class C">
-							<p class="centerY">Class C</p>
+							<p id="classcText" class="centerY">Class C</p>
 						</a>
 					</div><br>
 				@elseif(QuestionsController::percentageClassc() == 100)
@@ -85,7 +85,7 @@
 				@else
 					<div class="blue-back img-circle img-responsive"> 
 						<a href="/questions/1?unfin=1&cat=Class C">
-							<p class="centerY">Class C</p>
+							<p id="classcText" class="centerY">Class C</p>
 						</a>
 					</div><br>
 				@endif
@@ -93,7 +93,7 @@
 				@if(QuestionsController::percentageClassd() == 0)
 					<div class="blue-back img-circle img-responsive"> 
 						<a href="/questions/1?cat=Class D">
-							<p class="centerY">Class D</p>
+							<p id="classdText" class="centerY">Class D</p>
 						</a>
 					</div><br>
 				@elseif(QuestionsController::percentageClassd() == 100)
@@ -103,7 +103,7 @@
 				@else
 					<div class="blue-back img-circle img-responsive"> 
 						<a href="/questions/1?unfin=1&cat=Class D">
-							<p class="centerY">Class D</p>
+							<p id="classdText" class="centerY">Class D</p>
 						</a>
 					</div><br>
 				@endif
@@ -116,4 +116,21 @@
 	</div>
 @stop
 @section('script')
+
+	<script type="text/javascript">
+		var all_questions = {{ QuestionsController::percentageAll()}};
+		var non_towered = {{ QuestionsController::percentageNontowered()}};
+		var class_b = {{ QuestionsController::percentageClassb()}};
+		var class_c = {{ QuestionsController::percentageClassc()}};
+		var class_d = {{ QuestionsController::percentageClassd()}};
+		$(document).ready(function() {
+			$( ".allQuestionsText" ).mouseover(function() {
+				console.log('hover in');
+			    $( this ).addClass("hide");
+			  }).mouseout(function() {
+			    $( this ).find( "span" ).text( "mouse out " );
+			  });
+		});
+	</script>
+
 @stop
