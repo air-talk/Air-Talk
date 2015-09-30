@@ -17,10 +17,7 @@
                     <div class="row">
                         <div class="col-md-6 col-md-offset-3">
                             <div id="card" data-face="front">
-                                <div class="front" id="front"> 
-                                    <audio controls>
-                                        <source src="{{$flashcard->front}}" type="audio/mpeg">
-                                    </audio>
+                                <div class="front img" id="front"> 
                                 </div> 
                                 <div class="back">
                                     <div id="back">
@@ -53,7 +50,7 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Audio</th>
+                                <th>Plane</th>
                                 {{-- Look into created_at column in correctAnswers table for last practiced--}}
                                 <th>Times practiced</th>
                                 <th>Times Correct</th>
@@ -63,11 +60,7 @@
                         <tbody>
                             @foreach($unansweredFlashcards as $flashcard)
                                 <tr>
-                                    <td>
-                                        <audio controls>
-                                          <source src="{{$flashcard->front}}" type="audio/mpeg">
-                                        </audio>
-                                    </td>
+                                    <td><strong>{{$flashcard->back}}</strong></td>
                                     {{-- change later --}}
                                     <td>0</td>
                                     <td>0</td>

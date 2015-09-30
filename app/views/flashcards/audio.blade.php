@@ -17,9 +17,8 @@
                     <div class="row">
                         <div class="col-md-6 col-md-offset-3">
                             <div id="card" data-face="front">
-                                <div class="front img" id="front"> 
-                                    <audio controls>
-                                        <source src="/audio/motor.mp3" type="audio/mpeg">
+                                <div class="front"> 
+                                    <audio controls id="front">
                                     </audio>
                                 </div> 
                                 <div class="back">
@@ -49,11 +48,11 @@
         <div class="row">
             <div class="col-md-offset-1 col-md-6">
                 <div class="well">
-                    <h2>ATC Re</h2>
+                    <h2>Example Radio Calls</h2>
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Plane</th>
+                                <th>Audio</th>
                                 {{-- Look into created_at column in correctAnswers table for last practiced--}}
                                 <th>Times practiced</th>
                                 <th>Times Correct</th>
@@ -63,7 +62,7 @@
                         <tbody>
                             @foreach($unansweredFlashcards as $flashcard)
                                 <tr>
-                                    <td><strong>{{$flashcard->back}}</strong></td>
+                                    <td><strong>{{$flashcard->title}}</strong></td>
                                     {{-- change later --}}
                                     <td>0</td>
                                     <td>0</td>
@@ -72,7 +71,7 @@
                             @endforeach
                             @foreach($answeredFlashcards as $test)
                                 <tr>
-                                    <td><strong>{{{ $test->back }}}</strong></td>
+                                    <td><strong>{{{ $test->title }}}</strong></td>
                                     <td>{{{ $test->pivot->attempts }}}</td>
                                     <td>{{{ $test->pivot->correct }}}</td>
                                     <td>{{{ floor($test->pivot->correct / $test->pivot->attempts * 100) }}}%</td>
@@ -106,7 +105,7 @@
 
 
        console.log(flashcardList);
-        $("#front").html('<img class="helper `img" src="' + flashcardList[0].front + '" alt="plane image">');
+        $("#front").html('<source src="' + flashcardList[0].front + '" type="audio/mpeg">');
         $("#back").html(flashcardList[0].back);
         $("#id").val(flashcardList[0].id);
         $("#index").val('0');
@@ -160,7 +159,7 @@
 
                     success: function(data) {
 
-                        $("#front").html('<img class="img helper" src="' + flashcardList[next].front + '" alt="plane image">');
+                        $("#front").html('<source src="' + flashcardList[next].front + '" type="audio/mpeg">');
                         $("#id").val(flashcardList[next].id);
                         $("#index").val(next);
                         // sleep(50);
