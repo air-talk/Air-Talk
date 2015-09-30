@@ -99,11 +99,14 @@ class QuestionsController extends \BaseController {
 			$questions = QuestionsController::unfinishedQuestions()->get();
 
 			return View::make('questions.show')->with(['questions'=> $questions]);
-		}else{
+		}elseif(QuestionsController::percentageAll()<100){
 			$questions = Question::all();
 
 			return View::make('questions.show')->with(['questions'=> $questions]);
+		}else{
+			return Redirect::action('QuestionsController@index');
 		}
+
 	}
 
 

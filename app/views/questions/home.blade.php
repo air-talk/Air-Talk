@@ -2,7 +2,14 @@
 @section('head')
 
 	<style type="text/css">
-
+		.blue-back{
+			background-color: lightBlue;
+			width: 150px;
+			height: 150px;
+		}
+		.centerY{
+			line-height: 150px;
+		}
 	</style>
 
 @stop
@@ -12,33 +19,93 @@
 		    <div class="well text-center">
 
 		    	@if(QuestionsController::percentageAll() == 0)
-					<a href="/questions/1"><img class="img-circle img-responsive" src="/images/button.png"></a><br>
+					<div class="blue-back img-circle img-responsive"> 
+						<a href="/questions/1">
+							<p class="centerY">All Questions</p>
+						</a>
+					</div><br>
+				@elseif(QuestionsController::percentageAll() == 100)
+					<div class="blue-back img-circle img-responsive">
+						<p class="centerY">Complete!</p>
+					</div><br>
 				@else
-					<a href="/questions/1?unfin=1"><img class="img-circle img-responsive" src="/images/button.png"></a><br>
+					<div class="blue-back img-circle img-responsive"> 
+						<a href="/questions/1?unfin=1">
+							<p class="centerY">All Questions</p>
+						</a>
+					</div><br>
 				@endif
 
 				@if(QuestionsController::percentageNontowered() == 0)
-					<a href="/questions/1?cat=Untowered"><img class="img-circle img-responsive" src="/images/button.png"></a><br>
+					<div class="blue-back img-circle img-responsive"> 
+						<a href="/questions/1?cat=Untowered">
+							<p class="centerY">Non-Towered</p>
+						</a>
+					</div><br>
+				@elseif(QuestionsController::percentageNontowered() == 100)
+					<div class="blue-back img-circle img-responsive">
+						<p class="centerY">Complete!</p>
+					</div><br>
 				@else
-					<a href="/questions/1?unfin=1&cat=Untowered"><img class="img-circle img-responsive" src="/images/button.png"></a><br>
+					<div class="blue-back img-circle img-responsive"> 
+						<a href="/questions/1?unfin=1&cat=Untowered">
+							<p class="centerY">Non-Towered</p>
+						</a>
+					</div><br>
 				@endif
 
 				@if(QuestionsController::percentageClassb() == 0)
-					<a href="/questions/1?cat=Class B"><img class="img-circle img-responsive" src="/images/button.png"></a><br>
+					<div class="blue-back img-circle img-responsive"> 
+						<a href="/questions/1?cat=Class B">
+							<p class="centerY">Class B</p>
+						</a>
+					</div><br>
+				@elseif(QuestionsController::percentageClassb() == 100)
+					<div class="blue-back img-circle img-responsive">
+						<p class="centerY">Complete!</p>
+					</div><br>
 				@else
-					<a href="/questions/1?unfin=1&cat=Class B"><img class="img-circle img-responsive" src="/images/button.png"></a><br>
+					<div class="blue-back img-circle img-responsive"> 
+						<a href="/questions/1?unfin=1&cat=Class B">
+							<p class="centerY">Class B</p>
+						</a>
+					</div><br>
 				@endif
 
 				@if(QuestionsController::percentageClassc() == 0)
-					<a href="/questions/1?cat=Class C"><img class="img-circle img-responsive" src="/images/button.png"></a><br>
+					<div class="blue-back img-circle img-responsive"> 
+						<a href="/questions/1?cat=Class C">
+							<p class="centerY">Class C</p>
+						</a>
+					</div><br>
+				@elseif(QuestionsController::percentageClassc() == 100)
+					<div class="blue-back img-circle img-responsive">
+						<p class="centerY">Complete!</p>
+					</div><br>
 				@else
-					<a href="/questions/1?unfin=1&cat=Class C"><img class="img-circle img-responsive" src="/images/button.png"></a><br>
+					<div class="blue-back img-circle img-responsive"> 
+						<a href="/questions/1?unfin=1&cat=Class C">
+							<p class="centerY">Class C</p>
+						</a>
+					</div><br>
 				@endif
 
 				@if(QuestionsController::percentageClassd() == 0)
-					<a href="/questions/1?cat=Class D"><img class="img-circle img-responsive" src="/images/button.png"></a>
+					<div class="blue-back img-circle img-responsive"> 
+						<a href="/questions/1?cat=Class D">
+							<p class="centerY">Class D</p>
+						</a>
+					</div><br>
+				@elseif(QuestionsController::percentageClassd() == 100)
+					<div class="blue-back img-circle img-responsive">
+						<p class="centerY">Complete!</p>
+					</div><br>
 				@else
-					<a href="/questions/1?unfin=1&cat=Class D"><img class="img-circle img-responsive" src="/images/button.png"></a>
+					<div class="blue-back img-circle img-responsive"> 
+						<a href="/questions/1?unfin=1&cat=Class D">
+							<p class="centerY">Class D</p>
+						</a>
+					</div><br>
 				@endif
 	    	</div>
 		</div>
