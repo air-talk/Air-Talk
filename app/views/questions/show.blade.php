@@ -27,12 +27,10 @@
 			        	<h1 id="incorrect" class="hidden red">Incorrect</h1>
 						<h2 id="question"></h2><br>
 			        	<ul id="answersList">
-			        		<form>
 					        	<li id="answer1"></li>
 					        	<li id="answer2"></li>
 					        	<li id="answer3"></li>
 					        	<li id="answer4"></li>
-					        </form>
 		        		</ul>
 		        		<button class="btn btn-success" id="check" style="width: 100%"> Check answer </button>
 
@@ -52,6 +50,20 @@
 @section('script')
 
     <script type="text/javascript">
+
+	    $.fn.randomize = function(selector){
+	        var $elems = selector ? $(this).find(selector) : $(this).children(),
+	            $parents = $elems.parent();
+
+	        $parents.each(function(){
+	            $(this).children(selector).sort(function(){
+	                return Math.round(Math.random()) - 0.5;
+	            // }). remove().appendTo(this); // 2014-05-24: Removed `random` but leaving for reference. See notes under 'ANOTHER EDIT'
+	            }).detach().appendTo(this);
+	        });
+
+	        return this;
+	    };
         
         var questionList = [];
         @foreach($questions as $question)
@@ -65,8 +77,10 @@
         $("#answer2").html("<input type='radio' name='answer' value='2' class='random'> " + questionList[0].wrong_answer1);
         $("#answer3").html("<input type='radio' name='answer' value='3' class='random'> " + questionList[0].wrong_answer2);
         $("#answer4").html("<input type='radio' name='answer' value='4' class='random'> " + questionList[0].wrong_answer3);
+        $("#answersList").randomize();
         $("#index").val('0');
         $("#id").val(questionList[0].id);
+
 
 
         $("#check").click(function() {
@@ -137,6 +151,7 @@
 	                	$("#answer2").html("<input type='radio' name='answer' value='2' class='random'> " + questionList[next].wrong_answer1);
 	                	$("#answer3").html("<input type='radio' name='answer' value='3' class='random'> " + questionList[next].wrong_answer2);
 	                	$("#answer4").html("<input type='radio' name='answer' value='4' class='random'> " + questionList[next].wrong_answer3);
+	                	$("#answersList").randomize();
 	                    $("#id").val(questionList[next].id);
 	                    $("#index").val(next);
 	                    $( "#check" ).removeClass("hidden");
@@ -205,6 +220,7 @@
 	                	$("#answer2").html("<input type='radio' name='answer' value='2' class='random'> " + questionList[next].wrong_answer1);
 	                	$("#answer3").html("<input type='radio' name='answer' value='3' class='random'> " + questionList[next].wrong_answer2);
 	                	$("#answer4").html("<input type='radio' name='answer' value='4' class='random'> " + questionList[next].wrong_answer3);
+	                	$("#answersList").randomize();
 	                    $("#id").val(questionList[next].id);
 	                    $("#index").val(next);
 			    		$( "#check" ).removeClass( "hidden" );
