@@ -186,7 +186,7 @@ class QuestionsController extends \BaseController {
 		if($correct == 1){
 			QuestionsController::storeAnswer($id);
 			return Response::json('success', 200);
-		}else{
+		}elseif($correct == 0){
 			return Response::json('success', 200);
 		}
 	}
