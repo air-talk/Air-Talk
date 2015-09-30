@@ -196,6 +196,51 @@ class QuestionsController extends \BaseController {
 		}
 	}
 
+	public static function percentageAll()
+	{
+		$number1 = Auth::user()->correctQuestions()->count();
+		$number2 = Question::all()->count();
+		$quotient = $number1/$number2;
+		$finalNumber = $quotient * 100;
+		return $finalNumber;
+	}
+
+	public static function percentageNontowered()
+	{
+		$number1 = Auth::user()->correctQuestions()->where('category','=','untowered')->count();
+		$number2 = Question::all()->count();
+		$quotient = $number1/$number2;
+		$finalNumber = $quotient * 100;
+		return $finalNumber;
+	}
+
+	public static function percentageClassb()
+	{
+		$number1 = Auth::user()->correctQuestions()->where('category','=','classb')->count();
+		$number2 = Question::all()->count();
+		$quotient = $number1/$number2;
+		$finalNumber = $quotient * 100;
+		return $finalNumber;
+	}
+
+	public static function percentageClassc()
+	{
+		$number1 = Auth::user()->correctQuestions()->where('category','=','classc')->count();
+		$number2 = Question::all()->count();
+		$quotient = $number1/$number2;
+		$finalNumber = $quotient * 100;
+		return $finalNumber;
+	}
+
+	public static function percentageClassd()
+	{
+		$number1 = Auth::user()->correctQuestions()->where('category','=','classd')->count();
+		$number2 = Question::all()->count();
+		$quotient = $number1/$number2;
+		$finalNumber = $quotient * 100;
+		return $finalNumber;
+	}
+
 
 
 }
