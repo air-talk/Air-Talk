@@ -12,14 +12,14 @@
                     <button type="button" class="close" data-dismiss="modal">
                         <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
                     </button>
-                    <h3>Do you know the name of the plane?</h3>
-                    <p>Use your spacebar or click to reveal the Definition</p>
+                    <h3>Practice saying your response aloud</h3>
+                    <p>Use your spacebar or click to reveal the proper response</p>
                     <div class="row">
                         <div class="col-md-6 col-md-offset-3">
                             <div id="card" data-face="front">
-                                <div class="front" id="front"> 
+                                <div class="front img" id="front"> 
                                     <audio controls>
-                                        <source src="{{$flashcard->front}}" type="audio/mpeg">
+                                        <source src="/audio/motor.mp3" type="audio/mpeg">
                                     </audio>
                                 </div> 
                                 <div class="back">
@@ -49,11 +49,11 @@
         <div class="row">
             <div class="col-md-offset-1 col-md-6">
                 <div class="well">
-                    <h2>Name That Plane</h2>
+                    <h2>ATC Re</h2>
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Audio</th>
+                                <th>Plane</th>
                                 {{-- Look into created_at column in correctAnswers table for last practiced--}}
                                 <th>Times practiced</th>
                                 <th>Times Correct</th>
@@ -63,11 +63,7 @@
                         <tbody>
                             @foreach($unansweredFlashcards as $flashcard)
                                 <tr>
-                                    <td>
-                                        <audio controls>
-                                          <source src="{{$flashcard->front}}" type="audio/mpeg">
-                                        </audio>
-                                    </td>
+                                    <td><strong>{{$flashcard->back}}</strong></td>
                                     {{-- change later --}}
                                     <td>0</td>
                                     <td>0</td>
