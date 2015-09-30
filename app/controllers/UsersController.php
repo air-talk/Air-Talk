@@ -24,7 +24,7 @@ class UsersController extends \BaseController {
 		$password = Input::get('password');
 
 		if(Auth::attempt(array('email' => $email, 'password' => $password))){
-			return Redirect::action('UsersController@show', Auth::id());
+			return Redirect::intended('/');;
 		}else{
 			Session::flash('errorMessage', 'Email and password combination failed.');
 			Log::info('validator failed', Input::all());
