@@ -99,11 +99,14 @@ class QuestionsController extends \BaseController {
 			$questions = QuestionsController::unfinishedQuestions()->get();
 
 			return View::make('questions.show')->with(['questions'=> $questions]);
-		}else{
+		}elseif(QuestionsController::percentageAll()<100){
 			$questions = Question::all();
 
 			return View::make('questions.show')->with(['questions'=> $questions]);
+		}else{
+			return Redirect::action('QuestionsController@index');
 		}
+
 	}
 
 
@@ -194,6 +197,76 @@ class QuestionsController extends \BaseController {
 		}elseif($correct == 0){
 			return Response::json('success', 200);
 		}
+	}
+
+	public static function percentageAll()
+	{
+		$number1 = Auth::user()->correctQuestions()->count();
+		$number2 = Question::all()->count();
+		if($number2 == 0){
+			$finalNumber = 0;
+		}else{
+			$quotient = $number1/$number2;
+			$finalNumber = $quotient * 100;
+		}
+
+		return round($finalNumber);
+	}
+
+	public static function percentageNontowered()
+	{
+		$number1 = Auth::user()->correctQuestions()->where('category','=','untowered')->count();
+		$number2 = Question::where('category','=','untowered')->count();
+		if($number2 == 0){
+			$finalNumber = 0;
+		}else{
+			$quotient = $number1/$number2;
+			$finalNumber = $quotient * 100;
+		}
+
+		return round($finalNumber);
+	}
+
+	public static function percentageClassb()
+	{
+		$number1 = Auth::user()->correctQuestions()->where('category','=','classb')->count();
+		$number2 = Question::where('category','=','classb')->count();
+		if($number2 == 0){
+			$finalNumber = 0;
+		}else{
+			$quotient = $number1/$number2;
+			$finalNumber = $quotient * 100;
+		}
+
+		return round($finalNumber);
+	}
+
+	public static function percentageClassc()
+	{
+		$number1 = Auth::user()->correctQuestions()->where('category','=','classc')->count();
+		$number2 = Question::where('category','=','classc')->count();
+		if($number2 == 0){
+			$finalNumber = 0;
+		}else{
+			$quotient = $number1/$number2;
+			$finalNumber = $quotient * 100;
+		}
+
+		return round($finalNumber);
+	}
+
+	public static function percentageClassd()
+	{
+		$number1 = Auth::user()->correctQuestions()->where('category','=','classd')->count();
+		$number2 = Question::where('category','=','classd')->count();
+		if($number2 == 0){
+			$finalNumber = 0;
+		}else{
+			$quotient = $number1/$number2;
+			$finalNumber = $quotient * 100;
+		}
+
+		return round($finalNumber);
 	}
 
 

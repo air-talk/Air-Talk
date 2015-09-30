@@ -69,6 +69,16 @@
         @foreach($questions as $question)
             questionList.push({ id:"{{{ $question->id }}}", question:"{{{ $question->question }}}", right_answer: "{{{ $question->right_answer }}}", wrong_answer1: "{{{ $question->wrong_answer1 }}}", wrong_answer2: "{{{ $question->wrong_answer2 }}}", wrong_answer3: "{{{ $question->wrong_answer3 }}}" })
         @endforeach
+        if(questionList.length == 0){
+            $( "#check" ).addClass("hidden");
+        	$("#question").html("You have already finished all of these questions! You will be redirected back to quiz front page");
+			setTimeout(
+			  function() 
+			  {
+	    		window.location.replace("http://airtalk.dev/questions");
+			  }, 3000
+		    );
+        }
 
         var lastQuestion = questionList[questionList.length-1];
 
