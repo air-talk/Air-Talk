@@ -10,11 +10,36 @@
 	<div class="row">
 		<div class="col-md-8 text-center">
 		    <div class="well text-center">
-				<a href="/questions/1"><img class="img-circle img-responsive" src="/images/button.png"></a><br>
-				<a href="/questions/1?cat=Untowered"><img class="img-circle img-responsive" src="/images/button.png"></a><br>
-				<a href="/questions/1?cat=Class B"><img class="img-circle img-responsive" src="/images/button.png"></a><br>
-				<a href="/questions/1?cat=Class C"><img class="img-circle img-responsive" src="/images/button.png"></a><br>
-				<a href="/questions/1?cat=Class D"><img class="img-circle img-responsive" src="/images/button.png"></a>
+
+		    	@if(QuestionsController::percentageAll() == 0)
+					<a href="/questions/1"><img class="img-circle img-responsive" src="/images/button.png"></a><br>
+				@else
+					<a href="/questions/1?unfin=1"><img class="img-circle img-responsive" src="/images/button.png"></a><br>
+				@endif
+
+				@if(QuestionsController::percentageNontowered() == 0)
+					<a href="/questions/1?cat=Untowered"><img class="img-circle img-responsive" src="/images/button.png"></a><br>
+				@else
+					<a href="/questions/1?unfin=1&cat=Untowered"><img class="img-circle img-responsive" src="/images/button.png"></a><br>
+				@endif
+
+				@if(QuestionsController::percentageClassb() == 0)
+					<a href="/questions/1?cat=Class B"><img class="img-circle img-responsive" src="/images/button.png"></a><br>
+				@else
+					<a href="/questions/1?unfin=1&cat=Class B"><img class="img-circle img-responsive" src="/images/button.png"></a><br>
+				@endif
+
+				@if(QuestionsController::percentageClassc() == 0)
+					<a href="/questions/1?cat=Class C"><img class="img-circle img-responsive" src="/images/button.png"></a><br>
+				@else
+					<a href="/questions/1?unfin=1&cat=Class C"><img class="img-circle img-responsive" src="/images/button.png"></a><br>
+				@endif
+
+				@if(QuestionsController::percentageClassd() == 0)
+					<a href="/questions/1?cat=Class D"><img class="img-circle img-responsive" src="/images/button.png"></a>
+				@else
+					<a href="/questions/1?unfin=1&cat=Class D"><img class="img-circle img-responsive" src="/images/button.png"></a>
+				@endif
 	    	</div>
 		</div>
 		<div class="col-md-4">
