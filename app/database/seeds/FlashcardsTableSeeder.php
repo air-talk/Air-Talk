@@ -40,6 +40,14 @@ class FlashcardsTableSeeder extends Seeder {
         $flashcard->category = 'plane';
         $flashcard->save();
 
+        $flashcard = new Flashcard();
+        $flashcard->front = '/audio/motor.mp3';
+        $flashcard->back = 'motor running';
+        $flashcard->category = 'audio';
+        $flashcard->title = 'motor';
+        $flashcard->description = 'round engine running slowly';
+        $flashcard->save();
+
         for($i = 0; $i < 15; $i++){
             $flashcard = new Flashcard();
             $flashcard->front = 'Front';

@@ -54,6 +54,25 @@ class FlashcardsController extends \BaseController {
 		return View::make('flashcards.planes')->with($data);
 	}
 
+	public function audioindex()
+	{
+		$answeredFlashcards = Auth::user()->answeredFlashcards()->where('category', 'audio')->orderBy(DB::raw('correct / attempts'))->get();
+		
+		$query = Flashcard::where('category', 'audio');
+		$query->whereDoesntHave('users', function($q) {
+			$q->where('id', Auth::id());
+		});
+
+		$unansweredFlashcards = $query->get();
+
+		$data = [
+			'answeredFlashcards' => $answeredFlashcards,
+			'unansweredFlashcards' => $unansweredFlashcards
+		];
+
+		return View::make('flashcards.audio')->with($data);
+	}
+
 
 	/**
 	 * Show the form for creating a new resource.

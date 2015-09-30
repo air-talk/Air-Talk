@@ -18,9 +18,7 @@ Route::get('/', 'HomeController@showWelcome');
 Route::get('signin', 'UsersController@showSignin');
 
 Route::get('planes', 'FlashcardsController@planesindex');
-
-Route::get('planes/info/{index}', 'FlashcardsController@getNextPlane');
-
+Route::get('radiocalls', 'FlashcardsController@audioindex');
 
 Route::post('flashcards/attempt/{id}/{which}', 'FlashcardsController@attempt');
 Route::post('questions/attempt/{id}/{correct}', 'QuestionsController@attempt');
