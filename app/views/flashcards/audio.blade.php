@@ -97,14 +97,15 @@
         
         var flashcardList = [];
         @foreach($unansweredFlashcards as $flashcard)
-            flashcardList.push({ id:"{{{ $flashcard->id }}}", front:"{{{ $flashcard->front }}}", back: "{{{ $flashcard->back }}}" })
+            flashcardList.push({ id:"{{{ $flashcard->id }}}", front:"{{{ $flashcard->front }}}", back: "{{{ $flashcard->back }}}", description:"{{{ $flashcard->description }}}" })
         @endforeach
         @foreach($answeredFlashcards as $flashcard)
-            flashcardList.push({ id:"{{{ $flashcard->id }}}", front:"{{{ $flashcard->front }}}", back: "{{{ $flashcard->back }}}" })
+            flashcardList.push({ id:"{{{ $flashcard->id }}}", front:"{{{ $flashcard->front }}}", back: "{{{ $flashcard->back }}}", description:"{{{ $flashcard->description }}}" })
         @endforeach
 
 
        console.log(flashcardList);
+        $(".front").prepend('<p>' + flashcardList[0].description +'</p>');
         $("#front").html('<source src="' + flashcardList[0].front + '" type="audio/mpeg">');
         $("#back").html(flashcardList[0].back);
         $("#id").val(flashcardList[0].id);

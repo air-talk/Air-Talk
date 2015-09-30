@@ -30,6 +30,7 @@
                         <li {{ Request::is('questions')? 'class="active"': '' }}><a href="{{{action('QuestionsController@index')}}}">Questions</a></li>
                         <li {{ Request::is('flashcards')? 'class="active"': '' }}><a href="{{{action('FlashcardsController@index')}}}">Vocab</a></li>
                         <li {{ Request::is('planes')? 'class="active"': '' }}><a href="{{{action('FlashcardsController@planesindex')}}}">Planes</a></li>
+                        <li {{ Request::is('radiocalls')? 'class="active"': '' }}><a href="{{{action('FlashcardsController@audioindex')}}}">Radio</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a class="btn" href="{{{ action('UsersController@index') }}}">{{{ Auth::user()->email }}}</a></li>
