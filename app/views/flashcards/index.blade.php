@@ -13,24 +13,30 @@
                         <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
                     </button>
                     <h1>Do you know the Aviation term?</h1>
-                    <h3>Use your spacebar or click to reveal the name of the plane.</h3>
+                    <h3>Use your spacebar or click to reveal the definition. Then left and right arrow keys or press buttons to submit.</h3>
                     <div class="row">
                         <div class="col-md-6 col-md-offset-3">
                             <div id="card" data-face="front">
-                                <div class="front" id="front"> 
+                                <div class="front">
+                                    <i class="glyphicon glyphicon-refresh"></i>
+                                    <div id="front"> 
+                                    </div>
                                 </div> 
                                 <div class="back">
+                                    <i class="glyphicon glyphicon-refresh"></i>
                                     <div id="back">
                                         
                                     </div>
                                     <form action="#" method="post">
                                         <input type="hidden" name="index" id="index" value="">
                                         <input type="hidden" name="id" id="id" value="">
-                                        <div class="col-md-6">
-                                            <button class="btn btn-danger btn-block"><span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>I was wrong</button>
-                                        </div>
-                                        <div class="col-md-6">   
-                                            <button class="btn btn-success btn-block">I was right<span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></button>
+                                        <div class="btn-bottom">
+                                            <div class="red col-md-6">
+                                                <a class="black"><span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>I was wrong</a>
+                                            </div>
+                                            <div class="green col-md-6">   
+                                                <a class="black">I was right<span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></a>
+                                            </div>
                                         </div>
                                     </form>
                                 </div> 
