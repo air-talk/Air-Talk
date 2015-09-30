@@ -13,7 +13,12 @@ class QuestionsController extends \BaseController {
 		$this->beforeFilter('auth');
 		
 	}
+
 	public function index()
+	{
+		return View::make('questions.home');
+	}
+	public function adminIndex()
 	{
 		if(Input::has('unfin') && Input::has('cat')){
 			$category = Input::get('cat');
