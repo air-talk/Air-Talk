@@ -35,12 +35,13 @@
                                     <form action="" method="post">
                                         <input type="hidden" name="index" id="index" value="">
                                         <input type="hidden" name="id" id="id" value="">
-                                        <div class="btn-bottom">
-                                            <button class="red col-md-6" id="wrong"><span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>I was wrong</button>
+                                       
+                                    </form> 
+                                    <div class="btn-bottom">
+                                        <button class="red col-md-6" id="wrong"><span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>I was wrong</button>
 
-                                            <button class="col-md-6 green" id="right">I was right<span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></button>
-                                        </div>
-                                    </form>
+                                        <button class="col-md-6 green" id="right">I was right<span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></button>
+                                    </div>
                                 </div> 
                             </div>
                         </div>
@@ -67,8 +68,8 @@
 		        		</thead>
 		        		<tbody>
                             @foreach($unansweredFlashcards as $flashcard)
-                                <tr class="card-row" data-card-id="{{{ $flashcard->id }}}" data-definition="{{{ $flashcard->back }}}">
-                                    <td><strong>{{$flashcard->front}}</strong></td>
+                                <tr>
+                                    <td class="card-row" data-card-id="{{{ $flashcard->id }}}" data-definition="{{{ $flashcard->back }}}"><strong>{{$flashcard->front}}</strong></td>
                                     {{-- change later --}}
                                     <td>0</td>
                                     <td>0</td>
@@ -76,8 +77,8 @@
                                 </tr>
                             @endforeach
                             @foreach($answeredFlashcards as $flashcard)
-                                <tr class="card-row" data-card-id="{{{ $flashcard->id }}}" data-definition="{{{ $flashcard->back }}}">
-                                    <td><strong>{{{ $flashcard->front }}}</strong></td>
+                                <tr>
+                                    <td class="card-row" data-card-id="{{{ $flashcard->id }}}" data-definition="{{{ $flashcard->back }}}"><strong>{{{ $flashcard->front }}}</strong></td>
                                     <td>{{{ $flashcard->pivot->attempts }}}</td>
                                     <td>{{{ $flashcard->pivot->correct }}}</td>
                                     <td>{{{ floor($flashcard->pivot->correct / $flashcard->pivot->attempts * 100) }}}%</td>
@@ -160,12 +161,12 @@
             location.reload();
         })
         
-        $('#right', '#wrong').click(function(e) {
+        $('#right, #wrong').click(function(e) {
               var next = parseInt($("#index").val());
-              if($('#right')){
+              if($(e.target).is('#right')){
                   e.which = 39
               }
-              if($('#wrong')){
+              if($(e.target).is('#wrong')){
                   e.which = 37
               }
               next++;
