@@ -249,10 +249,6 @@
         
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.min.js"></script>
-	
-	<script>
-		//randomize answers for what its wrorth
-	</script>
 
 
 @stop

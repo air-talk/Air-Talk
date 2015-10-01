@@ -38,7 +38,7 @@
 
 				@if(QuestionsController::percentageNontowered() == 0)
 					<div id="non-toweredButton" class="blue-back img-circle img-responsive"> 
-						<a href="/questions/1?cat=Untowered">
+						<a href="/questions/1?cat=nontowered">
 							<p id="non-toweredText" class="centerY">Non-Towered</p>
 						</a>
 					</div><br>
@@ -48,7 +48,7 @@
 					</div><br>
 				@else
 					<div id="non-toweredButton" class="blue-back img-circle img-responsive"> 
-						<a href="/questions/1?unfin=1&cat=Untowered">
+						<a href="/questions/1?unfin=1&cat=nontowered">
 							<p id="non-toweredText" class="centerY">Non-Towered</p>
 						</a>
 					</div><br>
@@ -56,7 +56,7 @@
 
 				@if(QuestionsController::percentageClassb() == 0)
 					<div id="classbButton" class="blue-back img-circle img-responsive"> 
-						<a href="/questions/1?cat=Class B">
+						<a href="/questions/1?cat=classb">
 							<p id="classbText" class="centerY">Class B</p>
 						</a>
 					</div><br>
@@ -66,7 +66,7 @@
 					</div><br>
 				@else
 					<div id="classbButton" class="blue-back img-circle img-responsive"> 
-						<a href="/questions/1?unfin=1&cat=Class B">
+						<a href="/questions/1?unfin=1&cat=classb">
 							<p id="classbText" class="centerY">Class B</p>
 						</a>
 					</div><br>
@@ -74,7 +74,7 @@
 
 				@if(QuestionsController::percentageClassc() == 0)
 					<div id="classcButton" class="blue-back img-circle img-responsive"> 
-						<a href="/questions/1?cat=Class C">
+						<a href="/questions/1?cat=classc">
 							<p id="classcText" class="centerY">Class C</p>
 						</a>
 					</div><br>
@@ -84,7 +84,7 @@
 					</div><br>
 				@else
 					<div id="classcButton" class="blue-back img-circle img-responsive"> 
-						<a href="/questions/1?unfin=1&cat=Class C">
+						<a href="/questions/1?unfin=1&cat=classc">
 							<p id="classcText" class="centerY">Class C</p>
 						</a>
 					</div><br>
@@ -92,7 +92,7 @@
 
 				@if(QuestionsController::percentageClassd() == 0)
 					<div id="classdButton" class="blue-back img-circle img-responsive"> 
-						<a href="/questions/1?cat=Class D">
+						<a href="/questions/1?cat=classd">
 							<p id="classdText" class="centerY">Class D</p>
 						</a>
 					</div><br>
@@ -102,7 +102,7 @@
 					</div><br>
 				@else
 					<div id="classdButton" class="blue-back img-circle img-responsive"> 
-						<a href="/questions/1?unfin=1&cat=Class D">
+						<a href="/questions/1?unfin=1&cat=classd">
 							<p id="classdText" class="centerY">Class D</p>
 						</a>
 					</div><br>
@@ -111,6 +111,9 @@
 		</div>
 		<div class="col-md-4">
 		    <div class="well">
+		    	{{ Form::open(array('action' => 'QuestionsController@store')) }}
+
+		    	{{ Form::close()}}
 	    	</div>
 	    </div>	
 	</div>

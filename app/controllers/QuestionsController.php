@@ -170,6 +170,12 @@ class QuestionsController extends \BaseController {
 		return $questions;
 	}
 
+	public function resetQuestions()
+	{
+		Auth::user()->correctQuestions()->detach();
+		return Redirect::action('QuestionsController@index');
+	}
+
 	public function getNextQuestion($index)
 	{	
 		if(Input::has('cat')){
@@ -204,7 +210,7 @@ class QuestionsController extends \BaseController {
 		$number1 = Auth::user()->correctQuestions()->count();
 		$number2 = Question::all()->count();
 		if($number2 == 0){
-			$finalNumber = 0;
+			$finalNumber = 100;
 		}else{
 			$quotient = $number1/$number2;
 			$finalNumber = $quotient * 100;
@@ -215,10 +221,10 @@ class QuestionsController extends \BaseController {
 
 	public static function percentageNontowered()
 	{
-		$number1 = Auth::user()->correctQuestions()->where('category','=','untowered')->count();
-		$number2 = Question::where('category','=','untowered')->count();
+		$number1 = Auth::user()->correctQuestions()->where('category','=','nontowered')->count();
+		$number2 = Question::where('category','=','nontowered')->count();
 		if($number2 == 0){
-			$finalNumber = 0;
+			$finalNumber = 100;
 		}else{
 			$quotient = $number1/$number2;
 			$finalNumber = $quotient * 100;
@@ -232,7 +238,7 @@ class QuestionsController extends \BaseController {
 		$number1 = Auth::user()->correctQuestions()->where('category','=','classb')->count();
 		$number2 = Question::where('category','=','classb')->count();
 		if($number2 == 0){
-			$finalNumber = 0;
+			$finalNumber = 100;
 		}else{
 			$quotient = $number1/$number2;
 			$finalNumber = $quotient * 100;
@@ -246,7 +252,7 @@ class QuestionsController extends \BaseController {
 		$number1 = Auth::user()->correctQuestions()->where('category','=','classc')->count();
 		$number2 = Question::where('category','=','classc')->count();
 		if($number2 == 0){
-			$finalNumber = 0;
+			$finalNumber = 100;
 		}else{
 			$quotient = $number1/$number2;
 			$finalNumber = $quotient * 100;
@@ -260,7 +266,7 @@ class QuestionsController extends \BaseController {
 		$number1 = Auth::user()->correctQuestions()->where('category','=','classd')->count();
 		$number2 = Question::where('category','=','classd')->count();
 		if($number2 == 0){
-			$finalNumber = 0;
+			$finalNumber = 100;
 		}else{
 			$quotient = $number1/$number2;
 			$finalNumber = $quotient * 100;
