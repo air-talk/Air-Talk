@@ -18,13 +18,21 @@
     height: 100%;
     vertical-align: middle;
 }
+
 .back{
     border-radius: 5px;
     color: #000;
-    text-align: center;
     padding-top: 15%;
+    text-align: center;
     height: 250px;
     background-color: #FFF;
+}
+
+.top{
+    height: 60px;
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 .img{
     padding-top: 0px;
@@ -61,7 +69,6 @@
     background-color: #5cb85c;
     border-color: #4cae4c;
     height: 60px;
-    padding-top: 20px;
     padding-right: 0px;
     padding-left: 0px;
     margin: 0px;
@@ -72,7 +79,6 @@
     background-color: #d9534f;
     border-color: #d43f3a;
     height: 60px;
-    padding-top: 20px;
     padding-right: 0px !important;
     padding-left: 0px !important;
     margin: 0px;

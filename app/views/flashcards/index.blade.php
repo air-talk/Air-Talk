@@ -17,13 +17,18 @@
                     <div class="row">
                         <div class="col-md-6 col-md-offset-3">
                             <div id="card" data-face="front">
+                                
                                 <div class="front">
-                                    <i class="glyphicon glyphicon-refresh"></i>
+                                <div class="top">
+                                    Flip <i class="glyphicon glyphicon-refresh"> </i>
+                                </div>
                                     <div id="front"> 
                                     </div>
                                 </div> 
                                 <div class="back">
-                                    <i class="glyphicon glyphicon-refresh"></i>
+                                    <div class="top">
+                                        Flip <i class="glyphicon glyphicon-refresh"> </i>
+                                    </div>
                                     <div id="back">
                                         
                                     </div>
@@ -31,12 +36,9 @@
                                         <input type="hidden" name="index" id="index" value="">
                                         <input type="hidden" name="id" id="id" value="">
                                         <div class="btn-bottom">
-                                            <div class="red col-md-6">
-                                                <a class="black"><span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>I was wrong</a>
-                                            </div>
-                                            <div class="green col-md-6">   
-                                                <a class="black">I was right<span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></a>
-                                            </div>
+                                            <button class="red col-md-6" id="wrong"><span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>I was wrong</button>
+
+                                            <button class="col-md-6 green" id="right">I was right<span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></button>
                                         </div>
                                     </form>
                                 </div> 
@@ -65,7 +67,7 @@
 		        		</thead>
 		        		<tbody>
                             @foreach($unansweredFlashcards as $flashcard)
-                                <tr>
+                                <tr class="card-row" data-card-id="{{{ $flashcard->id }}}" data-definition="{{{ $flashcard->back }}}">
                                     <td><strong>{{$flashcard->front}}</strong></td>
                                     {{-- change later --}}
                                     <td>0</td>
@@ -73,12 +75,12 @@
                                     <td>0%</td>
                                 </tr>
                             @endforeach
-                            @foreach($answeredFlashcards as $test)
-                                <tr>
-                                    <td><strong>{{{ $test->front }}}</strong></td>
-                                    <td>{{{ $test->pivot->attempts }}}</td>
-                                    <td>{{{ $test->pivot->correct }}}</td>
-                                    <td>{{{ floor($test->pivot->correct / $test->pivot->attempts * 100) }}}%</td>
+                            @foreach($answeredFlashcards as $flashcard)
+                                <tr class="card-row" data-card-id="{{{ $flashcard->id }}}" data-definition="{{{ $flashcard->back }}}">
+                                    <td><strong>{{{ $flashcard->front }}}</strong></td>
+                                    <td>{{{ $flashcard->pivot->attempts }}}</td>
+                                    <td>{{{ $flashcard->pivot->correct }}}</td>
+                                    <td>{{{ floor($flashcard->pivot->correct / $flashcard->pivot->attempts * 100) }}}%</td>
                                 </tr>
                             @endforeach
 		        		</tbody>
@@ -86,7 +88,7 @@
 		        </div>
 		    </div>
 		    <div class="col-md-4">
-		        <div class="well">
+		        <div class="well" id="sideWell">
 		        	<!-- Trigger the login modal with a button -->
                     <a type="button" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#myModal">Practice Flashcards</a>
 		        </div>
@@ -115,7 +117,13 @@
         $("#index").val('0');
 
 
-
+        $(".card-row").hover(
+          function() {
+            $( '#sideWell' ).html( $(this).data('definition') );
+          }, function() {
+            $( '#sideWell' ).html( '<a type="button" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#myModal">Practice Flashcards</a>' );
+          }
+        );
 
         $("#card").flip({
           axis: 'x',
@@ -152,10 +160,62 @@
             location.reload();
         })
         
+        $('#right', '#wrong').click(function(e) {
+              var next = parseInt($("#index").val());
+              if($('#right')){
+                  e.which = 39
+              }
+              if($('#wrong')){
+                  e.which = 37
+              }
+              next++;
+              console.log(next);
+              console.log(flashcardList.length);
+              if(next < flashcardList.length){
+                  $.ajax({
+                  type: "POST",
+                      url: "/flashcards/attempt/" + $("#id").val() + "/" + e.which ,
+                      data: {id:$("#id").val(),which:e.which},
+                      dataType: "json",
+
+                      success: function(data) {
+
+                          $("#card").flip('toggle');
+                          $("#front").html(flashcardList[next].front);
+                          $("#back").html(flashcardList[next].back);
+                          $("#id").val(flashcardList[next].id);
+                          $("#index").val(next);
+
+                      },
+                      error: function(data){
+                          location.reload();
+                          // add in redirect to results page here
+                      }
+                  });
+              }else{
+                  $("#card").flip('toggle');
+                  $("#front").html('You have completed all of the flashcards the Modal will close in 5 seconds!');
+                  $("#back").html('You have completed all of the flashcards the Modal will close in 5 seconds!');
+                 
+                  setTimeout(function(){
+                     location.reload();
+                  }, 4000);
+              }  
+          });
+
+
+
+
         // got anser right, store in attempts table
         $(document).keyup(function(e) {
-            if(e.which == 39 && $('#card').data('face') == 'back' || e.which == 37 && $('#card').data('face') == 'back' ) {
+            if(e.which == 39 && $('#card').data('face') == 'back' || e.which == 37 && $('#card').data('face') == 'back') {
                 var next = parseInt($("#index").val());
+                if($('#right')){
+                    e.which = 39
+                }
+                if($('#wrong')){
+                    e.which = 37
+                }
                 next++;
                 console.log(next);
                 console.log(flashcardList.length);
