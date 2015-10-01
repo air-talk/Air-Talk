@@ -170,6 +170,12 @@ class QuestionsController extends \BaseController {
 		return $questions;
 	}
 
+	public function resetQuestions()
+	{
+		Auth::user()->correctQuestions()->detach();
+		return Redirect::action('QuestionsController@index');
+	}
+
 	public function getNextQuestion($index)
 	{	
 		if(Input::has('cat')){
@@ -215,8 +221,8 @@ class QuestionsController extends \BaseController {
 
 	public static function percentageNontowered()
 	{
-		$number1 = Auth::user()->correctQuestions()->where('category','=','untowered')->count();
-		$number2 = Question::where('category','=','untowered')->count();
+		$number1 = Auth::user()->correctQuestions()->where('category','=','nontowered')->count();
+		$number2 = Question::where('category','=','nontowered')->count();
 		if($number2 == 0){
 			$finalNumber = 100;
 		}else{

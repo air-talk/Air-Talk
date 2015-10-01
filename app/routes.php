@@ -23,6 +23,7 @@ Route::get('radiocalls', 'FlashcardsController@audioindex');
 Route::post('flashcards/attempt/{id}/{which}', 'FlashcardsController@attempt');
 Route::post('questions/attempt/{id}/{correct}', 'QuestionsController@attempt');
 
+Route::post('questions','QuestionsController@resetQuestions');
 Route::post('questions/{id}', 'QuestionsController@storeAnswer');
 Route::get('questions/index', 'QuestionsController@adminIndex');
 Route::resource('questions', 'QuestionsController');

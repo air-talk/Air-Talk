@@ -36,7 +36,7 @@
 						</div>
 						<div>        	
 	        				{{ Form::label('category', ' Category') }}
-							{{ Form::select('category', array('untowered' => 'Untowered', 'classb' => 'Class B', 'classc' => 'Class C', 'classd' => 'Class D'), null, ['class' => 'form-control']) }}
+							{{ Form::select('category', array('nontowered' => 'Non-towered', 'classb' => 'Class B', 'classc' => 'Class C', 'classd' => 'Class D'), null, ['class' => 'form-control']) }}
 						</div><br>
 		        		<button class="btn btn-primary" style="width: 100%"> Create Question </button>
 		        	{{ Form:: close() }}
