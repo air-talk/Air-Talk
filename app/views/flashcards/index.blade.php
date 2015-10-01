@@ -78,10 +78,18 @@
                             @endforeach
                             @foreach($answeredFlashcards as $flashcard)
                                 <tr>
-                                    <td class="card-row" data-card-id="{{{ $flashcard->id }}}" data-definition="{{{ $flashcard->back }}}"><strong>{{{ $flashcard->front }}}</strong></td>
+                                    <td class="card-row" data-card-id="{{{ $flashcard->id }}}" data-definition="{{{ $flashcard->back }}}" data-percent="{{{ floor($flashcard->pivot->correct / $flashcard->pivot->attempts * 100) }}}"><strong>{{{ $flashcard->front }}}</strong></td>
                                     <td>{{{ $flashcard->pivot->attempts }}}</td>
                                     <td>{{{ $flashcard->pivot->correct }}}</td>
-                                    <td>{{{ floor($flashcard->pivot->correct / $flashcard->pivot->attempts * 100) }}}%</td>
+                                    
+                                    <td>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-striped active" role="progressbar"
+                                            aria-valuenow="{{{ floor($flashcard->pivot->correct / $flashcard->pivot->attempts * 100) }}}" aria-valuemin="0" aria-valuemax="100" style="width:{{{ floor($flashcard->pivot->correct / $flashcard->pivot->attempts * 100) }}}%">
+                                              {{{ floor($flashcard->pivot->correct / $flashcard->pivot->attempts * 100) }}}%
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>
                             @endforeach
 		        		</tbody>
@@ -91,7 +99,7 @@
 		    <div class="col-md-4">
 		        <div class="well" id="sideWell">
 		        	<!-- Trigger the login modal with a button -->
-                    <a type="button" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#myModal">Practice Flashcards</a>
+                    <a type="button" class="btn btn-primary btn-circle col-md-offset-3" data-toggle="modal" data-target="#myModal">Practice Flashcards</a>
 		        </div>
 		    </div>
 		</div>
@@ -120,9 +128,9 @@
 
         $(".card-row").hover(
           function() {
-            $( '#sideWell' ).html( $(this).data('definition') );
+            $( '#sideWell' ).html( $(this).data('definition') + "<br>" +  "<div class='progress'> <div class='progress-bar progress-bar-striped active' role='progressbar' aria-valuenow='" + $(this).data('percent') + "' aria-valuemin='0' aria-valuemax='100' style='width:" + $(this).data('percent') + "%'> " + $(this).data('percent') + "% </div> </div>" );
           }, function() {
-            $( '#sideWell' ).html( '<a type="button" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#myModal">Practice Flashcards</a>' );
+            $( '#sideWell' ).html( '<a type="button" class="btn btn-primary btn-circle col-md-offset-3" data-toggle="modal" data-target="#myModal">Practice Flashcards</a>' );
           }
         );
 
