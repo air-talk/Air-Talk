@@ -116,7 +116,7 @@
 		</div>
 		<div class="col-md-4">
 		    <div id="side-bar" class="well text-center">
-            	<a href="/questions/reset_questions"><button class="btn btn-primary">Reset Questions</button></a>
+            	<a href="/questions/reset_questions"><button class="btn btn-danger">Reset Questions</button></a>
             	<br>
             	<h3 id="question-category"></h3>
             	<p id="side-bar-text">Hover over the buttons to the left to get more information on the category. Click the button to start the quiz on that specific category. <br><br> You can stop the quiz at any time, and will be returned to your incorrect and unfinished questions next time you start the quiz.</p>
