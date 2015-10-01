@@ -78,7 +78,7 @@
                             @endforeach
                             @foreach($answeredFlashcards as $flashcard)
                                 <tr>
-                                    <td class="card-row" data-card-id="{{{ $flashcard->id }}}" data-definition="{{{ $flashcard->back }}}" data-percent="{{{ floor($flashcard->pivot->correct / $flashcard->pivot->attempts * 100) }}}"><strong>{{{ $flashcard->front }}}</strong></td>
+                                    <td class="card-row" data-card-id="{{{ $flashcard->id }}}" data-definition="{{{ $flashcard->back }}}" data-front="{{{ $flashcard->front }}}" data-percent="{{{ floor($flashcard->pivot->correct / $flashcard->pivot->attempts * 100) }}}"><strong>{{{ $flashcard->front }}}</strong></td>
                                     <td>{{{ $flashcard->pivot->attempts }}}</td>
                                     <td>{{{ $flashcard->pivot->correct }}}</td>
                                     
@@ -128,7 +128,7 @@
 
         $(".card-row").hover(
           function() {
-            $( '#sideWell' ).html( $(this).data('definition') + "<br>" +  "<div class='progress'> <div class='progress-bar progress-bar-striped active' role='progressbar' aria-valuenow='" + $(this).data('percent') + "' aria-valuemin='0' aria-valuemax='100' style='width:" + $(this).data('percent') + "%'> " + $(this).data('percent') + "% </div> </div>" );
+            $( '#sideWell' ).html( "<h2 class='centered'>" + $(this).data('front') + "</h2>" + "<hr><br>" + $(this).data('definition') + "<br><hr><br>" +  "<div class='progress'> <div class='progress-bar progress-bar-striped active' role='progressbar' aria-valuenow='" + $(this).data('percent') + "' aria-valuemin='0' aria-valuemax='100' style='width:" + $(this).data('percent') + "%'> " + $(this).data('percent') + "% </div> </div>" );
           }, function() {
             $( '#sideWell' ).html( '<a type="button" class="btn btn-primary btn-circle col-md-offset-3" data-toggle="modal" data-target="#myModal">Practice Flashcards</a>' );
           }
