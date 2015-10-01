@@ -19,17 +19,17 @@
 		    <div class="well text-center">
 
 		    	@if(QuestionsController::percentageAll() == 0)
-					<div id="allQuestionsButton" class="blue-back img-circle img-responsive"> 
+					<div id="allQuestionsButton" class="blue-back img-circle img-responsive col-md-offset-5"> 
 						<a href="/questions/1">
 							<p id="allQuestionsText" class="centerY">All Questions</p>
 						</a>
 					</div><br>
 				@elseif(QuestionsController::percentageAll() == 100)
-					<div id="allQuestionsButton" class="blue-back img-circle img-responsive">
+					<div id="allQuestionsButton" class="blue-back img-circle img-responsive col-md-offset-5">
 						<p id="allQuestionsText" class="centerY">Complete!</p>
 					</div><br>
 				@else
-					<div id="allQuestionsButton" class="blue-back img-circle img-responsive"> 
+					<div id="allQuestionsButton" class="blue-back img-circle img-responsive col-md-offset-5"> 
 						<a href="/questions/1?unfin=1">
 							<p id="allQuestionsText" class="centerY">All Questions</p>
 						</a>
@@ -37,17 +37,17 @@
 				@endif
 
 				@if(QuestionsController::percentageNontowered() == 0)
-					<div id="non-toweredButton" class="blue-back img-circle img-responsive"> 
+					<div id="non-toweredButton" class="blue-back img-circle img-responsive col-md-offset-5"> 
 						<a href="/questions/1?cat=nontowered">
 							<p id="non-toweredText" class="centerY">Non-Towered</p>
 						</a>
 					</div><br>
 				@elseif(QuestionsController::percentageNontowered() == 100)
-					<div id="non-toweredButton" class="blue-back img-circle img-responsive">
+					<div id="non-toweredButton" class="blue-back img-circle img-responsive col-md-offset-5">
 						<p id="non-toweredText" class="centerY">Complete!</p>
 					</div><br>
 				@else
-					<div id="non-toweredButton" class="blue-back img-circle img-responsive"> 
+					<div id="non-toweredButton" class="blue-back img-circle img-responsive col-md-offset-5"> 
 						<a href="/questions/1?unfin=1&cat=nontowered">
 							<p id="non-toweredText" class="centerY">Non-Towered</p>
 						</a>
@@ -55,17 +55,17 @@
 				@endif
 
 				@if(QuestionsController::percentageClassb() == 0)
-					<div id="classbButton" class="blue-back img-circle img-responsive"> 
+					<div id="classbButton" class="blue-back img-circle img-responsive col-md-offset-5"> 
 						<a href="/questions/1?cat=classb">
 							<p id="classbText" class="centerY">Class B</p>
 						</a>
 					</div><br>
 				@elseif(QuestionsController::percentageClassb() == 100)
-					<div id="classbButton" class="blue-back img-circle img-responsive">
+					<div id="classbButton" class="blue-back img-circle img-responsive col-md-offset-5">
 						<p id="classbText" class="centerY">Complete!</p>
 					</div><br>
 				@else
-					<div id="classbButton" class="blue-back img-circle img-responsive"> 
+					<div id="classbButton" class="blue-back img-circle img-responsive col-md-offset-5"> 
 						<a href="/questions/1?unfin=1&cat=classb">
 							<p id="classbText" class="centerY">Class B</p>
 						</a>
@@ -73,17 +73,17 @@
 				@endif
 
 				@if(QuestionsController::percentageClassc() == 0)
-					<div id="classcButton" class="blue-back img-circle img-responsive"> 
+					<div id="classcButton" class="blue-back img-circle img-responsive col-md-offset-5"> 
 						<a href="/questions/1?cat=classc">
 							<p id="classcText" class="centerY">Class C</p>
 						</a>
 					</div><br>
 				@elseif(QuestionsController::percentageClassc() == 100)
-					<div id="classcButton" class="blue-back img-circle img-responsive">
+					<div id="classcButton" class="blue-back img-circle img-responsive col-md-offset-5">
 						<p id="classcText" class="centerY">Complete!</p>
 					</div><br>
 				@else
-					<div id="classcButton" class="blue-back img-circle img-responsive"> 
+					<div id="classcButton" class="blue-back img-circle img-responsive col-md-offset-5"> 
 						<a href="/questions/1?unfin=1&cat=classc">
 							<p id="classcText" class="centerY">Class C</p>
 						</a>
@@ -91,17 +91,17 @@
 				@endif
 
 				@if(QuestionsController::percentageClassd() == 0)
-					<div id="classdButton" class="blue-back img-circle img-responsive"> 
+					<div id="classdButton" class="blue-back img-circle img-responsive col-md-offset-5"> 
 						<a href="/questions/1?cat=classd">
 							<p id="classdText" class="centerY">Class D</p>
 						</a>
 					</div><br>
 				@elseif(QuestionsController::percentageClassd() == 100)
-					<div id="classdButton" class="blue-back img-circle img-responsive">
+					<div id="classdButton" class="blue-back img-circle img-responsive col-md-offset-5">
 						<p id="classdText" class="centerY">Complete!</p>
 					</div><br>
 				@else
-					<div id="classdButton" class="blue-back img-circle img-responsive"> 
+					<div id="classdButton" class="blue-back img-circle img-responsive col-md-offset-5"> 
 						<a href="/questions/1?unfin=1&cat=classd">
 							<p id="classdText" class="centerY">Class D</p>
 						</a>
