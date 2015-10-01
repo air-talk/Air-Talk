@@ -16,7 +16,7 @@ class CreateFlashcardsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('front');
-			$table->string('back');
+			$table->string('back', 1000);
 			$table->string('category');
 			$table->timestamps();
 		});
