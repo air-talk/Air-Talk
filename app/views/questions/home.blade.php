@@ -111,9 +111,7 @@
 		</div>
 		<div class="col-md-4">
 		    <div class="well">
-		    	{{ Form::open(array('action' => 'QuestionsController@store')) }}
-
-		    	{{ Form::close()}}
+            	<a href="/questions/reset_questions">Reset Questions</a>
 	    	</div>
 	    </div>	
 	</div>
