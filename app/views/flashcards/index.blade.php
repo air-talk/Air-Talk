@@ -32,7 +32,7 @@
                                     <div id="back">
                                         
                                     </div>
-                                    <form action="#" method="post">
+                                    <form action="" method="post">
                                         <input type="hidden" name="index" id="index" value="">
                                         <input type="hidden" name="id" id="id" value="">
                                         <div class="btn-bottom">
@@ -210,12 +210,6 @@
         $(document).keyup(function(e) {
             if(e.which == 39 && $('#card').data('face') == 'back' || e.which == 37 && $('#card').data('face') == 'back') {
                 var next = parseInt($("#index").val());
-                if($('#right')){
-                    e.which = 39
-                }
-                if($('#wrong')){
-                    e.which = 37
-                }
                 next++;
                 console.log(next);
                 console.log(flashcardList.length);

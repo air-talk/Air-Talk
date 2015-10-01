@@ -146,7 +146,6 @@ class FlashcardsController extends \BaseController {
 				return Response::json();
 			}
 		}
-		//if which = 37 then answered incorrect
 
 	}
 
