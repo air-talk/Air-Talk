@@ -103,10 +103,10 @@
         
         var flashcardList = [];
         @foreach($unansweredFlashcards as $flashcard)
-            flashcardList.push({ id:"{{{ $flashcard->id }}}", front:"{{{ $flashcard->front }}}", back: "{{{ $flashcard->back }}}" })
+            flashcardList.push({ id:"{{{ $flashcard->id }}}", front:"{{{ $flashcard->front }}}", back: "{{ $flashcard->back }}" })
         @endforeach
         @foreach($answeredFlashcards as $flashcard)
-            flashcardList.push({ id:"{{{ $flashcard->id }}}", front:"{{{ $flashcard->front }}}", back: "{{{ $flashcard->back }}}" })
+            flashcardList.push({ id:"{{{ $flashcard->id }}}", front:"{{{ $flashcard->front }}}", back: "{{ $flashcard->back }}" })
         @endforeach
 
 
