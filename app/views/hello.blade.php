@@ -227,7 +227,7 @@
                         <div class="modal-body">
                             <h2>Project Title</h2>
                             <hr class="star-primary">
-                            <img src="/images/Alissa.jpg" class="img-responsive img-centered" alt="">
+                            <img src="/images/bird.png" class="img-responsive img-centered" alt="">
                             <p>Class D airspace is generally cylindrical in form and normally extends from the surface to 2,500 feet (760 m) above the ground. The outer radius of the airspace is variable, but is generally 4 nautical miles. Airspace within the given radius, but in surrounding class C or class B airspace, is excluded. Class D airspace reverts to class E or G during hours when the tower is closed, or under other special conditions. (AIM 3-2-5)</p>
                             <ul class="list-inline item-details">
                             </ul>
