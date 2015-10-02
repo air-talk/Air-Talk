@@ -19,16 +19,12 @@
                             <div id="card" data-face="front">
                                 
                                 <div class="front img">
-                                <div class="top">
-                                    Flip <i class="glyphicon glyphicon-refresh"> </i>
-                                </div>
+
                                     <div id="front"> 
                                     </div>
                                 </div> 
                                 <div class="back">
-                                    <div class="top">
-                                        Flip <i class="glyphicon glyphicon-refresh"> </i>
-                                    </div>
+    
                                     <div id="back">
                                         
                                     </div>
@@ -193,7 +189,7 @@
 
 
               $("#card").hide("slide", { direction: direction }, 750);
-              $("#card").show("slide", { direction: "up" }, 1500);
+              $("#card").show("slide", { direction: "up" }, 500);
 
 
               next++;
@@ -245,7 +241,7 @@
                 }
 
                 $("#card").hide("slide", { direction: direction }, 750);
-                $("#card").show("slide", { direction: "up" }, 1500);
+                $("#card").show("slide", { direction: "up" }, 500);
 
                 $("#card").flip('toggle');
                 next++;
