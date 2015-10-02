@@ -104,7 +104,7 @@
 		        </div>
 		    </div>
 		    <div class="col-md-4">
-		        <div class="well" id="sideWell">
+		        <div class="well affixed-element" data-spy="affix" data-offset-top="20" id="sideWell">
 		        	<!-- Trigger the login modal with a button -->
                     <a type="button" class="btn btn-primary btn-circle col-md-offset-3" data-toggle="modal" data-target="#myModal">Practice Flashcards</a>
 		        </div>
@@ -132,6 +132,19 @@
         $("#back").html(flashcardList[0].back);
         $("#id").val(flashcardList[0].id);
         $("#index").val('0');
+
+        function affixWidth() {
+            // ensure the affix element maintains it width
+            var affix = $('.affixed-element');
+            var width = affix.width();
+            affix.width(width);
+        }
+
+        $(document).ready(function () {
+
+            affixWidth();
+
+        });
 
 
         $(".card-name").hover(
