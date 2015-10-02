@@ -56,14 +56,14 @@
 		    <div class="col-md-offset-1 col-md-6">
 		        <div class="well">
 		        	<h2>Aviation Vocabulary</h2>
-		        	<table class="table table-striped">
+		        	<table class="table table-striped ">
 		        		<thead>
 		        			<tr>
 		        				<th>Word</th>
 		        				{{-- Look into created_at column in correctAnswers table for last practiced--}}
-		        				<th>Times practiced</th>
-                                <th>Times Correct</th>
-                                <th class="extra_padding"> % </th>
+		        				<th>Attempts</th>
+                                <th>Correct</th>
+                                <th>Percent</th>
 		        			</tr>
 		        		</thead>
 		        		<tbody>
@@ -241,10 +241,10 @@
             if(e.which == 39 && $('#card').data('face') == 'back' || e.which == 37 && $('#card').data('face') == 'back') {
                 var next = parseInt($("#index").val());
 
-                if($(e.which).is(39)){
+                if(e.which == 39){
                     var direction = 'right';
                 }
-                if($(e.which).is(37)){
+                if(e.which == 37){
                     var direction = 'left';
                 }
 
