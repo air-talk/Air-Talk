@@ -42,84 +42,84 @@
 					</a>
 				</div>
 			@endif
-<div class="container">
-	<div class="row">
-			@if(QuestionsController::percentageNontowered() == 0)
-				<div id="non-toweredButton" class="blue-back img-circle col-xs-3 col-xs-offset-1"> 
-					<a href="/questions/1?cat=nontowered">
-						<p id="non-toweredText" class="centerY">Non-Towered</p>
-					</a>
-				</div>
-			@elseif(QuestionsController::percentageNontowered() == 100)
-				<div id="non-toweredButton" class="golden-button img-circle col-xs-3 col-xs-offset-1">
-					<p id="non-toweredText" class="centerY">Non-Towered</p>
-				</div>
-			@else
-				<div id="non-toweredButton" class="blue-back img-circle col-xs-3 col-xs-offset-1"> 
-					<a href="/questions/1?unfin=1&cat=nontowered">
-						<p id="non-toweredText" class="centerY">Non-Towered</p>
-					</a>
-				</div>
-			@endif
+			<div class="container">
+				<div class="row">
+					@if(QuestionsController::percentageNontowered() == 0)
+						<div id="non-toweredButton" class="blue-back img-circle col-xs-3 col-xs-offset-1"> 
+							<a href="/questions/1?cat=nontowered">
+								<p id="non-toweredText" class="centerY">Non-Towered</p>
+							</a>
+						</div>
+					@elseif(QuestionsController::percentageNontowered() == 100)
+						<div id="non-toweredButton" class="golden-button img-circle col-xs-3 col-xs-offset-1">
+							<p id="non-toweredText" class="centerY">Non-Towered</p>
+						</div>
+					@else
+						<div id="non-toweredButton" class="blue-back img-circle col-xs-3 col-xs-offset-1"> 
+							<a href="/questions/1?unfin=1&cat=nontowered">
+								<p id="non-toweredText" class="centerY">Non-Towered</p>
+							</a>
+						</div>
+					@endif
 
-			@if(QuestionsController::percentageClassb() == 0)
-				<div id="classbButton" class="blue-back img-circle col-xs-3 col-xs-offset-1"> 
-					<a href="/questions/1?cat=classb">
-						<p id="classbText" class="centerY">Class B</p>
-					</a>
+					@if(QuestionsController::percentageClassb() == 0)
+						<div id="classbButton" class="blue-back img-circle col-xs-3 col-xs-offset-1"> 
+							<a href="/questions/1?cat=classb">
+								<p id="classbText" class="centerY">Class B</p>
+							</a>
+						</div>
+					@elseif(QuestionsController::percentageClassb() == 100)
+						<div id="classbButton" class="golden-button img-circle col-xs-3 col-xs-offset-1">
+							<p id="classbText" class="centerY">Class B</p>
+						</div>
+					@else
+						<div id="classbButton" class="blue-back img-circle col-xs-3 col-xs-offset-1"> 
+							<a href="/questions/1?unfin=1&cat=classb">
+								<p id="classbText" class="centerY">Class B</p>
+							</a>
+						</div>
+					@endif
 				</div>
-			@elseif(QuestionsController::percentageClassb() == 100)
-				<div id="classbButton" class="golden-button img-circle col-xs-3 col-xs-offset-1">
-					<p id="classbText" class="centerY">Class B</p>
-				</div>
-			@else
-				<div id="classbButton" class="blue-back img-circle col-xs-3 col-xs-offset-1"> 
-					<a href="/questions/1?unfin=1&cat=classb">
-						<p id="classbText" class="centerY">Class B</p>
-					</a>
-				</div>
-			@endif
-	</div>
-</div>
-<div class="container">
-	<div class="row">
-			@if(QuestionsController::percentageClassc() == 0)
-				<div id="classcButton" class="blue-back img-circle col-xs-3 col-xs-offset-1"> 
-					<a href="/questions/1?cat=classc">
-						<p id="classcText" class="centerY">Class C</p>
-					</a>
-				</div>
-			@elseif(QuestionsController::percentageClassc() == 100)
-				<div id="classcButton" class="golden-button img-circle col-xs-3 col-xs-offset-1">
-					<p id="classcText" class="centerY">Class C</p>
-				</div>
-			@else
-				<div id="classcButton" class="blue-back img-circle col-xs-3 col-xs-offset-1"> 
-					<a href="/questions/1?unfin=1&cat=classc">
-						<p id="classcText" class="centerY">Class C</p>
-					</a>
-				</div>
-			@endif
+			</div>
+			<div class="container">
+				<div class="row">
+					@if(QuestionsController::percentageClassc() == 0)
+						<div id="classcButton" class="blue-back img-circle col-xs-3 col-xs-offset-1"> 
+							<a href="/questions/1?cat=classc">
+								<p id="classcText" class="centerY">Class C</p>
+							</a>
+						</div>
+					@elseif(QuestionsController::percentageClassc() == 100)
+						<div id="classcButton" class="golden-button img-circle col-xs-3 col-xs-offset-1">
+							<p id="classcText" class="centerY">Class C</p>
+						</div>
+					@else
+						<div id="classcButton" class="blue-back img-circle col-xs-3 col-xs-offset-1"> 
+							<a href="/questions/1?unfin=1&cat=classc">
+								<p id="classcText" class="centerY">Class C</p>
+							</a>
+						</div>
+					@endif
 
-			@if(QuestionsController::percentageClassd() == 0)
-				<div id="classdButton" class="blue-back img-circle col-xs-3 col-xs-offset-1"> 
-					<a href="/questions/1?cat=classd">
-						<p id="classdText" class="centerY">Class D</p>
-					</a>
+					@if(QuestionsController::percentageClassd() == 0)
+						<div id="classdButton" class="blue-back img-circle col-xs-3 col-xs-offset-1"> 
+							<a href="/questions/1?cat=classd">
+								<p id="classdText" class="centerY">Class D</p>
+							</a>
+						</div>
+					@elseif(QuestionsController::percentageClassd() == 100)
+						<div id="classdButton" class="golden-button img-circle col-xs-3 col-xs-offset-1">
+							<p id="classdText" class="centerY">Class D</p>
+						</div>
+					@else
+						<div id="classdButton" class="blue-back img-circle col-xs-3 col-xs-offset-1"> 
+							<a href="/questions/1?unfin=1&cat=classd">
+								<p id="classdText" class="centerY">Class D</p>
+							</a>
+						</div>
+					@endif
 				</div>
-			@elseif(QuestionsController::percentageClassd() == 100)
-				<div id="classdButton" class="golden-button img-circle col-xs-3 col-xs-offset-1">
-					<p id="classdText" class="centerY">Class D</p>
-				</div>
-			@else
-				<div id="classdButton" class="blue-back img-circle col-xs-3 col-xs-offset-1"> 
-					<a href="/questions/1?unfin=1&cat=classd">
-						<p id="classdText" class="centerY">Class D</p>
-					</a>
-				</div>
-			@endif
-	</div>
-</div>
+			</div>
     	</div>
 	</div>
 	<div class="col-md-4">
