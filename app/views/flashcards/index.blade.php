@@ -135,13 +135,12 @@
 
         $(".card-name").hover(
           function() {
-            if($(this).data('percent') == 0){
-                $( '#sideWell' ).html( "<h2 class='centered'>" + $(this).data('front') + "</h2>" + "<hr><br>" + $(this).data('definition') + "<br><hr><br>" +  "<div class='progress progress-bar progress-bar-warning progress-bar-striped active' role='progressbar' aria-valuenow='100' aria-valuemin='0' aria-valuemax='100' style='width: 100%'> " + $(this).data('percent') + "%<div class='progress-bar progress-bar-striped active' role='progressbar' aria-valuenow='100' aria-valuemin='0' aria-valuemax='100' style='width:0%'> </div> </div><br>" );
+            if($(this).data('percent') == '0'){
+                $( '#sideWell' ).html( "<h2 class='centered'>" + $(this).data('front') + "</h2>" + "<hr><br>" + $(this).data('definition') + "<br><hr><br>" +  "<div class='progress progress-bar progress-bar-warning progress-bar-striped active' role='progressbar' aria-valuenow='100' aria-valuemin='0' aria-valuemax='100' style='width: 100%'> 0% </div><br>" );
             }else{
-                $( '#sideWell' ).html( "<h2 class='centered'>" + $(this).data('front') + "</h2>" + "<hr><br>" + $(this).data('definition') + "<br><hr><br>" +  "<div class='progress progress-bar progress-bar-warning progress-bar-striped active' role='progressbar' aria-valuenow='100' aria-valuemin='0' aria-valuemax='100' style='width: 100%'> <div class='progress-bar progress-bar-striped active' role='progressbar' aria-valuenow='" + $(this).data('percent') + "' aria-valuemin='0' aria-valuemax='100' style='width:" + $(this).data('percent') + "%'> " + $(this).data('percent') + "% </div> </div><br>" );
+                $( '#sideWell' ).html( "<h2 class='centered'>" + $(this).data('front') + "</h2>" + "<hr><br>" + $(this).data('definition') + "<br><hr><br>" +  "<div class='progress progress-bar progress-bar-warning progress-bar-striped active' role='progressbar' aria-valuenow='100' aria-valuemin='0' aria-valuemax='100' style='width: 100%'><div class='progress-bar progress-bar-striped active' role='progressbar' aria-valuenow='" + $(this).data('percent') + "' aria-valuemin='0' aria-valuemax='100' style='width:" + $(this).data('percent') + "%'> " + $(this).data('percent') + "% </div> </div><br>" );
             }
 
-            
           }, function() {
             $( '#sideWell' ).html( '<a type="button" class="btn btn-primary btn-circle col-md-offset-3" data-toggle="modal" data-target="#myModal">Practice Flashcards</a>' );
           }
