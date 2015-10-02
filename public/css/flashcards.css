@@ -100,3 +100,9 @@
     background-color: red !important;
     text-align: center !important;
 }
+
+.extra_padding{
+    padding-left: 40px !important;
+    padding-right: 40px !important;
+    text-align: center;
+}
