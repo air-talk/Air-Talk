@@ -13,7 +13,7 @@
                         <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
                     </button>
                     <h3>Do you know the name of the plane?</h3>
-                    <p>Use your spacebar or click to reveal the Definition</p>
+                    <p>Use your spacebar or click to reveal</p>
                     <div class="row">
                         <div class="col-md-6 col-md-offset-3">
                             <div id="card" data-face="front">
