@@ -195,7 +195,7 @@
 
 
               $("#card").hide("slide", { direction: direction }, 750);
-              $("#card").show("slide", { direction: "up" }, 1500);
+              $("#card").show("slide", { direction: "up" }, 500);
 
 
               next++;
@@ -250,7 +250,7 @@
 
 
                 $("#card").hide("slide", { direction: direction }, 750);
-                $("#card").show("slide", { direction: "up" }, 1500);
+                $("#card").show("slide", { direction: "up" }, 500);
                 next++;
                 console.log(next);
                 console.log(flashcardList.length);
