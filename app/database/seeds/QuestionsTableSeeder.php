@@ -118,6 +118,56 @@ class QuestionsTableSeeder extends Seeder {
 
         $question = new Question();
         $question->question = 
+        	"What will ATC use to describe a flight path parallel to the landing runway in the opposite direction of landing?";
+        $question->right_answer = 'downwind leg';
+        $question->wrong_answer1 = 'upwind leg';
+        $question->wrong_answer2 = 'final approach';
+        $question->wrong_answer3 = 'base leg';
+        $question->category = 'classd';
+        $question->save();
+
+        $question = new Question();
+        $question->question = 
+        	"What will ATC use to describe a flight path at right angles to the landing runway off its approach end and extending from the downwind leg to the intersection of the extended runway centerline?";
+        $question->right_answer = 'base leg';
+        $question->wrong_answer1 = 'upwind leg';
+        $question->wrong_answer2 = 'final approach';
+        $question->wrong_answer3 = 'departure leg';
+        $question->category = 'classd';
+        $question->save();
+
+        $question = new Question();
+        $question->question = 
+        	"What will ATC use to describe a flight path in the direction of landing along the extended runway centerline from the base leg to the runway?";
+        $question->right_answer = 'final approach';
+        $question->wrong_answer1 = 'upwind leg';
+        $question->wrong_answer2 = 'crosswind leg';
+        $question->wrong_answer3 = 'departure leg';
+        $question->category = 'classd';
+        $question->save();
+
+        $question = new Question();
+        $question->question = 
+        	"What will ATC use to describe a flight path which begins after takeoff and continues straight ahead along the extended runway centerline?";
+        $question->right_answer = 'departure leg';
+        $question->wrong_answer1 = 'upwind leg';
+        $question->wrong_answer2 = 'base leg';
+        $question->wrong_answer3 = 'final approach';
+        $question->category = 'classd';
+        $question->save();
+
+        $question = new Question();
+        $question->question = 
+        	"The departure climb continues until reaching a point at least ____ mile(s) beyond the departure end of the runway and within ____ feet of the traffic pattern altitude";
+        $question->right_answer = '1/2, 300';
+        $question->wrong_answer1 = '1, 500';
+        $question->wrong_answer2 = '2, 50';
+        $question->wrong_answer3 = '5, 100';
+        $question->category = 'classd';
+        $question->save();
+
+        $question = new Question();
+        $question->question = 
         	"Select the proper way for a pilot to say [Runway] 26R";
         $question->right_answer = 'two six right';
         $question->wrong_answer1 = 'two six romeo';
