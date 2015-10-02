@@ -88,3 +88,15 @@
 .black{
     color:black;
 }
+
+.centered{
+    text-align: center;
+}
+
+.progress-bar-danger{
+    background-color: red !important;
+}
+.progress{
+    background-color: red !important;
+    text-align: center !important;
+}
