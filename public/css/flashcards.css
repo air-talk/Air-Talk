@@ -35,7 +35,7 @@
     top: 0;
 }
 .img{
-    padding-top: 0px;
+    padding-top: 20px;
     vertical-align: middle;
 }
 .response1{
@@ -87,4 +87,26 @@
 
 .black{
     color:black;
+}
+
+.centered{
+    text-align: center;
+}
+
+.progress-bar-danger{
+    background-color: red !important;
+}
+.progress{
+    background-color: red !important;
+    text-align: center !important;
+}
+
+.extra_padding{
+    padding-left: 40px !important;
+    padding-right: 40px !important;
+    text-align: center;
+}
+
+td, th{
+    text-align: center;
 }

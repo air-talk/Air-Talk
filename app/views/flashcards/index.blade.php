@@ -32,15 +32,16 @@
                                     <div id="back">
                                         
                                     </div>
-                                    <form action="#" method="post">
+                                    <form action="" method="post">
                                         <input type="hidden" name="index" id="index" value="">
                                         <input type="hidden" name="id" id="id" value="">
-                                        <div class="btn-bottom">
-                                            <button class="red col-md-6" id="wrong"><span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>I was wrong</button>
+                                       
+                                    </form> 
+                                    <div class="btn-bottom">
+                                        <button class="red col-md-6" id="wrong"><span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>I was wrong</button>
 
-                                            <button class="col-md-6 green" id="right">I was right<span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></button>
-                                        </div>
-                                    </form>
+                                        <button class="col-md-6 green" id="right">I was right<span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span></button>
+                                    </div>
                                 </div> 
                             </div>
                         </div>
@@ -55,32 +56,47 @@
 		    <div class="col-md-offset-1 col-md-6">
 		        <div class="well">
 		        	<h2>Aviation Vocabulary</h2>
-		        	<table class="table table-striped">
+		        	<table class="table table-striped ">
 		        		<thead>
 		        			<tr>
 		        				<th>Word</th>
 		        				{{-- Look into created_at column in correctAnswers table for last practiced--}}
-		        				<th>Times practiced</th>
-                                <th>Times Correct</th>
-                                <th> % </th>
+		        				<th>Attempts</th>
+                                <th>Correct</th>
+                                <th>Percent</th>
 		        			</tr>
 		        		</thead>
 		        		<tbody>
                             @foreach($unansweredFlashcards as $flashcard)
-                                <tr class="card-row" data-card-id="{{{ $flashcard->id }}}" data-definition="{{{ $flashcard->back }}}">
-                                    <td><strong>{{$flashcard->front}}</strong></td>
+                                <tr>
+                                    <td class="card-name" data-card-id="{{{ $flashcard->id }}}" data-definition="{{{ $flashcard->back }}}" data-front="{{{ $flashcard->front }}}" data-percent="0"><strong>{{{ $flashcard->front }}}</strong></td>
+
                                     {{-- change later --}}
                                     <td>0</td>
                                     <td>0</td>
-                                    <td>0%</td>
+                                    <td>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                                0%
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>
                             @endforeach
                             @foreach($answeredFlashcards as $flashcard)
-                                <tr class="card-row" data-card-id="{{{ $flashcard->id }}}" data-definition="{{{ $flashcard->back }}}">
-                                    <td><strong>{{{ $flashcard->front }}}</strong></td>
+                                <tr>
+                                    <td class="card-name" data-card-id="{{{ $flashcard->id }}}" data-definition="{{{ $flashcard->back }}}" data-front="{{{ $flashcard->front }}}" data-percent="{{{ floor($flashcard->pivot->correct / $flashcard->pivot->attempts * 100) }}}"><strong>{{{ $flashcard->front }}}</strong></td>
                                     <td>{{{ $flashcard->pivot->attempts }}}</td>
                                     <td>{{{ $flashcard->pivot->correct }}}</td>
-                                    <td>{{{ floor($flashcard->pivot->correct / $flashcard->pivot->attempts * 100) }}}%</td>
+                                    
+                                    <td>
+                                        <div class="progress progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                            <div class="progress-bar progress-bar-striped active" role="progressbar"
+                                            aria-valuenow="{{{ floor($flashcard->pivot->correct / $flashcard->pivot->attempts * 100) }}}" aria-valuemin="0" aria-valuemax="100" style="width:{{{ floor($flashcard->pivot->correct / $flashcard->pivot->attempts * 100) }}}%">
+                                              {{{ floor($flashcard->pivot->correct / $flashcard->pivot->attempts * 100) }}}%
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>
                             @endforeach
 		        		</tbody>
@@ -90,7 +106,7 @@
 		    <div class="col-md-4">
 		        <div class="well" id="sideWell">
 		        	<!-- Trigger the login modal with a button -->
-                    <a type="button" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#myModal">Practice Flashcards</a>
+                    <a type="button" class="btn btn-primary btn-circle col-md-offset-3" data-toggle="modal" data-target="#myModal">Practice Flashcards</a>
 		        </div>
 		    </div>
 		</div>
@@ -99,14 +115,15 @@
 @stop
 @section('script')
     <script src="/js/jquery.flip.js"></script>
+    <script src="/js/jquery-ui-1.11.4.js"></script>
     <script type="text/javascript">
         
         var flashcardList = [];
         @foreach($unansweredFlashcards as $flashcard)
-            flashcardList.push({ id:"{{{ $flashcard->id }}}", front:"{{{ $flashcard->front }}}", back: "{{{ $flashcard->back }}}" })
+            flashcardList.push({ id:"{{{ $flashcard->id }}}", front:"{{{ $flashcard->front }}}", back: "{{ $flashcard->back }}" })
         @endforeach
         @foreach($answeredFlashcards as $flashcard)
-            flashcardList.push({ id:"{{{ $flashcard->id }}}", front:"{{{ $flashcard->front }}}", back: "{{{ $flashcard->back }}}" })
+            flashcardList.push({ id:"{{{ $flashcard->id }}}", front:"{{{ $flashcard->front }}}", back: "{{ $flashcard->back }}" })
         @endforeach
 
 
@@ -117,11 +134,16 @@
         $("#index").val('0');
 
 
-        $(".card-row").hover(
+        $(".card-name").hover(
           function() {
-            $( '#sideWell' ).html( $(this).data('definition') );
+            if($(this).data('percent') == '0'){
+                $( '#sideWell' ).html( "<h2 class='centered'>" + $(this).data('front') + "</h2>" + "<hr><br>" + $(this).data('definition') + "<br><hr><br>" +  "<div class='progress progress-bar progress-bar-warning progress-bar-striped active' role='progressbar' aria-valuenow='100' aria-valuemin='0' aria-valuemax='100' style='width: 100%'> 0% </div><br>" );
+            }else{
+                $( '#sideWell' ).html( "<h2 class='centered'>" + $(this).data('front') + "</h2>" + "<hr><br>" + $(this).data('definition') + "<br><hr><br>" +  "<div class='progress progress-bar progress-bar-warning progress-bar-striped active' role='progressbar' aria-valuenow='100' aria-valuemin='0' aria-valuemax='100' style='width: 100%'><div class='progress-bar progress-bar-striped active' role='progressbar' aria-valuenow='" + $(this).data('percent') + "' aria-valuemin='0' aria-valuemax='100' style='width:" + $(this).data('percent') + "%'> " + $(this).data('percent') + "% </div> </div><br>" );
+            }
+
           }, function() {
-            $( '#sideWell' ).html( '<a type="button" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#myModal">Practice Flashcards</a>' );
+            $( '#sideWell' ).html( '<a type="button" class="btn btn-primary btn-circle col-md-offset-3" data-toggle="modal" data-target="#myModal">Practice Flashcards</a>' );
           }
         );
 
@@ -160,14 +182,22 @@
             location.reload();
         })
         
-        $('#right', '#wrong').click(function(e) {
+        $('#right, #wrong').click(function(e) {
               var next = parseInt($("#index").val());
-              if($('#right')){
+              if($(e.target).is('#right')){
                   e.which = 39
+                  var direction = 'right';
               }
-              if($('#wrong')){
+              if($(e.target).is('#wrong')){
                   e.which = 37
+                  var direction = 'left';
               }
+
+
+              $("#card").hide("slide", { direction: direction }, 750);
+              $("#card").show("slide", { direction: "up" }, 1500);
+
+
               next++;
               console.log(next);
               console.log(flashcardList.length);
@@ -210,12 +240,17 @@
         $(document).keyup(function(e) {
             if(e.which == 39 && $('#card').data('face') == 'back' || e.which == 37 && $('#card').data('face') == 'back') {
                 var next = parseInt($("#index").val());
-                if($('#right')){
-                    e.which = 39
+
+                if(e.which == 39){
+                    var direction = 'right';
                 }
-                if($('#wrong')){
-                    e.which = 37
+                if(e.which == 37){
+                    var direction = 'left';
                 }
+
+
+                $("#card").hide("slide", { direction: direction }, 750);
+                $("#card").show("slide", { direction: "up" }, 1500);
                 next++;
                 console.log(next);
                 console.log(flashcardList.length);
