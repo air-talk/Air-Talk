@@ -148,13 +148,6 @@ class FlashcardsTableSeeder extends Seeder {
         $flashcard->category = 'vocab';
         $flashcard->save();
 
-        $flashcard = new Flashcard();
-        $flashcard->front = 'short approach';
-        $flashcard->back = 
-            'Tell the controller where you are.';
-        $flashcard->category = 'vocab';
-        $flashcard->save();
-
 
 
 
