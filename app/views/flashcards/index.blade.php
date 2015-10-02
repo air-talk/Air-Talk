@@ -63,7 +63,7 @@
 		        				{{-- Look into created_at column in correctAnswers table for last practiced--}}
 		        				<th>Times practiced</th>
                                 <th>Times Correct</th>
-                                <th> % </th>
+                                <th class="extra_padding"> % </th>
 		        			</tr>
 		        		</thead>
 		        		<tbody>
@@ -115,6 +115,7 @@
 @stop
 @section('script')
     <script src="/js/jquery.flip.js"></script>
+    <script src="/js/jquery-ui-1.11.4.js"></script>
     <script type="text/javascript">
         
         var flashcardList = [];
@@ -185,10 +186,18 @@
               var next = parseInt($("#index").val());
               if($(e.target).is('#right')){
                   e.which = 39
+                  var direction = 'right';
               }
               if($(e.target).is('#wrong')){
                   e.which = 37
+                  var direction = 'left';
               }
+
+
+              $("#card").hide("slide", { direction: direction }, 750);
+              $("#card").show("slide", { direction: "up" }, 1500);
+
+
               next++;
               console.log(next);
               console.log(flashcardList.length);
@@ -231,6 +240,17 @@
         $(document).keyup(function(e) {
             if(e.which == 39 && $('#card').data('face') == 'back' || e.which == 37 && $('#card').data('face') == 'back') {
                 var next = parseInt($("#index").val());
+
+                if($(e.which).is(39)){
+                    var direction = 'right';
+                }
+                if($(e.which).is(37)){
+                    var direction = 'left';
+                }
+
+
+                $("#card").hide("slide", { direction: direction }, 750);
+                $("#card").show("slide", { direction: "up" }, 1500);
                 next++;
                 console.log(next);
                 console.log(flashcardList.length);
