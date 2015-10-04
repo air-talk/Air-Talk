@@ -13,12 +13,15 @@
     height: 300px;
     background-color: #FFF;
 }
+.vocab{
+    font-size: 2rem;
+    padding-top: 3rem;
+}
 .helper {
     display: inline-block;
     height: 100%;
     vertical-align: middle;
 }
-
 .back{
     border-radius: 5px;
     color: #000;
@@ -28,11 +31,16 @@
     background-color: #FFF;
 }
 
+#back{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 .top{
     height: 60px;
     position: absolute;
-    right: 0;
-    top: 0;
+    right: 10px;
+    top: 10px;
 }
 .img{
     padding-top: 20px;
@@ -66,8 +74,9 @@
 }
 
 .green{
-    background-color: #5cb85c;
-    border-color: #4cae4c;
+    background-color: #DDEFAE;
+    color: #7CB64C;
+    border: none;
     height: 60px;
     padding-right: 0px;
     padding-left: 0px;
@@ -76,8 +85,9 @@
 }
 
 .red{
-    background-color: #d9534f;
-    border-color: #d43f3a;
+    background-color: #FFBFB3;
+    color: #E23427;
+    border: none;
     height: 60px;
     padding-right: 0px !important;
     padding-left: 0px !important;
