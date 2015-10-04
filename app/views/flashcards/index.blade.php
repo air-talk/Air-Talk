@@ -22,7 +22,7 @@
                                 <div class="top">
                                     Flip <i class="glyphicon glyphicon-refresh"> </i>
                                 </div>
-                                    <div id="front"> 
+                                    <div id="front" class="vocab"> 
                                     </div>
                                 </div> 
                                 <div class="back">
