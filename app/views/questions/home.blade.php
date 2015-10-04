@@ -4,20 +4,42 @@
 	<style type="text/css">
 		.blue-back{
 			background-color: lightBlue;
-			width: 200px;
-			height: 200px;
+			width: 160px;
+			height: 160px;
 		}
 		.centerY{
-			line-height: 200px;
+			line-height: 160px;
 		}
 		.golden-button{
 			background-color: #FBB430;
-			width: 200px;
-			height: 200px;
+			width: 160px;
+			height: 160px;
 		}
 		#allQuestionsButton{
 			margin-left: 35%;
+			background-image: url("/images/sun.png");
+			background-repeat: no-repeat;
+			background-position: center;
+	        background-size: 75%;
 		}
+		#non-toweredButton{
+			background-image: url("/images/bird.png");
+			background-repeat: no-repeat;
+			background-position: center;
+	        background-size: 75%;		
+		}
+		#classbButton{
+			background-image: url("/images/air_balloon.png");
+			background-repeat: no-repeat;
+			background-position: center;
+	        background-size: 115%;	
+		}
+		#classcButton{
+			background-image: url("/images/airplane.png");
+			background-repeat: no-repeat;
+			background-position: center;
+	        background-size: 75%;	
+	    }
 	</style>
 
 @stop
