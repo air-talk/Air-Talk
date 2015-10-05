@@ -6,6 +6,7 @@
 			height: 125px;
 			width: 100px;
 			display: inline-block;
+			text-align: center;
 		}
 		.circle {
 			border-radius: 50%;
@@ -22,7 +23,7 @@
 		    margin-right: 10px;
 		}
 		.icon img{
-			margin-left: 21%;
+			/*margin-left: 18%;*/
 			margin-top: 16%;
 		    width: 60%;
 		    height: auto;
@@ -90,7 +91,7 @@
 				    	<div id="allQuestionsButton" class="icon">
 							<a href="/questions/1">
 								<div  class="pull-left circle">
-									<img src="/images/radar.png" alt="radar">
+									<img src="/images/radar.png" style="margin-left: 5%;" alt="radar">
 									<span class="text-content"><span>Place Name</span></span> 
 								</div>
 								<p id="allQuestionsText">All Questions</p>
@@ -99,7 +100,7 @@
 					@elseif(QuestionsController::percentageAll() == 100)
 						<div  id="allQuestionsButton" class="icon">
 							<div class="golden-button pull-left circle">
-								<img src="/images/radar.png" alt="radar"> 
+								<img src="/images/radar.png" style="margin-left: 5%;" alt="radar"> 
 							</div>
 							<p id="allQuestionsText">All Questions</p>
 						</div>
@@ -107,7 +108,7 @@
 						<div  id="allQuestionsButton" class="icon">
 							<a href="/questions/1?unfin=1">
 								<div class="pull-left circle"> 
-									<img src="/images/radar.png" alt="radar"> 
+									<img src="/images/radar.png" style="margin-left: 5%;" alt="radar"> 
 								</div>
 								<p id="allQuestionsText">All Questions</p>
 							</a>
@@ -146,7 +147,7 @@
 						<div id="classbButton" class="icon">
 							<a href="/questions/1?cat=classb">
 								<div class="pull-left circle"> 
-									<img src="/images/airbus.png" style="width: 55%; margin-top: 22%; margin-left: 22%;" alt="airbus"> 
+									<img src="/images/airbus.png" style="width: 55%; margin-top: 22%; margin-left: 18%;" alt="airbus"> 
 								</div>
 								<p id="classbText">Class B</p>
 							</a>
