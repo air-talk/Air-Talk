@@ -52,32 +52,47 @@
 			padding-left: 10%;
 		}
 		a:hover span.text-content {
-		  opacity: 1;
+		    opacity: 1;
 		}
 		#allQuestionsButton{
 			position: absolute;
 			top: 17%;
 			left: 40%;
 		}
+		#allQuestionsButton .circle{
+			background-color: #9E61C3;
+		}
 		#non-toweredButton{
 			position: absolute;
 			top: 40%;
 			left: 20%;
+		}
+		#non-toweredButton .circle{
+			background-color: #55C8F4;
 		}
 		#classdButton{
 			position: absolute;
 			top: 40%;
 			left: 60%;
 		}
+		#classdButton .circle{
+			background-color: #7EB530;
+		}
 		#classcButton{
 			position: absolute;
 			top: 65%;
 			left: 20%;
 		}
+		#classcButton .circle{
+			background-color: #FFCD57;
+		}
 		#classbButton{
 			position: absolute;
 			top: 65%;
 			left: 60%;
+		}
+		#classbButton .circle{
+			background-color: #DD381D;
 		}
 		.col-md-6 .well{
 			height: 600px;
@@ -98,7 +113,7 @@
 			    	@if(QuestionsController::percentageAll() == 0)
 				    	<div id="allQuestionsButton" class="icon">
 							<a href="/questions/1">
-								<div  class="pull-left circle">
+								<div class="pull-left circle">
 									<img src="/images/radar.png" style="margin-left: 4%;" alt="radar">
 									<span class="text-content"><span><h3 id="allQuestionsPercentage">40%</h3></span></span> 
 								</div>
