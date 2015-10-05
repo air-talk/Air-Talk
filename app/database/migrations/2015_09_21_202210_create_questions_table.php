@@ -15,11 +15,11 @@ class CreateQuestionsTable extends Migration {
 		Schema::create('questions', function($table)
         {
             $table->increments('id');
-            $table->string('question');
-            $table->string('right_answer');
-            $table->string('wrong_answer1');
-            $table->string('wrong_answer2');
-            $table->string('wrong_answer3');
+            $table->string('question', 20000);
+            $table->string('right_answer', 20000);
+            $table->string('wrong_answer1', 20000);
+            $table->string('wrong_answer2', 20000);
+            $table->string('wrong_answer3', 20000);
             $table->string('category');
             $table->timestamps();
         });
