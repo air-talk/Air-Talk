@@ -205,8 +205,9 @@
               $("#card").hide("slide", { direction: direction }, 750);
               $("#card").show("slide", { direction: "up" }, 500);
 
-
+              $("#card").flip('toggle');
               next++;
+              sleep(200);
               console.log(next);
               console.log(flashcardList.length);
               if(next < flashcardList.length){
@@ -218,8 +219,7 @@
 
                       success: function(data) {
 
-                          
-                            $("#front").html('<img class="img helper" src="' + flashcardList[next].front + '" alt="plane image">');
+                            $("#front").html('<img class="contain" src="' + flashcardList[next].front + '" alt="plane image">');
                             $("#id").val(flashcardList[next].id);
                             $("#index").val(next);
                             // sleep(50);
@@ -232,9 +232,8 @@
                       }
                   });
               }else{
-                  $("#card").flip('toggle');
-                  $("#front").html('You have completed all of the flashcards the Modal will close in 5 seconds!');
-                  $("#back").html('You have completed all of the flashcards the Modal will close in 5 seconds!');
+                  $("#front").html('You have completed all of the flashcards!<br> The Modal will close in 5 seconds.');
+                  $("#back").html('Done');
                  
                   setTimeout(function(){
                      location.reload();
@@ -259,6 +258,7 @@
 
                 $("#card").flip('toggle');
                 next++;
+                sleep(200);
                 if(next < flashcardList.length){
                     $.ajax({
                     type: "POST",
@@ -268,7 +268,7 @@
 
                         success: function(data) {
 
-                            $("#front").html('<img class="img helper" src="' + flashcardList[next].front + '" alt="plane image">');
+                            $("#front").html('<img class="contain" src="' + flashcardList[next].front + '" alt="plane image">');
                             $("#id").val(flashcardList[next].id);
                             $("#index").val(next);
                             // sleep(50);
@@ -280,9 +280,8 @@
                         }
                     });
                 }else{
-                    $("#card").flip('toggle');
-                    $("#front").html('You have completed all of the flashcards the Modal will close in 5 seconds!');
-                    $("#back").html('You have completed all of the flashcards the Modal will close in 5 seconds!');
+                  $("#front").html('You have completed all of the flashcards!<br> The Modal will close in 5 seconds.');
+                  $("#back").html('Done');
                    
                     setTimeout(function(){
                        location.reload();
