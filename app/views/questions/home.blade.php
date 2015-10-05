@@ -14,11 +14,11 @@
 			height: 100px;
 			background-color: lightblue; 
 		}		
-		.golden-button{
-			background-color: #FBB430;
-		}
-		h3 img {
-		    width: 5%;
+			.golden-button{
+				background-color: #FBB430;
+			}
+			h3 img {
+			width: 5%;
 		    height: auto;
 		    margin-right: 10px;
 		}
@@ -39,12 +39,17 @@
 			left: 0;
 			position: absolute;
 			top: 0;
+			font-size: 2rem;
 			width: 100px;
 			opacity: 0;
 			-webkit-transition: opacity 500ms;
 			-moz-transition: opacity 500ms;
 			-o-transition: opacity 500ms;
 			transition: opacity 500ms;
+		}
+		span.text-content h3{
+			padding-top: 18%;
+			padding-left: 10%;
 		}
 		a:hover span.text-content {
 		  opacity: 1;
@@ -77,6 +82,9 @@
 		.col-md-6 .well{
 			height: 600px;
 		}
+		.icon a{
+			color: #000;
+		}
 	</style>
 
 @stop
@@ -91,24 +99,28 @@
 				    	<div id="allQuestionsButton" class="icon">
 							<a href="/questions/1">
 								<div  class="pull-left circle">
-									<img src="/images/radar.png" style="margin-left: 5%;" alt="radar">
-									<span class="text-content"><span>Place Name</span></span> 
+									<img src="/images/radar.png" style="margin-left: 4%;" alt="radar">
+									<span class="text-content"><span><h3 id="allQuestionsPercentage">40%</h3></span></span> 
 								</div>
 								<p id="allQuestionsText">All Questions</p>
 							</a>
 						</div>	
 					@elseif(QuestionsController::percentageAll() == 100)
 						<div  id="allQuestionsButton" class="icon">
-							<div class="golden-button pull-left circle">
-								<img src="/images/radar.png" style="margin-left: 5%;" alt="radar"> 
-							</div>
-							<p id="allQuestionsText">All Questions</p>
+							<a href="/questions/1">	
+								<div class="golden-button pull-left circle">
+									<img src="/images/radar.png" style="margin-left: 4%;" alt="radar"> 
+									<span class="text-content"><span><h3 id="allQuestionsPercentage">100%</h3></span></span> 
+								</div>
+								<p id="allQuestionsText">All Questions</p>
+						</a>
 						</div>
 					@else
 						<div  id="allQuestionsButton" class="icon">
 							<a href="/questions/1?unfin=1">
 								<div class="pull-left circle"> 
-									<img src="/images/radar.png" style="margin-left: 5%;" alt="radar"> 
+									<img src="/images/radar.png" style="margin-left: 4%;" alt="radar">
+									<span class="text-content"><span><h3 id="allQuestionsPercentage">40%</h3></span></span>  
 								</div>
 								<p id="allQuestionsText">All Questions</p>
 							</a>
@@ -120,23 +132,27 @@
 							<a href="/questions/1?cat=nontowered">
 								<div class="pull-left circle"> 
 									<img src="/images/windsock.png" alt="windsock"> 
-									<span class="text-content"><span>Place Name</span></span> 
+									<span class="text-content"><span><h3 id="nontoweredPercentage">40%</h3></span></span>  
 								</div>
 								<p id="non-toweredText">Non-Towered</p>
 							</a>
 						</div>
 					@elseif(QuestionsController::percentageNontowered() == 100)
 						<div id="non-toweredButton" class="icon">
-							<div class="golden-button pull-left circle">
-								<img src="/images/windsock.png" alt="windsock"> 
-							</div>
-							<p id="non-toweredText">Non-Towered</p>
+							<a href="/questions/1?cat=nontowered">	
+								<div class="golden-button pull-left circle">
+									<img src="/images/windsock.png" alt="windsock">
+									<span class="text-content"><span><h3 id="nontoweredPercentage">40%</h3></span></span>  
+								</div>
+								<p id="non-toweredText">Non-Towered</p>
+							</a>
 						</div>
 					@else
 						<div id="non-toweredButton" class="icon">
 							<a href="/questions/1?unfin=1&cat=nontowered">
 								<div class="pull-left circle"> 
-									<img src="/images/windsock.png" alt="windsock"> 
+									<img src="/images/windsock.png" alt="windsock">
+									<span class="text-content"><span><h3 id="nontoweredPercentage">40%</h3></span></span>  
 								</div>
 								<p id="non-toweredText">Non-Towered</p>
 							</a>
@@ -147,23 +163,28 @@
 						<div id="classbButton" class="icon">
 							<a href="/questions/1?cat=classb">
 								<div class="pull-left circle"> 
-									<img src="/images/airbus.png" style="width: 55%; margin-top: 22%; margin-left: 18%;" alt="airbus"> 
+									<img src="/images/airbus.png" style="width: 55%; margin-top: 22%; margin-left: 5%;" alt="airbus"> 
+									<span class="text-content"><span><h3 id="classbPercentage">40%</h3></span></span> 
 								</div>
 								<p id="classbText">Class B</p>
 							</a>
 						</div>
 					@elseif(QuestionsController::percentageClassb() == 100)
 						<div id="classbButton" class="icon">
-							<div class="golden-button pull-left circle">
-								<img src="/images/airbus.png" style="width: 55%; margin-top: 22%; margin-left: 22%;" alt="airbus"> 
-							</div>
+							<a href="/questions/1?cat=classb">	
+								<div class="golden-button pull-left circle">
+									<img src="/images/airbus.png" style="width: 55%; margin-top: 22%; margin-left:4%;" alt="airbus"> 
+									<span class="text-content"><span><h3 id="classbPercentage">40%</h3></span></span> 
+								</div>
+							</a>
 							<p id="classbText">Class B</p>
 						</div>
 					@else
 						<div id="classbButton" class="icon">
 							<a href="/questions/1?unfin=1&cat=classb">
 								<div class="pull-left circle"> 
-									<img src="/images/airbus.png" style="width: 55%; margin-top: 22%; margin-left: 22%;" alt="airbus"> 
+									<img src="/images/airbus.png" style="width: 4%; margin-top: 22%; margin-left:4%;" alt="airbus"> 
+									<span class="text-content"><span><h3 id="classbPercentage">40%</h3></span></span> 
 								</div>
 								<p id="classbText">Class B</p>
 							</a>
@@ -174,23 +195,28 @@
 						<div id="classcButton" class="icon">
 							<a href="/questions/1?cat=classc">
 								<div class="pull-left circle"> 
-									<img src="/images/helicopter.png" style="width: 70%; margin-top: 32%; margin-left: 18%;" alt="helicopter">
+									<img src="/images/helicopter.png" style="width: 80%; margin-top: 32%; margin-left: 5%;" alt="helicopter">
+									<span class="text-content"><span><h3 id="classcPercentage">40%</h3></span></span> 
 								</div>
 								<p id="classcText">Class C</p>
 							</a>
 						</div>
 					@elseif(QuestionsController::percentageClassc() == 100)
 						<div id="classcButton" class="icon">
-							<div class="golden-button pull-left circle">
-								<img src="/images/helicopter.png" style="width: 70%; margin-top: 32%; margin-left: 18%;" alt="helicopter">
-							</div>
+							<a href="/questions/1?cat=classc">	
+								<div class="golden-button pull-left circle">
+									<img src="/images/helicopter.png" style="width: 80%; margin-top: 32%; margin-left: 5%;" alt="helicopter">
+									<span class="text-content"><span><h3 id="classcPercentage">40%</h3></span></span> 
+								</div>
+							</a>
 							<p id="classcText">Class C</p>
 						</div>
 					@else
 						<div id="classcButton" class="icon">
 							<a href="/questions/1?unfin=1&cat=classc">
 								<div class="pull-left circle"> 
-									<img src="/images/helicopter.png" style="width: 70%; margin-top: 32%; margin-left: 18%;" alt="helicopter">
+									<img src="/images/helicopter.png" style="width: 80%; margin-top: 32%; margin-left: 5%;" alt="helicopter">
+									<span class="text-content"><span><h3 id="classcPercentage">40%</h3></span></span> 
 								</div>
 								<p id="classcText">Class C</p>
 							</a>
@@ -201,23 +227,28 @@
 						<div id="classdButton" class="icon">
 							<a href="/questions/1?cat=classd">
 								<div class="pull-left circle"> 
-									<img src="/images/singleprop.png" style="width: 60%; margin-top: 22%; margin-left: 22%;" alt="singleprop">
+									<img src="/images/singleprop.png" style="width: 60%; margin-top: 22%; margin-left: 6%;" alt="singleprop">
+									<span class="text-content"><span><h3 id="classdPercentage">40%</h3></span></span> 
 								</div>
 								<p id="classdText">Class D</p>
 							</a>
 						</div>
 					@elseif(QuestionsController::percentageClassd() == 100)
 						<div id="classdButton" class="icon">
-							<div class="golden-button pull-left circle">
-								<img src="/images/singleprop.png" style="width: 60%; margin-top: 22%; margin-left: 22%;" alt="singleprop">
-							</div>
+							<a href="/questions/1?cat=classd">	
+								<div class="golden-button pull-left circle">
+									<img src="/images/singleprop.png" style="width: 60%; margin-top: 22%; margin-left: 6%;" alt="singleprop">
+									<span class="text-content"><span><h3 id="classdPercentage">40%</h3></span></span> 
+								</div>
+							</a>
 							<p id="classdText">Class D</p>
 						</div>
 					@else
 						<div id="classdButton" class="icon">
 							<a href="/questions/1?unfin=1&cat=classd">
 								<div class="pull-left circle"> 
-									<img src="/images/singleprop.png" style="width: 60%; margin-top: 22%; margin-left: 22%;" alt="singleprop">
+									<img src="/images/singleprop.png" style="width: 60%; margin-top: 22%; margin-left: 6%;" alt="singleprop">
+									<span class="text-content"><span><h3 id="classdPercentage">40%</h3></span></span> 
 								</div>
 								<p id="classdText">Class D</p>
 							</a>
@@ -244,71 +275,66 @@
 		var class_c = {{ QuestionsController::percentageClassc()}};
 		var class_d = {{ QuestionsController::percentageClassd()}};
 
-		// $( "#allQuestionsButton" ).hover(
-		//   function() {
-		//   	$("#resetButton").html("");
-	 //        $("#allQuestionsButton").text(all_questions + "% Completed!");
-	 //        $("#question-category").text("All Questions");
-		//   	$("#side-bar-text").text("Non-towered, Class B, Class C, and Class D Questions");
-		//   }, function() {
-		//   	$("#resetButton").html("<button class='btn btn-danger'>Reset Questions</button>");
-		// 	$("#allQuestionsButton").text("");
-		// 	$("#question-category").text("");
-		// 	$("#side-bar-text").html("Hover over the buttons to the left to get more information on the category. Click the button to start the quiz on that specific category. <br><br> You can stop the quiz at any time, and will be returned to your incorrect and unfinished questions next time you start the quiz.");
-		//   }
-		// );
-		// $( "#non-toweredButton" ).hover(
-		//   function() {
-		//   	$("#resetButton").html("");
-	 //        $("#non-toweredButton").text(non_towered + "% Completed!");
-	 //        $("#question-category").text("Non-Towered");
-	 //        $("#side-bar-text").text("A non-towered airport is an airport with no operating tower, or air traffic control unit. The vast majority of the world's airports are non-towered, and even airports with control towers may operate as non-towered during off-hours, typically during the night.");
-		//   }, function() {
-		//   	$("#resetButton").html("<button class='btn btn-danger'>Reset Questions</button>");
-		//   	$("#non-toweredButton").text("");
-		//   	$("#question-category").text("");
-		//   	$("#side-bar-text").html("Hover over the buttons to the left to get more information on the category. Click the button to start the quiz on that specific category. <br><br> You can stop the quiz at any time, and will be returned to your incorrect and unfinished questions next time you start the quiz.");
-		//   }
-		// );
-		// $( "#classbButton" ).hover(
-		//   function() {
-		//   	$("#resetButton").html("");
-	 //        $("#classbButton").text(class_b + "% Completed!");
-	 //        $("#question-category").text("Class B");
-	 //        $("#side-bar-text").text("Class B airspace is defined around key airport traffic areas, usually airspace surrounding the busiest airports in the US according to the number of IFR operations and passengers served. The exact shape of the airspace varies from one class B area to another, but in most cases it has the shape of an inverted wedding cake, with a series of circular 'shelves' of airspace of several thousand feet in thickness centered on a specific airport. Each shelf is larger than the one beneath it. Class B airspace normally begins at the surface in the immediate area of the airport, and successive shelves of greater and greater radius begin at higher and higher altitudes at greater distances from the airport. Many class B airspaces diverge from this model to accommodate traffic patterns or local topological or other features. The upper limit of class B airspace is normally 10,000 feet (3,000 m)");
-		//   }, function() {
-		//   	$("#resetButton").html("<button class='btn btn-danger'>Reset Questions</button>");
-	 //  	    $("#classbButton").text("");
-	 //  	    $("#question-category").text("");
-	 //  	    $("#side-bar-text").html("Hover over the buttons to the left to get more information on the category. Click the button to start the quiz on that specific category. <br><br> You can stop the quiz at any time, and will be returned to your incorrect and unfinished questions next time you start the quiz.");
-		//   }
-		// );
-		// $( "#classcButton" ).hover(
-		//   function() {
-		//   	$("#resetButton").html("");
-	 //        $("#classcButton").text(class_c + "% Completed!");
-	 //        $("#question-category").text("Class C");
-	 //        $("#side-bar-text").text("Class C space is structured in much the same way as class B airspace, but on a smaller scale. Class C airspace is defined around airports of moderate importance that have an operational control tower and is in effect only during the hours of tower operation at the primary airport. The vertical boundary is usually 4,000 feet (1,200 m) above the airport surface. The core surface area has a radius of five nautical miles (9 km), and goes from the surface to the ceiling of the class C airspace. The upper 'shelf' area has a radius of ten nautical miles, and extends from as low as 1,200 feet (370 m) up to the ceiling of the airspace. A procedural 'outer area' (not to be confused with the shelf area) has a radius of 20 nautical miles. (AIM 3-2-4)");
-		//   }, function() {
-		//   	$("#resetButton").html("<button class='btn btn-danger'>Reset Questions</button>");
-		//   	$("#classcButton").text("");
-		//   	$("#question-category").text("");
-		//   	$("#side-bar-text").html("Hover over the buttons to the left to get more information on the category. Click the button to start the quiz on that specific category. <br><br> You can stop the quiz at any time, and will be returned to your incorrect and unfinished questions next time you start the quiz.");
-		//   }
-		// );
-		// $( "#classdButton" ).hover(
-		//   function() {
-		//   	$("#resetButton").html("");
-	 //        $("#classdButton").text(class_d + "% Completed!");
-	 //        $("#question-category").text("Class D");
-	 //        $("#side-bar-text").text("Class D airspace is generally cylindrical in form and normally extends from the surface to 2,500 feet (760 m) above the ground. The outer radius of the airspace is variable, but is generally 4 nautical miles. Airspace within the given radius, but in surrounding class C or class B airspace, is excluded. Class D airspace reverts to class E or G during hours when the tower is closed, or under other special conditions. (AIM 3-2-5)");
-		//   }, function() {
-		//   	$("#resetButton").html("<button class='btn btn-danger'>Reset Questions</button>");
-		//     $("#classdButton").text("");
-		// 	$("#question-category").text("");
-		//   	$("#side-bar-text").html("Hover over the buttons to the left to get more information on the category. Click the button to start the quiz on that specific category. <br><br> You can stop the quiz at any time, and will be returned to your incorrect and unfinished questions next time you start the quiz.");
-		//   }
-		// );
+		$( "#allQuestionsButton" ).hover(
+		  function() {
+		  	$("#resetButton").html("");
+	        $("#allQuestionsPercentage").text(all_questions + "%");
+	        $("#question-category").text("All Questions");
+		  	$("#side-bar-text").text("Non-towered, Class B, Class C, and Class D Questions");
+		  }, function() {
+		  	$("#resetButton").html("<button class='btn btn-danger'>Reset Questions</button>");
+			$("#question-category").text("");
+			$("#side-bar-text").html("Hover over the buttons to the left to get more information on the category. Click the button to start the quiz on that specific category. <br><br> You can stop the quiz at any time, and will be returned to your incorrect and unfinished questions next time you start the quiz.");
+		  }
+		);
+		$( "#non-toweredButton" ).hover(
+		  function() {
+		  	$("#resetButton").html("");
+	        $("#nontoweredPercentage").text(non_towered + "%");
+	        $("#question-category").text("Non-Towered");
+	        $("#side-bar-text").text("A non-towered airport is an airport with no operating tower, or air traffic control unit. The vast majority of the world's airports are non-towered, and even airports with control towers may operate as non-towered during off-hours, typically during the night.");
+		  }, function() {
+		  	$("#resetButton").html("<button class='btn btn-danger'>Reset Questions</button>");
+		  	$("#question-category").text("");
+		  	$("#side-bar-text").html("Hover over the buttons to the left to get more information on the category. Click the button to start the quiz on that specific category. <br><br> You can stop the quiz at any time, and will be returned to your incorrect and unfinished questions next time you start the quiz.");
+		  }
+		);
+		$( "#classbButton" ).hover(
+		  function() {
+		  	$("#resetButton").html("");
+	        $("#classbPercentage").text(class_b + "%");
+	        $("#question-category").text("Class B");
+	        $("#side-bar-text").text("Class B airspace is defined around key airport traffic areas, usually airspace surrounding the busiest airports in the US according to the number of IFR operations and passengers served. The exact shape of the airspace varies from one class B area to another, but in most cases it has the shape of an inverted wedding cake, with a series of circular 'shelves' of airspace of several thousand feet in thickness centered on a specific airport. Each shelf is larger than the one beneath it. Class B airspace normally begins at the surface in the immediate area of the airport, and successive shelves of greater and greater radius begin at higher and higher altitudes at greater distances from the airport. Many class B airspaces diverge from this model to accommodate traffic patterns or local topological or other features. The upper limit of class B airspace is normally 10,000 feet (3,000 m)");
+		  }, function() {
+		  	$("#resetButton").html("<button class='btn btn-danger'>Reset Questions</button>");
+	  	    $("#question-category").text("");
+	  	    $("#side-bar-text").html("Hover over the buttons to the left to get more information on the category. Click the button to start the quiz on that specific category. <br><br> You can stop the quiz at any time, and will be returned to your incorrect and unfinished questions next time you start the quiz.");
+		  }
+		);
+		$( "#classcButton" ).hover(
+		  function() {
+		  	$("#resetButton").html("");
+	        $("#classcPercentage").text(class_c + "%");
+	        $("#question-category").text("Class C");
+	        $("#side-bar-text").text("Class C space is structured in much the same way as class B airspace, but on a smaller scale. Class C airspace is defined around airports of moderate importance that have an operational control tower and is in effect only during the hours of tower operation at the primary airport. The vertical boundary is usually 4,000 feet (1,200 m) above the airport surface. The core surface area has a radius of five nautical miles (9 km), and goes from the surface to the ceiling of the class C airspace. The upper 'shelf' area has a radius of ten nautical miles, and extends from as low as 1,200 feet (370 m) up to the ceiling of the airspace. A procedural 'outer area' (not to be confused with the shelf area) has a radius of 20 nautical miles. (AIM 3-2-4)");
+		  }, function() {
+		  	$("#resetButton").html("<button class='btn btn-danger'>Reset Questions</button>");
+		  	$("#question-category").text("");
+		  	$("#side-bar-text").html("Hover over the buttons to the left to get more information on the category. Click the button to start the quiz on that specific category. <br><br> You can stop the quiz at any time, and will be returned to your incorrect and unfinished questions next time you start the quiz.");
+		  }
+		);
+		$( "#classdButton" ).hover(
+		  function() {
+		  	$("#resetButton").html("");
+	        $("#classdPercentage").text(class_d + "%");
+	        $("#question-category").text("Class D");
+	        $("#side-bar-text").text("Class D airspace is generally cylindrical in form and normally extends from the surface to 2,500 feet (760 m) above the ground. The outer radius of the airspace is variable, but is generally 4 nautical miles. Airspace within the given radius, but in surrounding class C or class B airspace, is excluded. Class D airspace reverts to class E or G during hours when the tower is closed, or under other special conditions. (AIM 3-2-5)");
+		  }, function() {
+		  	$("#resetButton").html("<button class='btn btn-danger'>Reset Questions</button>");
+			$("#question-category").text("");
+		  	$("#side-bar-text").html("Hover over the buttons to the left to get more information on the category. Click the button to start the quiz on that specific category. <br><br> You can stop the quiz at any time, and will be returned to your incorrect and unfinished questions next time you start the quiz.");
+		  }
+		);
 	</script>
 
 @stop
