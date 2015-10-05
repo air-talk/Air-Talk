@@ -105,6 +105,10 @@
 		    </div>
 		    <div class="col-md-4">
 		        <div class="well affixed-element" data-spy="affix" data-offset-top="20" id="sideWell">
+                    <h3 class="centered">Do you know the Aviation term?</h3>
+                    <hr>
+                    <h4 class="centered">Use your spacebar or click to reveal the definition. Then left and right arrow keys or press buttons to submit.</h4>
+                    <hr>
 		        	<!-- Trigger the login modal with a button -->
                     <a type="button" class="btn btn-primary btn-circle col-md-offset-3" data-toggle="modal" data-target="#myModal">Practice Flashcards</a>
 		        </div>
