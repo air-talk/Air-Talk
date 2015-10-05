@@ -15,9 +15,9 @@ class CreateFlashcardsTable extends Migration {
 		Schema::create('flashcards', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('front', 10000);
-			$table->string('back', 10000);
-			$table->string('category');
+			$table->text('front', 10000);
+			$table->text('back', 10000);
+			$table->text('category');
 			$table->timestamps();
 		});
 	}
