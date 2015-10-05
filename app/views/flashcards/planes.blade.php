@@ -71,7 +71,7 @@
                                     <td>0</td>
                                     <td>
                                         <div class="progress">
-                                            <div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width: 0%">
                                                 
                                             </div>
                                         </div>
@@ -85,7 +85,7 @@
                                     <td>{{{ $flashcard->pivot->correct }}}</td>
                                     <td>
                                         <div class="progress">
-                                            <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar"
+                                            <div class="progress-bar progress-bar-info" role="progressbar"
                                             aria-valuenow="{{{ floor($flashcard->pivot->correct / $flashcard->pivot->attempts * 100) }}}" aria-valuemin="0" aria-valuemax="100" style="width:{{{ floor($flashcard->pivot->correct / $flashcard->pivot->attempts * 100) }}}%">
                                               <span class="sr-only">{{{ floor($flashcard->pivot->correct / $flashcard->pivot->attempts * 100) }}}%</span>
                                             </div>
@@ -144,9 +144,9 @@
         $(".card-name").hover(
           function() {
             if($(this).data('percent') == '0'){
-                $( '#sideWell' ).html( "<h2 class='centered'>" + $(this).data('front') + "</h2>" + "<hr><br><img src='" + $(this).data('definition') + "'><br><hr><br>" +  "<div class='progress'><div class='progress-bar progress-bar-danger progress-bar-striped active' role='progressbar' aria-valuenow='100' aria-valuemin='0' aria-valuemax='100' style='width: 100%'><span class='sr-only'> 0% </span></div></div><br>" );
+                $( '#sideWell' ).html( "<h2 class='centered'>" + $(this).data('front') + "</h2>" + "<hr><br><img src='" + $(this).data('definition') + "'><br><hr><br>" +  "<div class='progress'><div class='progress-bar progress-bar-info' role='progressbar' aria-valuenow='0' aria-valuemin='0' aria-valuemax='0' style='width: 0%'><span class='sr-only'> 0% </span></div></div><br>" );
             }else{
-                $( '#sideWell' ).html( "<h2 class='centered'>" + $(this).data('front') + "</h2>" + "<hr><br><img src='" + $(this).data('definition') + "'><br><hr><br>" +  "<div class='progress'><div class=' progress-bar progress-bar-danger progress-bar-striped active' role='progressbar' aria-valuenow='100' aria-valuemin='0' aria-valuemax='100' style='width: 100%'><div class='progress-bar progress-bar-info progress-bar-striped active' role='progressbar' aria-valuenow='" + $(this).data('percent') + "' aria-valuemin='0' aria-valuemax='100' style='width:" + $(this).data('percent') + "%'><span class='sr-only'> " + $(this).data('percent') + "%</span> </div> </div><br>" );
+                $( '#sideWell' ).html( "<h2 class='centered'>" + $(this).data('front') + "</h2>" + "<hr><br><img src='" + $(this).data('definition') + "'><br><hr><br>" +  "<div class='progress'><div class='progress-bar progress-bar-info' role='progressbar' aria-valuenow='" + $(this).data('percent') + "' aria-valuemin='0' aria-valuemax='100' style='width:" + $(this).data('percent') + "%'><span class='sr-only'> " + $(this).data('percent') + "%</span> </div> </div><br>" );
             }
 
           }, function() {

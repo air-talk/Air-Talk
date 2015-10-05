@@ -107,8 +107,14 @@
     background-color: red !important;
 }
 .progress{
-    background-color: red !important;
+    background-color: rgba(39,168,231,.5) !important;
     text-align: center !important;
+    border-radius: 20px;
+}
+
+.progress-bar-info{
+    background-color: #0094CC !important;
+    border-radius: 20px;
 }
 
 .extra_padding{
