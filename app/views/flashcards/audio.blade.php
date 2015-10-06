@@ -121,7 +121,7 @@
 
        console.log(flashcardList);
         $(".front").prepend('<p>' + flashcardList[0].description +'</p>');
-        $("#front").html('<source src="' + flashcardList[0].front + '" type="audio/mpeg">');
+        $("#front").html('<source src="' + flashcardList[0].front + '" type="audio/mp4">');
         $("#back").html(flashcardList[0].back);
         $("#id").val(flashcardList[0].id);
         $("#index").val('0');
