@@ -62,8 +62,8 @@
 		        				<th>Word</th>
 		        				{{-- Look into created_at column in correctAnswers table for last practiced--}}
 		        				<th>Attempts</th>
-                                <th>Correct</th>
-                                <th>Strength</th>
+                    <th>Correct</th>
+                    <th>Strength</th>
 		        			</tr>
 		        		</thead>
 		        		<tbody>
