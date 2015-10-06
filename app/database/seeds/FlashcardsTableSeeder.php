@@ -121,28 +121,28 @@ class FlashcardsTableSeeder extends Seeder {
         $flashcard->save();
 
         $flashcard = new Flashcard();
-        $flashcard->front = 'say again';
+        $flashcard->front = 'again';
         $flashcard->back = 
             'Please repeat.<br> Example: “Cessna Seven Echo Sierra, say again request.”';
         $flashcard->category = 'vocab';
         $flashcard->save();
 
         $flashcard = new Flashcard();
-        $flashcard->front = 'say altitude';
+        $flashcard->front = 'altitude';
         $flashcard->back = 
             'Report your current altitude.';
         $flashcard->category = 'vocab';
         $flashcard->save();
 
         $flashcard = new Flashcard();
-        $flashcard->front = 'say intentions';
+        $flashcard->front = 'intentions';
         $flashcard->back = 
             'Tell the controller what you want to do.';
         $flashcard->category = 'vocab';
         $flashcard->save();
 
         $flashcard = new Flashcard();
-        $flashcard->front = 'say position';
+        $flashcard->front = 'position';
         $flashcard->back = 
             'Tell the controller where you are.';
         $flashcard->category = 'vocab';
