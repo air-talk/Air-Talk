@@ -73,7 +73,7 @@
                                     <td>0</td>
                                     <td>
                                         <div class="progress">
-                                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width: 0%">
+                                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width:0%">
                                                 
                                             </div>
                                         </div>
