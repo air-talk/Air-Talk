@@ -127,7 +127,6 @@
         $("#index").val('0');
 
 
-
         var card_face = 'front';
 
         $("#card").flip({
