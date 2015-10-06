@@ -42,12 +42,117 @@ class FlashcardsTableSeeder extends Seeder {
         $flashcard->save();
 
         // AUDIO
+
         $flashcard = new Flashcard();
-        $flashcard->front = '/audio/motor.mp3';
-        $flashcard->back = 'motor running';
+        $flashcard->front = '/audio/audio_1.m4a';
+        $flashcard->back = '"Right heading one four zero, speed one four zero."';
         $flashcard->category = 'audio';
-        $flashcard->title = 'motor';
-        $flashcard->description = 'round engine running slowly';
+        $flashcard->title = 'heading clearance';
+        $flashcard->description = 'Practice saying your response to the following ATC clearance aloud.';
+        $flashcard->save();
+
+        $flashcard = new Flashcard();
+        $flashcard->front = '/audio/audio_2.m4a';
+        $flashcard->back = '"Descend and maintain fife thousand."';
+        $flashcard->category = 'audio';
+        $flashcard->title = 'descent clearance';
+        $flashcard->description = 'Practice saying your response to the following ATC clearance aloud.';
+        $flashcard->save();
+
+        $flashcard = new Flashcard();
+        $flashcard->front = '/audio/audio_3.m4a';
+        $flashcard->back = '"Left heading two seven zero. Two one zero knots."';
+        $flashcard->category = 'audio';
+        $flashcard->title = 'heading clearance 2';
+        $flashcard->description = 'Practice saying your response to the following ATC clearance aloud.';
+        $flashcard->save();
+
+        $flashcard = new Flashcard();
+        $flashcard->front = '/audio/audio_4.m4a';
+        $flashcard->back = '"Climb and maintain four thousand."';
+        $flashcard->category = 'audio';
+        $flashcard->title = 'ascent clearance';
+        $flashcard->description = 'Practice saying your response to the following ATC clearance aloud.';
+        $flashcard->save();
+
+        $flashcard = new Flashcard();
+        $flashcard->front = '/audio/audio_5.m4a';
+        $flashcard->back = '"Left two zero degrees."';
+        $flashcard->category = 'audio';
+        $flashcard->title = 'heading clearance 3';
+        $flashcard->description = 'Practice saying your response to the following ATC clearance aloud.';
+        $flashcard->save();
+
+        $flashcard = new Flashcard();
+        $flashcard->front = '/audio/audio_6.m4a';
+        $flashcard->back = '"Two zero zero knots."';
+        $flashcard->category = 'audio';
+        $flashcard->title = 'airspeed clearance';
+        $flashcard->description = 'Practice saying your response to the following ATC clearance aloud.';
+        $flashcard->save();
+
+        $flashcard = new Flashcard();
+        $flashcard->front = '/audio/audio_7.m4a';
+        $flashcard->back = '"Direct Muscle Shoals. Maintain fife thousand."';
+        $flashcard->category = 'audio';
+        $flashcard->title = 'direct clearance';
+        $flashcard->description = 'Practice saying your response to the following ATC clearance aloud.';
+        $flashcard->save();
+
+        $flashcard = new Flashcard();
+        $flashcard->front = '/audio/audio_8.m4a';
+        $flashcard->back = '"Heading is one tree zero."';
+        $flashcard->category = 'audio';
+        $flashcard->title = 'heading report';
+        $flashcard->description = 'Your heading indicates 130 degrees. <br> Practice saying your response to the following ATC clearance aloud.';
+        $flashcard->save();
+
+        $flashcard = new Flashcard();
+        $flashcard->front = '/audio/audio_9.m4a';
+        $flashcard->back = '"We\'ll maintain at least one thousand fife hundred feet per minute in our descent."';
+        $flashcard->category = 'audio';
+        $flashcard->title = 'altitude clearance';
+        $flashcard->description = 'Practice saying your response to the following ATC clearance aloud.';
+        $flashcard->save();
+
+        $flashcard = new Flashcard();
+        $flashcard->front = '/audio/audio_10.m4a';
+        $flashcard->back = '"Climb and maintain one tree thousand."';
+        $flashcard->category = 'audio';
+        $flashcard->title = 'ascent clearance 2';
+        $flashcard->description = 'Practice saying your response to the following ATC clearance aloud.';
+        $flashcard->save();
+
+        $flashcard = new Flashcard();
+        $flashcard->front = '/audio/audio_11.m4a';
+        $flashcard->back = '"Passing fife thousand eight hundred."';
+        $flashcard->category = 'audio';
+        $flashcard->title = 'altitude report';
+        $flashcard->description = 'You are climbing from 5,000 to 7,000. <br>Your altitude indicator reads five thousand eight hundred. Practice saying your response to the following ATC clearance aloud.';
+        $flashcard->save();
+
+        $flashcard = new Flashcard();
+        $flashcard->front = '/audio/audio_12.m4a';
+        $flashcard->back = '"We were cleared direct Yankee Echo Tango Tango India.<br> Note: You are not required to spell intersections and could instead say YETTI as one word. Spelling may be used to aid in understanding. "';
+        $flashcard->category = 'audio';
+        $flashcard->title = 'intersection clearance';
+        $flashcard->description = 'You were cleared direct YETTI. <br> Practice saying your response to the following ATC clearance aloud.';
+        $flashcard->save();
+
+        $flashcard = new Flashcard();
+        $flashcard->front = '/audio/audio_13.m4a';
+        $flashcard->back = '"Taxi via Alpha, Echo and Papa"';
+        $flashcard->category = 'audio';
+        $flashcard->title = 'taxi clearance';
+        $flashcard->description = 'Practice saying your response to the following ATC clearance aloud.';
+        $flashcard->save();
+
+        $flashcard = new Flashcard();
+        $flashcard->front = '/audio/audio_14.m4a';
+        $flashcard->back = '"We\'ll be cruising at four thousand fife hundred."';
+        $flashcard->category = 'audio';
+        $flashcard->title = 'altitude report 2';
+        $flashcard->description = 'Your altitude is 4,500.<br>Practice saying your response to the following ATC clearance aloud.';
         $flashcard->save();
 
         // VOCAB
