@@ -19,7 +19,7 @@
                             <div id="card" data-face="front">
                                 
                                 <div class="front">
-                                    <div id="description"> 
+                                    <div id="description" style="padding-left: 10px;padding-right: 10px"> 
                                     </div>
                                     <audio controls id="front"> 
                                         
@@ -103,7 +103,7 @@
                 <div class="well affixed-element" data-spy="affix" data-offset-top="20" id="sideWell">
                     <h3 class="centered">Do you know the correct response?</h3>
                     <hr>
-                    <h4 class="centered">Use your spacebar or click to reveal the answer. Then press the left or right arrow key or click the buttons to submit.</h4>
+                    <h4 class="centered">The audio file will appear on the front of each flashcard allowing you to practice speaking your response aloud before revealing the answer on the back.</h4>
                     <hr>
                     <!-- Trigger the login modal with a button -->
                     <a type="button" class="btn btn-primary btn-circle col-md-offset-3" data-toggle="modal" data-target="#myModal">Practice Flashcards</a>
@@ -120,10 +120,10 @@
         
         var flashcardList = [];
         @foreach($unansweredFlashcards as $flashcard)
-            flashcardList.push({ id:"{{{ $flashcard->id }}}", front:"{{{ $flashcard->front }}}", back: "{{{ $flashcard->back }}}", description: "{{{ $flashcard->description }}}" })
+            flashcardList.push({ id:"{{{ $flashcard->id }}}", front:"{{{ $flashcard->front }}}", back: "{{{ $flashcard->back }}}", description: "{{ $flashcard->description }}" })
         @endforeach
         @foreach($answeredFlashcards as $flashcard)
-            flashcardList.push({ id:"{{{ $flashcard->id }}}", front:"{{{ $flashcard->front }}}", back: "{{{ $flashcard->back }}}", description: "{{{ $flashcard->description }}}" })
+            flashcardList.push({ id:"{{{ $flashcard->id }}}", front:"{{{ $flashcard->front }}}", back: "{{{ $flashcard->back }}}", description: "{{ $flashcard->description }}" })
         @endforeach
 
 
@@ -225,7 +225,7 @@
                       dataType: "json",
 
                       success: function(data) {
-                            $("#description").html('<p>' + flashcardList[0].description + '</p>');
+                            $("#description").html('<p>' + flashcardList[next].description + '</p>');
                             $("#front").html('<source src="' + flashcardList[next].front + '" type="audio/mp4">');
                             $("#id").val(flashcardList[next].id);
                             $("#index").val(next);

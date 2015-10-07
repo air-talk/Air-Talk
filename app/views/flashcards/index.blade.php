@@ -13,7 +13,7 @@
                         <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
                     </button>
                     <h1>Do you know the Aviation term?</h1>
-                    <h3>Use your spacebar or click to reveal the definition. Then left and right arrow keys or press buttons to submit.</h3>
+                    <h4>Use your spacebar or click to reveal the definition. Then use the left and right arrow keys or click the appropriate button to submit.</h4>
                     <div class="row">
                         <div class="col-md-6 col-md-offset-3">
                             <div id="card" data-face="front">
@@ -22,7 +22,8 @@
                                 <div class="top">
                                     Flip <i class="glyphicon glyphicon-refresh"> </i>
                                 </div>
-                                    <div id="front"> 
+                                    <div> 
+                                      <h3 id="front"></h3>
                                     </div>
                                 </div> 
                                 <div class="back">
@@ -107,7 +108,7 @@
 		        <div class="well affixed-element" data-spy="affix" data-offset-top="20" id="sideWell">
                     <h3 class="centered">Do you know the Aviation term?</h3>
                     <hr>
-                    <h4 class="centered">Use your spacebar or click to reveal the definition. Then press the left or right arrow key or click the buttons to submit.</h4>
+                    <h4 class="centered">Practice the aviation vocabulary flashcards starting with your weakest terms first.</h4>
                     <hr>
 		        	<!-- Trigger the login modal with a button -->
                     <a type="button" class="btn btn-primary btn-circle col-md-offset-3" data-toggle="modal" data-target="#myModal">Practice Flashcards</a>
