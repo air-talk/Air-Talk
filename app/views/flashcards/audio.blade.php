@@ -19,7 +19,7 @@
                             <div id="card" data-face="front">
                                 
                                 <div class="front">
-                                    <div id="description" style="padding-left: 10px;padding-right: 10px"> 
+                                    <div id="description" style="padding-left: 10px;padding-right: 10px;"> 
                                     </div>
                                     <audio controls id="front"> 
                                         
