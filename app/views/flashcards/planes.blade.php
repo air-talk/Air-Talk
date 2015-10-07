@@ -55,7 +55,7 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Word</th>
+                                <th>Name</th>
                                 {{-- Look into created_at column in correctAnswers table for last practiced--}}
                                 <th>Attempts</th>
                                 <th>Correct</th>
