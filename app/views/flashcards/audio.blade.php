@@ -21,9 +21,7 @@
                                 <div class="front">
                                     <div id="description" style="padding-left: 10px;padding-right: 10px;"> 
                                     </div>
-                                    <audio controls id="front"> 
-                                        
-                                    </audio>
+                                    <div id="audio"></div>
                                 </div> 
                                 <div class="back">
     
@@ -129,7 +127,7 @@
 
        console.log(flashcardList);
         $("#description").html('<p>' + flashcardList[0].description + '</p>');
-        $("#front").html('<source src="' + flashcardList[0].front + '" type="audio/mp4">');
+        $("#audio").html('<audio controls="controls" id="front"><source src="' + flashcardList[0].front + '" type="audio/mp4" /></audio>');
         $("#back").html(flashcardList[0].back);
         $("#id").val(flashcardList[0].id);
         $("#index").val('0');
@@ -226,7 +224,7 @@
 
                       success: function(data) {
                             $("#description").html('<p>' + flashcardList[next].description + '</p>');
-                            $("#front").html('<source src="' + flashcardList[next].front + '" type="audio/mp4">');
+                            $("#audio").html('<audio controls="controls" id="front"><source src="' + flashcardList[next].front + '" type="audio/mp4" /></audio>');
                             $("#id").val(flashcardList[next].id);
                             $("#index").val(next);
                             // sleep(50);
@@ -274,8 +272,8 @@
                         dataType: "json",
 
                         success: function(data) {
-                            $("#description").html('<p>' + flashcardList[0].description + '</p>');
-                            $("#front").html('<source src="' + flashcardList[next].front + '" type="audio/mp4">');
+                            $("#description").html('<p>' + flashcardList[next].description + '</p>');
+                            $("#audio").html('<audio controls="controls" id="front"><source src="' + flashcardList[next].front + '" type="audio/mp4" /></audio>');
                             $("#id").val(flashcardList[next].id);
                             $("#index").val(next);
                             // sleep(50);
